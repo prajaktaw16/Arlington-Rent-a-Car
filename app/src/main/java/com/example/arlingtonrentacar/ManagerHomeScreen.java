@@ -2,7 +2,9 @@ package com.example.arlingtonrentacar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 public class ManagerHomeScreen extends AppCompatActivity {
 
@@ -10,5 +12,10 @@ public class ManagerHomeScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_home_screen);
+
+    }
+    public void logout(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

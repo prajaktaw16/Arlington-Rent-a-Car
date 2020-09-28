@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 //          if they match start an activity according to the role
                 else{
                     if(!role.isEmpty()){
-                        if(role.equals("user")){
+                        if(role.equals("renter")){
                             startActivity(new Intent(this, ManagerHomeScreen.class));
                         }
                         else if(role.equals("manager")){
