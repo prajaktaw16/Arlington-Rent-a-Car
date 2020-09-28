@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ManagerHomeScreen"></activity>
+        <activity android:name=".RenterHomeScreen"></activity>
+        <activity android:name=".AdminHomeScreen" />
+        <activity android:name=".ManagerHomeScreen" />
         <activity
             android:name=".testactivity"
             android:label="@string/title_activity_testactivity"
