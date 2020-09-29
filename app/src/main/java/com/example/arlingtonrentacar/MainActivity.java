@@ -17,7 +17,7 @@ import com.example.arlingtonrentacar.users.SystemUser;
 public class MainActivity extends AppCompatActivity {
 
     EditText editText_username, editText_password;
-    String username, password, database_name = "ArlingtonAuto.db";
+    String username, password;
     Intent intent;
     DatabaseHelper databaseHelper;
     SQLiteDatabase sqLiteDatabase;
@@ -27,28 +27,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.main_screen);
         setSupportActionBar(toolbar);
 
         databaseHelper = new DatabaseHelper(this);
         addDummyData();
     }
-    public void addDummyData(){
-        systemUser = new SystemUser();
-        systemUser.addRecord(databaseHelper,"Ashwini","Trale","ashwiniTrale8","ashwiniT8","","Manager",
-                "ashwinitrale@gmail.com","9765890897","abc Street","Pune","MH","425316","No");
-        systemUser.addRecord(databaseHelper,"Prajakta","Waikar","prajaktaWaikar16","prajaktaW16","1234","Renter",
-                "prajaktawaikar@gmail.com","7658344231","xyz Street","Pune","MH","425317","Yes");
-        systemUser.addRecord(databaseHelper,"Sayali","Deshmukh","sayaliDeshmukh1","sayaliD1","","Admin",
-                "sayalideshmukh@gmail.com","7356298674","pqr Street","Pune","MH","425416","No");
-        systemUser.addRecord(databaseHelper,"Shubham","Patil","shubhamPatil2","shubhamP2","","Admin",
-                "shubhampatil@gmail.com","9256298674","lmn Street","Pune","MH","400416","No");
-        systemUser.addRecord(databaseHelper,"Ahmed","Almutairi","ahmedAlmutairi3","ahmedA3","1238","Renter",
-                "ahmedA@gmail.com","7350298674","saudi Street","Pune","MH","420016","Yes");
-        systemUser.addRecord(databaseHelper,"Sudipta","Sharif","sudiptaShrif4","sudiptaS4","","Manager",
-                "sudiptaS@gmail.com","950298674","bngl Street","Pune","MH","411016","No");
 
-    }
     public void checkValidUser(View view){
         String db_password, role = " ";
 
@@ -78,20 +63,35 @@ public class MainActivity extends AppCompatActivity {
 
 //          if they match start an activity according to the role
                 else{
-                    if(!role.isEmpty()){
-                        if(role.equals("renter")){
-                            startActivity(new Intent(this, ManagerHomeScreen.class));
-                        }
-                        else if(role.equals("manager")){
-                            startActivity(new Intent(this, ManagerHomeScreen.class));
-                        }
-                        else {
-                            startActivity(new Intent(this, testactivity.class));
-                        }
+                    if(role.equals("renter")){
+                        startActivity(new Intent(this, RenterHomeScreen.class));
+                    }
+                    else if(role.equals("manager")){
+                        startActivity(new Intent(this, ManagerHomeScreen.class));
+                    }
+                    else {
+                        startActivity(new Intent(this, AdminHomeScreen.class));
                     }
                 }
             }
 
         }
+    }
+
+    public void addDummyData(){
+        systemUser = new SystemUser();
+        systemUser.addRecord(databaseHelper,"Ashwini","Trale","ashwiniTrale8","ashwiniT8","","Manager",
+                "ashwinitrale@gmail.com","9765890897","abc Street","Pune","MH","425316","No");
+        systemUser.addRecord(databaseHelper,"Prajakta","Waikar","prajaktaWaikar16","prajaktaW16","1234","Renter",
+                "prajaktawaikar@gmail.com","7658344231","xyz Street","Pune","MH","425317","Yes");
+        systemUser.addRecord(databaseHelper,"Sayali","Deshmukh","sayaliDeshmukh1","sayaliD1","","Admin",
+                "sayalideshmukh@gmail.com","7356298674","pqr Street","Pune","MH","425416","No");
+        systemUser.addRecord(databaseHelper,"Shubham","Patil","shubhamPatil2","shubhamP2","","Admin",
+                "shubhampatil@gmail.com","9256298674","lmn Street","Pune","MH","400416","No");
+        systemUser.addRecord(databaseHelper,"Ahmed","Almutairi","ahmedAlmutairi3","ahmedA3","1238","Renter",
+                "ahmedA@gmail.com","7350298674","saudi Street","Pune","MH","420016","Yes");
+        systemUser.addRecord(databaseHelper,"Sudipta","Sharif","sudiptaShrif4","sudiptaS4","","Manager",
+                "sudiptaS@gmail.com","950298674","bngl Street","Pune","MH","411016","No");
+
     }
 }
