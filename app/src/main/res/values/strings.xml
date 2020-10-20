@@ -14,7 +14,8 @@
     <string name="username">UserName</string>
     <string name="password">Password</string>
     <string name="title_activity_testactivity">testactivity</string>
-    <string name="renter_screen">Renter Screen</string>
-    <string name="admin_screen">Admin Screen</string>
-    <string name="manager_screen">Manager Screen</string>
+    <string name="renter_screen">Renter Home Screen</string>
+    <string name="admin_screen">Admin Home Screen</string>
+    <string name="manager_screen">Manager Home Screen</string>
+    <string name="logout">Logout</string>
 </resources>

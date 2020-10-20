@@ -24,6 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "lastname text, username text primary key,password text,UTAID text,role text,email text,phone text,street_address text," +
                 "city text,state text,zipcode text,arlington_auto_member text)";
         db.execSQL(qry);
+//        todo call adddummydata
     }
 
 //    called when version number is changed
@@ -31,6 +32,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
     }
+//    todo adddummydata function
 
 
 }

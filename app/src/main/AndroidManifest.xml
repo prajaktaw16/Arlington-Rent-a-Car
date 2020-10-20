@@ -10,11 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".RenterHomeScreen"></activity>
-        <activity android:name=".AdminHomeScreen" />
-        <activity android:name=".ManagerHomeScreen" />
+        <activity android:name=".AdminHomeScreen"
+                android:label ="@string/admin_screen"/>
+        <activity android:name=".ManagerHomeScreen"
+            android:label="@string/manager_screen"/>
         <activity
             android:name=".testactivity"
-            android:label="@string/title_activity_testactivity"
+            android:label="@string/admin_screen"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"

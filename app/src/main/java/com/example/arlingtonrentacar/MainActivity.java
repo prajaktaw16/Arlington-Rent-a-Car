@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(username.length()!=0 && password.length()!=0){
             cursor = systemUser.checkPassword(databaseHelper);
+//            todo
             if(cursor.getCount() > 0){
                 if(cursor.moveToFirst()){
                     role = cursor.getString(cursor.getColumnIndex("role")).trim().toLowerCase();
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
                 db_password = cursor.getString(cursor.getColumnIndex("password")).trim().toLowerCase();;
 //          check for username and password using db query
+//                todo
                 if(!password.equalsIgnoreCase(db_password)){
                     editText_username.setText("");
                     editText_password.setText("");
@@ -77,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
+//todo this should be in Dbhelper
     public void addDummyData(){
         systemUser = new SystemUser();
         systemUser.addRecord(databaseHelper,"Ashwini","Trale","ashwiniTrale8","ashwiniT8","","Manager",
