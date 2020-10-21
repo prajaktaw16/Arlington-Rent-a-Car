@@ -7,47 +7,42 @@
     tools:context=".RenterHomeScreen">
 
     <Button
-        android:id="@+id/profile_btn"
+        android:id="@+id/btnRenterViewProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="View Profile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reservation_btn" />
+        android:layout_marginTop="32dp"
+        android:text="@string/tBtnRenterViewProfile"
+        app:layout_constraintStart_toStartOf="@+id/btnViewReservations"
+        app:layout_constraintTop_toBottomOf="@+id/btnViewReservations" />
 
     <Button
-        android:id="@+id/reservation_btn"
+        android:id="@+id/btnViewReservations"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:text="View Reservations"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
+        android:layout_marginTop="32dp"
+        android:text="@string/tBtnRenterViewReservations"
+        app:layout_constraintStart_toStartOf="@+id/btnRequestCar"
+        app:layout_constraintTop_toBottomOf="@+id/btnRequestCar" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/btnRequestCar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:text="Request Car"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="100dp"
+        android:text="@string/tBtnRenterRequestCar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="launchRequestCarActivity"/>
 
     <Button
-        android:id="@+id/logout_btn"
+        android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="32dp"
         android:onClick="logout"
-        android:text="Logout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_btn"
-        app:layout_constraintVertical_bias="0.0" />
+        android:text="@string/tBtnRenterLogout"
+        app:layout_constraintStart_toStartOf="@+id/btnRenterViewProfile"
+        app:layout_constraintTop_toBottomOf="@+id/btnRenterViewProfile" />
 </androidx.constraintlayout.widget.ConstraintLayout>

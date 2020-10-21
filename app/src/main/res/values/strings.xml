@@ -17,4 +17,95 @@
     <string name="renter_screen">Renter Screen</string>
     <string name="admin_screen">Admin Screen</string>
     <string name="manager_screen">Manager Screen</string>
+    <string name="register_activity_name">Register User</string>
+    <string name="username_label">Username:</string>
+    <string name="password_label">Password:</string>
+    <string name="firstName_label">First Name:</string>
+    <string name="lastName_label">Last Name:</string>
+    <string name="uta_id_label">UTA ID:</string>
+    <string name="email_label">Email:</string>
+    <string name="phone_label">Phone:</string>
+    <string name="street_address_label">Street Address:</string>
+    <string name="city_label">City:</string>
+    <string name="state_label">State:</string>
+    <string name="zip_code_label">Zip:</string>
+    <string name="role_label">Role:</string>
+    <string name="aaa_member_label">Arlington Auto Club Member:</string>
+    <string name="btnRegister">Register</string>
+    <string name="username_hint">username</string>
+    <string name="password_hint">password</string>
+    <string name="first_name_hint">first name</string>
+    <string name="last_name_hint">last name</string>
+    <string name="uta_id_hint">uta id</string>
+    <string name="email_hint">email</string>
+    <string name="phone_hint">phone</string>
+    <string name="street_add_hint">street address</string>
+    <string name="city_hint">city</string>
+    <string name="zip_hint">zip code</string>
+    <string name="tBtnRenterViewProfile">View Profile</string>
+    <string name="tBtnRenterViewReservations">View Reservations</string>
+    <string name="tBtnRenterRequestCar">Request Car</string>
+    <string name="tBtnRenterLogout">Logout</string>
+    <string-array name="states">
+        <item>AL</item>
+        <item>AR</item>
+        <item>AZ</item>
+        <item>CA</item>
+        <item>CO</item>
+        <item>CT</item>
+        <item>DE</item>
+        <item>DC</item>
+        <item>FL</item>
+        <item>GA</item>
+        <item>HI</item>
+        <item>ID</item>
+        <item>IL</item>
+        <item>IN</item>
+        <item>IA</item>
+        <item>KS</item>
+        <item>KY</item>
+        <item>LA</item>
+        <item>ME</item>
+        <item>MD</item>
+        <item>MA</item>
+        <item>MI</item>
+        <item>MN</item>
+        <item>MS</item>
+        <item>MO</item>
+        <item>MT</item>
+        <item>NE</item>
+        <item>NV</item>
+        <item>NH</item>
+        <item>NJ</item>
+        <item>NM</item>
+        <item>NY</item>
+        <item>NC</item>
+        <item>ND</item>
+        <item>OH</item>
+        <item>OK</item>
+        <item>OR</item>
+        <item>PA</item>
+        <item>RI</item>
+        <item>SC</item>
+        <item>SD</item>
+        <item>TN</item>
+        <item>TX</item>
+        <item>UT</item>
+        <item>VT</item>
+        <item>VA</item>
+        <item>WA</item>
+        <item>WV</item>
+        <item>WI</item>
+        <item>WY</item>
+    </string-array>
+    <string-array name="roles">
+        <item>Renter</item>
+        <item>Manager</item>
+        <item>Admin</item>
+    </string-array>
+    <string-array name="aaa_status">
+        <item>No</item>
+        <item>Yes</item>
+    </string-array>
+
 </resources>
