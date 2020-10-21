@@ -52,14 +52,10 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         if(adapterView.getId() == R.id.spinner_states) {
             state = adapterView.getItemAtPosition(i).toString();
-        }
-
-        if(adapterView.getId() == R.id.spinner_role){
+        }else if(adapterView.getId() == R.id.spinner_role){
             role = AAUtil.roleStrToEnum(adapterView.getItemAtPosition(i).toString());
             setAaaMemberStatusVisibility(role);
-        }
-
-        if(adapterView.getId() == R.id.spinner_aaa_status){
+        }else if(adapterView.getId() == R.id.spinner_aaa_status){
             aaaMemberStatus = AAUtil.aaaMemberStatusStrToEnum(adapterView.getItemAtPosition(i).toString());
         }
         Log.d(LOG_TAG, "State: " + state);

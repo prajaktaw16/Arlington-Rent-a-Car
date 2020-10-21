@@ -107,5 +107,76 @@
         <item>No</item>
         <item>Yes</item>
     </string-array>
+    <string name="rcStartDateLabel">Start Date</string>
+    <string name="rcStartTimeLabel">Start Time</string>
+    <string name="rcEndDateLabel">End Date</string>
+    <string name="rcEndTimeLabel">End Time</string>
+    <string name="rcNumOfRiders">Number of Riders</string>
+    <string name="requestCarBtnName">Request Car</string>
+    <string name="dateFormat">mm/dd/yyyy</string>
+    <string name="numOfRidersHint">1</string>
+    <string name="rcStartDatePicker">requestCarStartDatePicker</string>
+    <string name="rcEndDatePicker">requestCarEndDatePicker</string>
+    <string-array name="weekday_hours">
+        <item>8:00 AM</item>
+        <item>8:30 AM</item>
+        <item>9:00 AM</item>
+        <item>9:30 AM</item>
+        <item>10:00 AM</item>
+        <item>10:30 AM</item>
+        <item>11:00 AM</item>
+        <item>11:30 AM</item>
+        <item>12:00 PM</item>
+        <item>12:30 PM</item>
+        <item>1:00 PM</item>
+        <item>1:30 PM</item>
+        <item>2:00 PM</item>
+        <item>2:30 PM</item>
+        <item>3:00 PM</item>
+        <item>3:30 PM</item>
+        <item>4:00 PM</item>
+        <item>4:30 PM</item>
+        <item>5:00 PM</item>
+        <item>5:30 PM</item>
+        <item>6:00 PM</item>
+        <item>6:30 PM</item>
+        <item>7:00 PM</item>
+        <item>7:30 PM</item>
+        <item>8:00 PM</item>
+    </string-array>
+    <string-array name="saturday_hours">
+        <item>8:00 AM</item>
+        <item>8:30 AM</item>
+        <item>9:00 AM</item>
+        <item>9:30 AM</item>
+        <item>10:00 AM</item>
+        <item>10:30 AM</item>
+        <item>11:00 AM</item>
+        <item>11:30 AM</item>
+        <item>12:00 PM</item>
+        <item>12:30 PM</item>
+        <item>1:00 PM</item>
+        <item>1:30 PM</item>
+        <item>2:00 PM</item>
+        <item>2:30 PM</item>
+        <item>3:00 PM</item>
+        <item>3:30 PM</item>
+        <item>4:00 PM</item>
+        <item>4:30 PM</item>
+        <item>5:00 PM</item>
+    </string-array>
+    <string-array name="sunday_hours">
+        <item>12:00 PM</item>
+        <item>12:30 PM</item>
+        <item>1:00 PM</item>
+        <item>1:30 PM</item>
+        <item>2:00 PM</item>
+        <item>2:30 PM</item>
+        <item>3:00 PM</item>
+        <item>3:30 PM</item>
+        <item>4:00 PM</item>
+        <item>4:30 PM</item>
+        <item>5:00 PM</item>
+    </string-array>
 
 </resources>
