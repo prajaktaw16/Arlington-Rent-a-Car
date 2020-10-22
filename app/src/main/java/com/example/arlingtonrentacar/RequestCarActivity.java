@@ -25,7 +25,8 @@ public class RequestCarActivity extends AppCompatActivity implements AdapterView
     public static final String EXTRA_END_TIME = "com.example.arlingtonrentacar.EXTRA_END_TIME";
 
     private Calendar startDate, endDate;
-    private String startTime, endTime;
+    private String startDateStr, endDateStr, startTime, endTime;
+    private String numOfRiders;
     private TextView startDateTextView, endDateTextView;
     private Spinner spinnerStartTime, spinnerEndTime;
     private ArrayAdapter<CharSequence> arrayAdapterStartTime, arrayAdapterEndTime;
@@ -55,23 +56,36 @@ public class RequestCarActivity extends AppCompatActivity implements AdapterView
     }
 
     public void requestCar(View view) {
-        String numOfRiders = ((EditText)findViewById(R.id.etNumberOfRiders)).getText().toString();
-        String startDateStr = formatDateAsMMDDYYYY(startDate);
-        String endDateStr = formatDateAsMMDDYYYY(endDate);
+        Intent intent;
+        numOfRiders = ((EditText)findViewById(R.id.etNumberOfRiders)).getText().toString();
+        startDateStr = formatDateAsMMDDYYYY(startDate);
+        endDateStr = formatDateAsMMDDYYYY(endDate);
 
-        Log.d(LOG_TAG, "Num of Riders = " + numOfRiders);
-        Log.d(LOG_TAG, "Start Date = " + startDateStr);
-        Log.d(LOG_TAG, "Start Time = " + startTime);
-        Log.d(LOG_TAG, "End Date = " + endDateStr);
-        Log.d(LOG_TAG, "End Time = " + endTime);
+        if(anyRequestCarInputIsEmpty()){
+            Toast.makeText(this, "Please enter/select all inputs.", Toast.LENGTH_LONG).show();
+        }else{
+            Log.d(LOG_TAG, "Num of Riders = " + numOfRiders);
+            Log.d(LOG_TAG, "Start Date = " + startDateStr);
+            Log.d(LOG_TAG, "Start Time = " + startTime);
+            Log.d(LOG_TAG, "End Date = " + endDateStr);
+            Log.d(LOG_TAG, "End Time = " + endTime);
 
-        Intent intent = new Intent(RequestCarActivity.this, ViewRequestedCarActivity.class);
-        intent.putExtra(EXTRA_NUM_OF_RIDERS, numOfRiders);
-        intent.putExtra(EXTRA_START_DATE, startDateStr);
-        intent.putExtra(EXTRA_START_TIME, startTime);
-        intent.putExtra(EXTRA_END_DATE, endDateStr);
-        intent.putExtra(EXTRA_END_TIME, endTime);
-        startActivity(intent);
+            intent = new Intent(RequestCarActivity.this, ViewRequestedCarActivity.class);
+            intent.putExtra(EXTRA_NUM_OF_RIDERS, numOfRiders);
+            intent.putExtra(EXTRA_START_DATE, startDateStr);
+            intent.putExtra(EXTRA_START_TIME, startTime);
+            intent.putExtra(EXTRA_END_DATE, endDateStr);
+            intent.putExtra(EXTRA_END_TIME, endTime);
+            startActivity(intent);
+        }
+    }
+
+    private boolean anyRequestCarInputIsEmpty(){
+        return (numOfRiders.length() == 0 ||
+                startDateStr.length() == 0 ||
+                startTime.length() == 0 ||
+                endDateStr.length() == 0 ||
+                endTime.length() == 0);
     }
 
     private void setUpDate(TextView targetDateTextView, Calendar calendar){
