@@ -9,21 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewRequestedCarActivity"
+        <activity android:name=".RequestedCarDetailsActivity"
+            android:label="View Requested Car Details" />
+        <activity
+            android:name=".ViewRequestedCarActivity"
             android:label="@string/viewRequestedCarActivityLabel"
-            android:parentActivityName=".RequestCarActivity"/>
+            android:parentActivityName=".RequestCarActivity" />
         <activity
             android:name=".RequestCarActivity"
             android:label="@string/requestCarActivityLabel"
-            android:parentActivityName=".RenterHomeScreen"/>
+            android:parentActivityName=".RenterHomeScreen" />
         <activity
             android:name=".RegisterActivity"
             android:label="@string/registerActivityLabel"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".RenterHomeScreen"
-            android:label="@string/renterHomeScreenActivityLabel"
-            android:parentActivityName=".MainActivity"/>
+            android:label="@string/renterHomeScreenActivityLabel" />
         <activity android:name=".AdminHomeScreen" />
         <activity android:name=".ManagerHomeScreen" />
         <activity
