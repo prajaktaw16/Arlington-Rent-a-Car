@@ -117,6 +117,10 @@
     <string name="numOfRidersHint">1</string>
     <string name="rcStartDatePicker">requestCarStartDatePicker</string>
     <string name="rcEndDatePicker">requestCarEndDatePicker</string>
+    <string name="requestCarActivityLabel">Request Car</string>
+    <string name="renterHomeScreenActivityLabel">Renter Home Screen</string>
+    <string name="registerActivityLabel">Register User</string>
+    <string name="viewRequestedCarActivityLabel">Request Car Summary</string>
     <string-array name="weekday_hours">
         <item>8:00 AM</item>
         <item>8:30 AM</item>

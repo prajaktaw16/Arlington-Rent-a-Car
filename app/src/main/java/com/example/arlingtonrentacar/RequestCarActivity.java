@@ -3,6 +3,7 @@ package com.example.arlingtonrentacar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -64,8 +65,13 @@ public class RequestCarActivity extends AppCompatActivity implements AdapterView
         Log.d(LOG_TAG, "End Date = " + endDateStr);
         Log.d(LOG_TAG, "End Time = " + endTime);
 
-        // TODO: Launch the ViewRequestedCar Activity
-        // TODO: Pass the above values as extra from this activity to ViewRequestedCar activity
+        Intent intent = new Intent(RequestCarActivity.this, ViewRequestedCarActivity.class);
+        intent.putExtra(EXTRA_NUM_OF_RIDERS, numOfRiders);
+        intent.putExtra(EXTRA_START_DATE, startDateStr);
+        intent.putExtra(EXTRA_START_TIME, startTime);
+        intent.putExtra(EXTRA_END_DATE, endDateStr);
+        intent.putExtra(EXTRA_END_TIME, endTime);
+        startActivity(intent);
     }
 
     private void setUpDate(TextView targetDateTextView, Calendar calendar){
