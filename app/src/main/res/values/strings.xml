@@ -18,4 +18,5 @@
     <string name="admin_screen">Admin Home Screen</string>
     <string name="manager_screen">Manager Home Screen</string>
     <string name="logout">Logout</string>
+    <string name="start_date">start_date</string>
 </resources>
