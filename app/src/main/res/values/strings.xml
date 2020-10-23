@@ -18,5 +18,19 @@
     <string name="admin_screen">Admin Home Screen</string>
     <string name="manager_screen">Manager Home Screen</string>
     <string name="logout">Logout</string>
-    <string name="start_date">start_date</string>
+    <string name="start_date">Start Date</string>
+    <string name="start_time">Start Time</string>
+    <string name="end_date">End Date</string>
+    <string name="end_time">End Time</string>
+    <string name="reservation_id">Reservation ID</string>
+    <string name="carname">Car Name</string>
+    <string name="carcapacity">Car Capacity</string>
+    <string name="lastname">Last Name</string>
+    <string name="firstname">First Name</string>
+    <string name="numberofriders">Number Of Riders</string>
+    <string name="gps">GPS</string>
+    <string name="onstar">OnStar</string>
+    <string name="siriusxm">SiriusXM</string>
+    <string name="totalprice">Total Price</string>
+    <string name="arlingtonautoclubmember">Arlington Auto Club Member</string>
 </resources>

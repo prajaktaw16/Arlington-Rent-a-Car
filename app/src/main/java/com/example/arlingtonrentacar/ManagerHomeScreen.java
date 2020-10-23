@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.arlingtonrentacar.manager.View_Reservation_Calendar;
+import com.example.arlingtonrentacar.manager.View_Reservation_Details;
 
 public class ManagerHomeScreen extends AppCompatActivity {
 
