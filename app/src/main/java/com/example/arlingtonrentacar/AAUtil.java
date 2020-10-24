@@ -1,5 +1,9 @@
 package com.example.arlingtonrentacar;
 
+import com.example.arlingtonrentacar.database.DatabaseHelper;
+
+import java.util.Calendar;
+
 public class AAUtil {
 
     public static Role roleStrToEnum(String role){
@@ -46,6 +50,25 @@ public class AAUtil {
         }else{
             return AAAMemberStatus.NO;
         }
+    }
+
+    public static String getGreetingByHour(){
+        Calendar c = Calendar.getInstance();
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+
+        if(hour >= 0 && hour < 12){
+            return "Good Morning";
+        }else if(hour >= 12 && hour < 16){
+            return "Good Afternoon";
+        }else if(hour >= 16 && hour < 21){
+            return "Good Evening";
+        }else{
+            return "Hello";
+        }
+    }
+
+    public static String quoteStr(String strToQuote){
+        return "\'" + strToQuote + "\'";
     }
 
 

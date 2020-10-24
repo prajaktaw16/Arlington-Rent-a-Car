@@ -1,12 +1,14 @@
 package com.example.arlingtonrentacar.database;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.arlingtonrentacar.AAUtil;
 import com.example.arlingtonrentacar.R;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -171,6 +173,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "(\"Sunday\", \"12:00 PM\", \"05:00 PM\");";
         sqLiteDatabase.execSQL(sql);
         Log.d(LOG_TAG,  sql);
+    }
+
+    public String getFullNameByUsername(String username){
+        final int FIRST_NAME_COL = 0;
+        final int LAST_NAME_COL = 1;
+        String fullName = "";
+        String sql = "SELECT first_name, last_name FROM " + SYSTEM_USERS_TABLE + " WHERE username = " + AAUtil.quoteStr(username);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        if(cursor.moveToFirst()){
+            fullName = cursor.getString(FIRST_NAME_COL) + " " + cursor.getString(LAST_NAME_COL);
+        }
+        Log.d(LOG_TAG, "getFullNameByUsername: fullName = " + fullName);
+        return fullName;
     }
 
 
