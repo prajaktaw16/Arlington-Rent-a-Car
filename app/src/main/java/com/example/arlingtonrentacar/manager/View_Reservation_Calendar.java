@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.arlingtonrentacar.R;
 
-public class View_Reservation_Calendar extends AppCompatActivity {
+public class View_Reservation_Calendar extends AppCompatActivity implements ViewReservationCalendar_list_Adapter.ReservationListListener {
 
     String[] myDataset = {"Test1", "Test2","Test3", "Test4", "Test5"};
     private RecyclerView recyclerView;
@@ -28,13 +28,13 @@ public class View_Reservation_Calendar extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        mAdapter = new ViewReservationCalendar_list_Adapter(myDataset);
+        mAdapter = new ViewReservationCalendar_list_Adapter(this, myDataset, this);
         recyclerView.setAdapter(mAdapter);
     }
 
-    public void view_reservation_details(View view){
+    @Override
+    public void onReservationListClick(int position) {
         Intent intent = new Intent(this, View_Reservation_Details.class);
         startActivity(intent);
     }
-
 }

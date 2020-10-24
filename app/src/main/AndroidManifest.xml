@@ -30,6 +30,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".manager.View_Reservation_Calendar"/>
+        <activity android:name=".manager.View_Reservation_Details" />
     </application>
 
 </manifest>
