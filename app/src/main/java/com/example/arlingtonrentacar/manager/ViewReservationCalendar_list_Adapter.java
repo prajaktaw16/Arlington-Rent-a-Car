@@ -10,16 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.arlingtonrentacar.R;
+import com.example.arlingtonrentacar.database.Reservations;
+
+import java.util.ArrayList;
 
 public class ViewReservationCalendar_list_Adapter extends RecyclerView.Adapter<ViewReservationCalendar_list_Adapter.MyViewHolder> {
 
-    private String[] mDataset;
+    private ArrayList<Reservations> reservationsData;
     private ReservationListListener mreservationListListener;
-    private Context context;
 
-    public ViewReservationCalendar_list_Adapter(Context context, String[] myDataset, ReservationListListener reservationListListener){
-        this.context = context;
-        mDataset = myDataset;
+    public ViewReservationCalendar_list_Adapter(ArrayList<Reservations> reservationsData, ReservationListListener reservationListListener){
+        this.reservationsData = reservationsData;
         mreservationListListener = reservationListListener;
     }
 
@@ -30,23 +31,23 @@ public class ViewReservationCalendar_list_Adapter extends RecyclerView.Adapter<V
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.calendar_items_list, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.calendar_items_list, parent, false);
         return new MyViewHolder(v, mreservationListListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.carName_textView.setText(mDataset[position]);
-        holder.startDate_textView.setText(mDataset[position]);
-        holder.startTime_textView.setText(mDataset[position]);
-        holder.endDate_textView.setText(mDataset[position]);
-        holder.endTime_textView.setText(mDataset[position]);
+        holder.carName_textView.setText(reservationsData.get(position).getCarName());
+        holder.startDate_textView.setText(reservationsData.get(position).getStartDate());
+        holder.startTime_textView.setText(reservationsData.get(position).getStartTime());
+        holder.endDate_textView.setText(reservationsData.get(position).getEndDate());
+        holder.endTime_textView.setText(reservationsData.get(position).getEndTime());
 
     }
 
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return reservationsData.size();
     }
 
 
