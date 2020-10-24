@@ -15,7 +15,6 @@
                 android:label ="@string/admin_screen"/>
         <activity android:name=".ManagerHomeScreen"
             android:label="@string/manager_screen"/>
-=======
         <activity android:name=".RequestedCarDetailsActivity"
             android:label="View Requested Car Details" />
         <activity
@@ -30,7 +29,6 @@
             android:name=".RegisterActivity"
             android:label="@string/registerActivityLabel"
             android:parentActivityName=".MainActivity" />
->>>>>>> 5e7c4ee0a48c858d69812c352b8a7cf02193d58e
         <activity
             android:name=".testactivity"
             android:label="@string/admin_screen"
