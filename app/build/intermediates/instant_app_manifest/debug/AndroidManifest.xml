@@ -29,6 +29,21 @@
             android:name="com.example.arlingtonrentacar.ManagerHomeScreen"
             android:label="@string/manager_screen" />
         <activity
+            android:name="com.example.arlingtonrentacar.RequestedCarDetailsActivity"
+            android:label="View Requested Car Details" />
+        <activity
+            android:name="com.example.arlingtonrentacar.ViewRequestedCarActivity"
+            android:label="@string/viewRequestedCarActivityLabel"
+            android:parentActivityName="com.example.arlingtonrentacar.RequestCarActivity" />
+        <activity
+            android:name="com.example.arlingtonrentacar.RequestCarActivity"
+            android:label="@string/requestCarActivityLabel"
+            android:parentActivityName="com.example.arlingtonrentacar.RenterHomeScreen" />
+        <activity
+            android:name="com.example.arlingtonrentacar.RegisterActivity"
+            android:label="@string/registerActivityLabel"
+            android:parentActivityName="com.example.arlingtonrentacar.MainActivity" />
+        <activity
             android:name="com.example.arlingtonrentacar.testactivity"
             android:label="@string/admin_screen"
             android:theme="@style/AppTheme.NoActionBar" />

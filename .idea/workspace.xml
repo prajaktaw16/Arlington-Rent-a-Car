@@ -10,9 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2e6a25e-bb62-485e-a7e3-0e5828b68c36" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/arlingtonrentacar/database/Reservations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/arlingtonrentacar/manager/ViewReservationCalendar_list_Adapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/arlingtonrentacar/manager/ViewReservationCalendar_list_Adapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/arlingtonrentacar/manager/View_Reservation_Calendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/arlingtonrentacar/manager/View_Reservation_Calendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +71,7 @@
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
-    <property name="memory.settings.postsync.last.time.stamp" value="1603434328743" />
+    <property name="memory.settings.postsync.last.time.stamp" value="1603547330974" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -204,22 +209,22 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="466" y="140" width="441" height="557" key="FileChooserDialogImpl/0.27.1366.741@0.27.1366.741" timestamp="1603291306998" />
-    <state width="1318" height="330" key="GridCell.Tab.0.bottom" timestamp="1603544421923">
+    <state width="1318" height="330" key="GridCell.Tab.0.bottom" timestamp="1603547186394">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1318" height="330" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1603544421923" />
-    <state width="1318" height="330" key="GridCell.Tab.0.center" timestamp="1603544421923">
+    <state width="1318" height="330" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1603547186394" />
+    <state width="1318" height="330" key="GridCell.Tab.0.center" timestamp="1603547186393">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1318" height="330" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1603544421923" />
-    <state width="1318" height="330" key="GridCell.Tab.0.left" timestamp="1603544421922">
+    <state width="1318" height="330" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1603547186393" />
+    <state width="1318" height="330" key="GridCell.Tab.0.left" timestamp="1603547186393">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1318" height="330" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1603544421922" />
-    <state width="1318" height="330" key="GridCell.Tab.0.right" timestamp="1603544421923">
+    <state width="1318" height="330" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1603547186393" />
+    <state width="1318" height="330" key="GridCell.Tab.0.right" timestamp="1603547186394">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1318" height="330" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1603544421923" />
+    <state width="1318" height="330" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1603547186393" />
     <state x="383" y="115" width="609" height="571" key="MultipleFileMergeDialog" timestamp="1603188666078">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
@@ -228,10 +233,10 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state width="683" height="345" key="XDebugger.FullValuePopup/0.27.1366.741@0.27.1366.741" timestamp="1601227316090" />
-    <state x="338" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1603476496343">
+    <state x="338" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1603547275193">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="338" y="225" key="com.intellij.ide.util.TipDialog/0.27.1366.741@0.27.1366.741" timestamp="1603476496343" />
+    <state x="338" y="225" key="com.intellij.ide.util.TipDialog/0.27.1366.741@0.27.1366.741" timestamp="1603547275193" />
     <state x="449" y="315" width="505" height="185" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603188658691">
       <screen x="0" y="27" width="1366" height="741" />
     </state>

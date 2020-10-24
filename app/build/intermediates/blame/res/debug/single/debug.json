@@ -96,8 +96,16 @@
         "source": "/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png"
     },
     {
+        "merged": "/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/build/intermediates/res/merged/debug/layout_activity_request_car.xml.flat",
+        "source": "/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/src/main/res/layout/activity_request_car.xml"
+    },
+    {
         "merged": "/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher.png.flat",
         "source": "/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/build/intermediates/res/merged/debug/layout_activity_view_requested_car.xml.flat",
+        "source": "/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/src/main/res/layout/activity_view_requested_car.xml"
     },
     {
         "merged": "/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/build/intermediates/res/merged/debug/drawable-anydpi-v21_ic_launcher_background.xml.flat",
@@ -106,6 +114,10 @@
     {
         "merged": "/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/build/intermediates/res/merged/debug/drawable-xxxhdpi_ic_launcher_background.png.flat",
         "source": "/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/build/generated/res/pngs/debug/drawable-xxxhdpi/ic_launcher_background.png"
+    },
+    {
+        "merged": "/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/build/intermediates/res/merged/debug/layout_activity_requested_car_details.xml.flat",
+        "source": "/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/src/main/res/layout/activity_requested_car_details.xml"
     },
     {
         "merged": "/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher.png.flat",
@@ -120,6 +132,10 @@
         "source": "/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/src/main/res/layout/activity_testactivity.xml"
     },
     {
+        "merged": "/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/build/intermediates/res/merged/debug/layout_requestedcarlist_rowitem.xml.flat",
+        "source": "/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/src/main/res/layout/requestedcarlist_rowitem.xml"
+    },
+    {
         "merged": "/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/build/intermediates/res/merged/debug/layout_reservations_summary_screen.xml.flat",
         "source": "/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/src/main/res/layout/reservations_summary_screen.xml"
     },
@@ -130,6 +146,10 @@
     {
         "merged": "/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/build/intermediates/res/merged/debug/menu_menu_main.xml.flat",
         "source": "/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/src/main/res/menu/menu_main.xml"
+    },
+    {
+        "merged": "/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/build/intermediates/res/merged/debug/layout_activity_register.xml.flat",
+        "source": "/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/src/main/res/layout/activity_register.xml"
     },
     {
         "merged": "/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher.xml.flat",
