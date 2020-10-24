@@ -208,7 +208,7 @@
         android:checked="true"
         android:text="@string/gpsSwitchText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aaa_mem_statLabel"
+        app:layout_constraintTop_toBottomOf="@+id/totalPriceLabel"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <Switch
@@ -232,29 +232,6 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/siriusxmSwitch"
         app:layout_constraintStart_toEndOf="@+id/siriusxmSwitch"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
-
-    <TextView
-        android:id="@+id/aaa_mem_statLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/arlington_auto_club_member_label"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/totalPriceLabel" />
-
-    <TextView
-        android:id="@+id/aaa_mem_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:text="@string/aaa_mem_stat_value"
-        android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/aaa_mem_statLabel"
-        app:layout_constraintStart_toEndOf="@+id/aaa_mem_statLabel" />
 
     <Button
         android:id="@+id/btnRequestCar"

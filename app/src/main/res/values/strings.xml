@@ -143,8 +143,9 @@
     <string name="aaa_mem_stat_value">Yes</string>
     <string name="btn_request_car_text">Request Car</string>
     <string name="gpsSwitchText">GPS</string>
-    <string name="sirisuxmSwitchText">SirisuXM</string>
+    <string name="sirisuxmSwitchText">SiriusXM</string>
     <string name="onstarSwitchText">OnStar</string>
+    <string name="renter_user_greeting">Good Morning, John Doe</string>
     <string-array name="weekday_hours">
         <item>8:00 AM</item>
         <item>8:30 AM</item>
