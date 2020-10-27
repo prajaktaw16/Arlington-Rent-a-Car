@@ -56,6 +56,10 @@ animator mtrl_fab_hide_motion_spec
 animator mtrl_fab_show_motion_spec
 animator mtrl_fab_transformation_sheet_collapse_spec
 animator mtrl_fab_transformation_sheet_expand_spec
+animator nav_default_enter_anim
+animator nav_default_exit_anim
+animator nav_default_pop_enter_anim
+animator nav_default_pop_exit_anim
 array aaa_status
 array roles
 array saturday_hours
@@ -1739,6 +1743,7 @@ id button_login
 id button_logout
 id button_register
 id button_second
+id cache_measures
 id calendar_list
 id cancel_action
 id cancel_button
@@ -1786,6 +1791,7 @@ id decelerateAndComplete
 id decor_content_parent
 id default_activity_button
 id deltaRelative
+id dependency_ordering
 id design_bottom_sheet
 id design_menu_item_action_area
 id design_menu_item_action_area_stub
@@ -1859,6 +1865,7 @@ id gps_textview
 id graph
 id graph_wrap
 id group_divider
+id grouping
 id groups
 id hideable
 id home
