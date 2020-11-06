@@ -9,13 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RenterHomeScreen"
-            android:label="@string/renter_screen" ></activity>
-        <activity android:name=".AdminHomeScreen"
-                android:label ="@string/admin_screen"/>
-        <activity android:name=".ManagerHomeScreen"
+        <activity
+            android:name=".RenterHomeScreen"
+            android:label="@string/renter_screen" />
+        <activity
+            android:name=".AdminHomeScreen"
+            android:label="@string/admin_screen" />
+        <activity
+            android:name=".ManagerHomeScreen"
             android:label="@string/manager_screen" />
-        <activity android:name=".RequestedCarDetailsActivity"
+        <activity
+            android:name=".RequestedCarDetailsActivity"
             android:label="View Requested Car Details" />
         <activity
             android:name=".ViewRequestedCarActivity"
@@ -43,7 +47,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".manager.View_Reservation_Calendar"/>
+        <activity android:name=".manager.View_Reservation_Calendar" />
         <activity android:name=".manager.View_Reservation_Details" />
     </application>
 

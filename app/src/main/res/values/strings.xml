@@ -162,6 +162,7 @@
     <string name="sirisuxmSwitchText">SiriusXM</string>
     <string name="onstarSwitchText">OnStar</string>
     <string name="renter_user_greeting">Good Morning, John Doe</string>
+    <string name="menu_logout_title">Logout</string>
     <string-array name="weekday_hours">
         <item>8:00 AM</item>
         <item>8:30 AM</item>
@@ -224,5 +225,4 @@
         <item>5:00 PM</item>
     </string-array>
 
->>>>>>> 5e7c4ee0a48c858d69812c352b8a7cf02193d58e
 </resources>

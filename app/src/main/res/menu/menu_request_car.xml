@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.arlingtonrentacar.RequestCarActivity">
+    <item
+        android:id="@+id/rc_menu_logout"
+        android:title="@string/menu_logout_title"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_lock_power_off"/>
+</menu>
