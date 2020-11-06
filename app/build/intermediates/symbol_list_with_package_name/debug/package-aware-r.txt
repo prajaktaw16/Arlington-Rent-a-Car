@@ -1732,6 +1732,7 @@ id button
 id button2
 id button3
 id button4
+id button5
 id button6
 id buttonPanel
 id button_first
@@ -2032,11 +2033,13 @@ id src_in
 id src_over
 id standard
 id start
-id startDate
 id startDateLabel
+id startDate_Textview
+id startDate_button
 id startHorizontal
-id startTime
 id startTimeLabel
+id startTime_Textview
+id startTime_spinner
 id startVertical
 id startdate
 id startdate_textview
@@ -2129,6 +2132,7 @@ id utaidLabel
 id view_offset_helper
 id visible
 id visible_removing_fragment_view_tag
+id vrc_menu_logout
 id vrc_recyclerview
 id welcomeText
 id withText

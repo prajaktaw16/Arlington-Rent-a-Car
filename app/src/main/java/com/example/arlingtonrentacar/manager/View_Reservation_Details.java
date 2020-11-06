@@ -1,8 +1,12 @@
 package com.example.arlingtonrentacar.manager;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -64,5 +68,20 @@ public class View_Reservation_Details extends AppCompatActivity{
         totalprice_textview.setText("200");
         arlingtonautoclubmember_textview.setText("Yes");
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.vrc_menu_logout){
+            Toast.makeText(this, "Logout Menu Clicked", Toast.LENGTH_LONG).show();
+            return(true);
+        }
+        return(super.onOptionsItemSelected(item));
     }
 }

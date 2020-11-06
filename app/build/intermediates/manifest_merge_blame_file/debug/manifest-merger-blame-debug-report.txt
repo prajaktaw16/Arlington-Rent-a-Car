@@ -41,7 +41,7 @@
 26            android:label="@string/admin_screen" />
 26-->/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/src/main/AndroidManifest.xml:15:17-54
 27        <activity
-27-->/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/src/main/AndroidManifest.xml:16:9-17:53
+27-->/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/src/main/AndroidManifest.xml:16:9-17:54
 28            android:name="com.example.arlingtonrentacar.ManagerHomeScreen"
 28-->/home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/src/main/AndroidManifest.xml:16:19-52
 29            android:label="@string/manager_screen" />

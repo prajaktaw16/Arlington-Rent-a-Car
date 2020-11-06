@@ -14,7 +14,7 @@
         <activity android:name=".AdminHomeScreen"
                 android:label ="@string/admin_screen"/>
         <activity android:name=".ManagerHomeScreen"
-            android:label="@string/manager_screen"/>
+            android:label="@string/manager_screen" />
         <activity android:name=".RequestedCarDetailsActivity"
             android:label="View Requested Car Details" />
         <activity

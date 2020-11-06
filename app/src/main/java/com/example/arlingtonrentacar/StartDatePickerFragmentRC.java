@@ -1,5 +1,6 @@
 package com.example.arlingtonrentacar;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import java.util.Calendar;
  * A simple {@link Fragment} subclass.
  */
 public class StartDatePickerFragmentRC extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+
 
     @NonNull
     @Override

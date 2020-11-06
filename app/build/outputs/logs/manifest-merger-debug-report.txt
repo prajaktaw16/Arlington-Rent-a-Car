@@ -101,7 +101,7 @@ ADDED from /home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/src/main/An
 	android:name
 		ADDED from /home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/src/main/AndroidManifest.xml:14:19-50
 activity#com.example.arlingtonrentacar.ManagerHomeScreen
-ADDED from /home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/src/main/AndroidManifest.xml:16:9-17:53
+ADDED from /home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/src/main/AndroidManifest.xml:16:9-17:54
 	android:label
 		ADDED from /home/shubham/AndroidStudioProjects/ArlingtonRentaCar/app/src/main/AndroidManifest.xml:17:13-51
 	android:name

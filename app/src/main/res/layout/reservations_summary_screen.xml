@@ -6,29 +6,30 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/startDate"
+        android:id="@+id/startDate_Textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginEnd="115dp"
-        android:layout_marginRight="115dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="12dp"
         android:hint="Start Date"
-        app:layout_constraintBottom_toBottomOf="@+id/startTime"
-        app:layout_constraintEnd_toStartOf="@+id/startTime"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/startTime_spinner"
+        app:layout_constraintEnd_toStartOf="@+id/startTime_spinner"
+        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startDate_button" />
 
-    <EditText
-        android:id="@+id/startTime"
+    <Button
+        android:id="@+id/startTime_Textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="68dp"
-        android:layout_marginRight="68dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="88dp"
+        android:layout_marginRight="88dp"
         android:hint="@string/start_time_text"
-        app:layout_constraintBottom_toTopOf="@+id/submit"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:text="Start Time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/calendar_list"
@@ -44,7 +45,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startTime"
+        app:layout_constraintTop_toBottomOf="@+id/startTime_Textview"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
@@ -53,13 +54,35 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="162dp"
         android:layout_marginLeft="162dp"
-        android:layout_marginTop="156dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="161dp"
         android:layout_marginRight="161dp"
+        android:onClick="onSubmitClick"
         android:text="Submit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/startDate_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
+        android:onClick="showStartDatePicker"
+        android:text="Start Date"
+        app:layout_constraintBottom_toBottomOf="@+id/startTime_Textview"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/startTime_spinner"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startTime_Textview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

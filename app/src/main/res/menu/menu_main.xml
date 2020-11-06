@@ -7,4 +7,10 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/vrc_menu_logout"
+        android:title="menu logout title"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_lock_power_off"/>
 </menu>
