@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 
@@ -33,6 +34,10 @@ public class RenterHomeScreen extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+    public void viewProfile(View view) {
+        Intent intent = new Intent(this, ViewProfile.class);
+        startActivity(intent);
+    }
 
     public void launchRequestCarActivity(View view) {
         Intent intent = new Intent(this, RequestCarActivity.class);
@@ -49,4 +54,8 @@ public class RenterHomeScreen extends AppCompatActivity {
     }
 
 
+    @Override public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 }

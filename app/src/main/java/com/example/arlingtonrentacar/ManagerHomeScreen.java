@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
 
@@ -26,16 +27,18 @@ public class ManagerHomeScreen extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+    public void viewProfile(View view) {
+        Intent intent = new Intent(this, ViewProfile.class);
+        startActivity(intent);
+    }
+    @Override public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
     public void view_reservation_calendar(View view){
         Intent intent = new Intent(this, View_Reservation_Calendar.class);
         startActivity(intent);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
     }
 
     @Override

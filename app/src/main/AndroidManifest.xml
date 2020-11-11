@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
+        <activity android:name=".ViewProfile"></activity>
             android:name=".RenterHomeScreen"
             android:label="@string/renter_screen" />
         <activity
@@ -33,6 +33,9 @@
             android:name=".RegisterActivity"
             android:label="@string/registerActivityLabel"
             android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".RenterHomeScreen"
+            android:label="@string/renterHomeScreenActivityLabel" />
         <activity
             android:name=".testactivity"
             android:label="@string/admin_screen"
