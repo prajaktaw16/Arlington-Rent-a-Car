@@ -15,7 +15,7 @@ public class AAUtil {
         }else if(role.equals("admin")){
             return Role.ADMIN;
         }else{
-            return Role.RENTER;
+            return Role.NONE;
         }
     }
 
@@ -24,8 +24,10 @@ public class AAUtil {
             return "Renter";
         }else if(role == Role.MANAGER){
             return  "Manager";
-        }else{
+        }else if(role == Role.ADMIN){
             return "Admin";
+        }else {
+            return "None";
         }
     }
 
