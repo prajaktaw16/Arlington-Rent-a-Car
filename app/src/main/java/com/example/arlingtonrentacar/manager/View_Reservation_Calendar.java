@@ -1,6 +1,9 @@
 package com.example.arlingtonrentacar.manager;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -23,6 +26,7 @@ import com.example.arlingtonrentacar.R;
 import com.example.arlingtonrentacar.RequestCarActivity;
 import com.example.arlingtonrentacar.StartDatePickerFragmentRC;
 import com.example.arlingtonrentacar.StartDatePickerFragment_ViewReservationCalendar;
+import com.example.arlingtonrentacar.database.DatabaseHelper;
 import com.example.arlingtonrentacar.database.Reservations;
 
 import java.util.ArrayList;
@@ -50,22 +54,33 @@ public class View_Reservation_Calendar extends AppCompatActivity implements View
         mAdapter = new ViewReservationCalendar_list_Adapter( reservationsData, this);
         recyclerView.setAdapter(mAdapter);
 
-        for(int i=1; i<4; i++) {
-            reservationsObj = new Reservations();
-            reservationsObj.setEndDate(i+"1/2/2020");
-            reservationsObj.setEndTime("20PM");
-            reservationsObj.setStartDate(i+"0/2/2020");
-            reservationsObj.setStartTime("1"+i+"PM");
-            if(i==1){
-                reservationsObj.setCarName("Smart");
-            }else{
-                reservationsObj.setCarName("Economy");
-            }
+        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+        String reservations_query =  "select * from reservations order by start_date desc, start_time desc, car_name asc;";
+        Cursor cursor =  db.rawQuery(reservations_query,null);
+        if(cursor.moveToFirst()){
+            do{
+                reservationsObj = new Reservations();
+                reservationsObj.setReservationID(cursor.getString(cursor.getColumnIndex("reservation_id")));
+                reservationsObj.setCar_number(Integer.parseInt(cursor.getString(cursor.getColumnIndex("car_number"))));
+                reservationsObj.setLastname(cursor.getString(cursor.getColumnIndex("last_name")));
+                reservationsObj.setFirstname(cursor.getString(cursor.getColumnIndex("first_name")));
+                reservationsObj.setCarName(cursor.getString(cursor.getColumnIndex("car_name")));
+                reservationsObj.setCarCapacity(Integer.parseInt(cursor.getString(cursor.getColumnIndex("car_capacity"))));
+                reservationsObj.setStartDate(cursor.getString(cursor.getColumnIndex("start_date")));
+                reservationsObj.setStartTime(cursor.getString(cursor.getColumnIndex("start_time")));
+                reservationsObj.setEndDate(cursor.getString(cursor.getColumnIndex("end_date")));
+                reservationsObj.setEndTime(cursor.getString(cursor.getColumnIndex("end_time")));
+                reservationsObj.setNumberOfRiders(Integer.parseInt(cursor.getString(cursor.getColumnIndex("num_of_riders"))));
+                reservationsObj.setTotalPrice(Float.parseFloat(cursor.getString(cursor.getColumnIndex("total_price"))));
+                reservationsObj.setGps(Integer.parseInt(cursor.getString(cursor.getColumnIndex("gps"))));
+                reservationsObj.setSiriusxm(Integer.parseInt(cursor.getString(cursor.getColumnIndex("siriusxm"))));
+                reservationsObj.setOnstar(Integer.parseInt(cursor.getString(cursor.getColumnIndex("onstar"))));
+                reservationsObj.setAaaMemberStatus(Integer.parseInt(cursor.getString(cursor.getColumnIndex("aaa_member_status"))));
 
-            reservationsData.add(reservationsObj);
+                reservationsData.add(reservationsObj);
+            }while(cursor.moveToNext());
         }
-
-
         startDate = Calendar.getInstance();
         startTime = "";
         startDateTextView = findViewById(R.id.startDate_Textview);
@@ -99,6 +114,7 @@ public class View_Reservation_Calendar extends AppCompatActivity implements View
     @Override
     public void onReservationListClick(int position) {
         Intent intent = new Intent(this, View_Reservation_Details.class);
+        intent.putExtra("ReservationsDataObj", reservationsData.get(position));
         startActivity(intent);
     }
 
