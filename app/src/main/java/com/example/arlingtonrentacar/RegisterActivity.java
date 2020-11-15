@@ -8,9 +8,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.arlingtonrentacar.systemControllers.RegisterController;
 
 public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private static final String LOG_TAG = RegisterActivity.class.getSimpleName();
@@ -82,8 +85,48 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     }
 
     public void registerUser(View view) {
-        Toast.makeText(RegisterActivity.this, "Registration Successful!", Toast.LENGTH_LONG).show();
-        startActivity(new Intent(this, MainActivity.class));
-        Log.d(LOG_TAG, "Registration Successful. Redirecting to Login screen.");
+        final String METHOD_NAME = "registerUser()";
+        EditText etUsername, etPassword, etFirstName, etLastName, etUTAID, etEmail, etPhone, etAddress,
+                etCity, etZip;
+        etUsername = findViewById(R.id.et_username);
+        etPassword = findViewById(R.id.et_password);
+        etLastName = findViewById(R.id.et_lastName);
+        etFirstName = findViewById(R.id.et_firstName);
+        etUTAID = findViewById(R.id.et_utaid);
+        etEmail = findViewById(R.id.et_email);
+        etPhone = findViewById(R.id.et_phone);
+        etAddress = findViewById(R.id.et_street_address);
+        etCity = findViewById(R.id.et_city);
+        etZip = findViewById(R.id.et_zipcode);
+
+        String selectedState = this.state;
+        String selectedRole = AAUtil.roleEnumToStr(this.role);
+        int selectedAAStat = AAUtil.aaaMemberStatusEnumToInt(this.aaaMemberStatus);
+        int userStatus = 0; // 0 - revoked, because Manager, and Admin does not use this
+        if(this.role == Role.RENTER){
+            userStatus = 1; // 1 - active, because this is checked during renting car
+        }
+        Log.d(LOG_TAG, METHOD_NAME + ": state = " + state);
+        Log.d(LOG_TAG, METHOD_NAME + ": role = " + selectedRole);
+        Log.d(LOG_TAG, METHOD_NAME + ": aaa mem status = " + selectedAAStat);
+        Log.d(LOG_TAG, METHOD_NAME + ": user status = " + userStatus);
+
+        RegisterController registerController = new RegisterController(RegisterActivity.this);
+        registerController.register(
+                etUsername.getText().toString().trim(),
+                etPassword.getText().toString().trim(),
+                etLastName.getText().toString().trim(),
+                etFirstName.getText().toString().trim(),
+                selectedRole,
+                etUTAID.getText().toString().trim(),
+                etPhone.getText().toString().trim(),
+                etEmail.getText().toString().trim(),
+                etAddress.getText().toString().trim(),
+                etCity.getText().toString().trim(),
+                selectedState,
+                etZip.getText().toString().trim(),
+                selectedAAStat,
+                userStatus
+        );
     }
 }
