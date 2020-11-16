@@ -54,7 +54,7 @@ public class View_Reservation_Calendar extends AppCompatActivity implements View
         mAdapter = new ViewReservationCalendar_list_Adapter( reservationsData, this);
         recyclerView.setAdapter(mAdapter);
 
-        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this);
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
         String reservations_query =  "select * from reservations order by start_date desc, start_time desc, car_name asc;";
         Cursor cursor =  db.rawQuery(reservations_query,null);

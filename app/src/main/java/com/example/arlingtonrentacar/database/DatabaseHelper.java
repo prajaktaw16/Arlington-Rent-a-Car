@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String CARS_TABLE = "cars";
     public static final String AA_STORE_HRS_TABLE = "aa_store_hrs";
     public static final String ARLINGTON_AUTO_DB = "ArlingtonAuto.db";
-    private static final int DB_VERSION  = 3;
+    private static final int DB_VERSION  = 4;
     private static final int DEV_MODE = 1;
 
     private static DatabaseHelper instance;
@@ -94,7 +94,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         final String LOG_TAG = "createTblReservations()";
         String sql = "CREATE TABLE " + RESERVATIONS_TABLE + " ( " +
                 "reservation_id TEXT PRIMARY KEY, " +
-                "car_number INTEGER, " +
+                "username TEXT, " +
                 "last_name TEXT, " +
                 "first_name TEXT, " +
                 "car_name TEXT, " +
@@ -161,17 +161,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private void reservationsAddDummyData(SQLiteDatabase sqLiteDatabase){
         final String LOG_TAG = "sysUsersAddDummyData()";
-        String sql = "INSERT INTO " + RESERVATIONS_TABLE + "(reservation_id, car_number, last_name, " +
+        String sql = "INSERT INTO " + RESERVATIONS_TABLE + "(reservation_id, username, last_name, " +
                 "first_name, car_name, car_capacity, start_date, start_time, end_date, end_time, num_of_riders, total_price," +
                 "gps, siriusxm, onstar, aaa_member_status)" +
                 "VALUES" +
-                "(\"1\",21, \"Doe\", \"John\", \"Smart\", 1, \"01/12/2020\", " +
+                "(\"1\",\"johndoe\", \"Doe\", \"John\", \"Smart\", 1, \"01/12/2020\", " +
                 "\"12:00\", \"03/12/2020\", \"1:00\","+
                 "1, 40, 1, 1, 1, 1),"+
-                "(\"2\",22, \"Jane\", \"Marry\", \"Economy\", 3, \"02/12/2020\", " +
+                "(\"2\",\"marryjane\", \"Jane\", \"Marry\", \"Economy\", 3, \"02/12/2020\", " +
                 "\"1:00\", \"04/12/2020\", \"2:00\","+
                 "1, 60, 1, 0, 0, 1),"+
-                "(\"3\",23, \"Wayne\", \"Bruce\", \"Compact\", 4, \"03/12/2020\", " +
+                "(\"3\",\"brucewayne\", \"Wayne\", \"Bruce\", \"Compact\", 4, \"03/12/2020\", " +
                 "\"11:00\", \"05/12/2020\", \"3:00\","+
                 "1, 80, 1, 1, 0, 1);";
         sqLiteDatabase.execSQL(sql);
