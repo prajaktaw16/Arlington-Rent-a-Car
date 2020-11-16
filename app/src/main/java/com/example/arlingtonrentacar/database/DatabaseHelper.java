@@ -51,6 +51,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(DEV_MODE == 1){
             sysUsersAddDummyData(sqLiteDatabase);
             Log.d(LOG_TAG, "Adding Dummy Data to system_users table");
+            reservationsAddDummyData(sqLiteDatabase);
+            Log.d(LOG_TAG, "Adding Dummy Data to reservations table");
         }
     }
 
@@ -92,7 +94,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         final String LOG_TAG = "createTblReservations()";
         String sql = "CREATE TABLE " + RESERVATIONS_TABLE + " ( " +
                 "reservation_id TEXT PRIMARY KEY, " +
-                "username TEXT, " +
+                "car_number INTEGER, " +
                 "last_name TEXT, " +
                 "first_name TEXT, " +
                 "car_name TEXT, " +
@@ -108,6 +110,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "onstar INTEGER, " +
                 "aaa_member_status INTEGER "+
                 ");";
+
         sqLiteDatabase.execSQL(sql);
         Log.d(LOG_TAG, RESERVATIONS_TABLE + ": " + sql);
     }
@@ -152,6 +155,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "\"b@b.com\", \"Wall Street\", \"New York\", \"NY\", \"54321\", 0, 0)," +
                 "(\"brucewayne\", \"asdf\", \"Wayne\", \"Bruce\", \"admin\", 3999999999, \"1234567892\", " +
                 "\"c@c.com\", \"Back Street\", \"Gotham City\", \"NJ\", \"56789\", 0, 0);";
+        sqLiteDatabase.execSQL(sql);
+        Log.d(LOG_TAG,  sql);
+    }
+
+    private void reservationsAddDummyData(SQLiteDatabase sqLiteDatabase){
+        final String LOG_TAG = "sysUsersAddDummyData()";
+        String sql = "INSERT INTO " + RESERVATIONS_TABLE + "(reservation_id, car_number, last_name, " +
+                "first_name, car_name, car_capacity, start_date, start_time, end_date, end_time, num_of_riders, total_price," +
+                "gps, siriusxm, onstar, aaa_member_status)" +
+                "VALUES" +
+                "(\"1\",21, \"Doe\", \"John\", \"Smart\", 1, \"01/12/2020\", " +
+                "\"12:00\", \"03/12/2020\", \"1:00\","+
+                "1, 40, 1, 1, 1, 1),"+
+                "(\"2\",22, \"Jane\", \"Marry\", \"Economy\", 3, \"02/12/2020\", " +
+                "\"1:00\", \"04/12/2020\", \"2:00\","+
+                "1, 60, 1, 0, 0, 1),"+
+                "(\"3\",23, \"Wayne\", \"Bruce\", \"Compact\", 4, \"03/12/2020\", " +
+                "\"11:00\", \"05/12/2020\", \"3:00\","+
+                "1, 80, 1, 1, 0, 1);";
         sqLiteDatabase.execSQL(sql);
         Log.d(LOG_TAG,  sql);
     }
