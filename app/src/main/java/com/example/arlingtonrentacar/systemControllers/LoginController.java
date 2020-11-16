@@ -25,7 +25,7 @@ public class LoginController {
         final String METHOD_NAME = "login()";
         String msg = "";
         String role = "";
-        SystemUserDAO systemUserDAO = new SystemUserDAO(loginGUIContext);
+        SystemUserDAO systemUserDAO = SystemUserDAO.getInstance(loginGUIContext);
         if(systemUserDAO.isCorrectCredentials(username, password)){
             role = systemUserDAO.getSystemUserRole(username);
             launchSysUserHomeScreen(AAUtil.roleStrToEnum(role), username);

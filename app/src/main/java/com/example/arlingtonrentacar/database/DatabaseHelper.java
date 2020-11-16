@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.ContactsContract;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -17,14 +18,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String RESERVATIONS_TABLE = "reservations";
     public static final String CARS_TABLE = "cars";
     public static final String AA_STORE_HRS_TABLE = "aa_store_hrs";
-    public static final String ALRINGTON_AUTO_DB = "ArlingtonAuto.db";
-    public static final int VERSION  = 3;
+    public static final String ARLINGTON_AUTO_DB = "ArlingtonAuto.db";
+    private static final int DB_VERSION  = 3;
     private static final int DEV_MODE = 1;
 
-    public DatabaseHelper(@Nullable Context context) {
-        super(context, ALRINGTON_AUTO_DB, null, VERSION);
+    private static DatabaseHelper instance;
+
+    private DatabaseHelper(@Nullable Context context) {
+        super(context, ARLINGTON_AUTO_DB, null, DB_VERSION);
     }
 
+    public static DatabaseHelper getInstance(@Nullable Context context){
+        final String METHOD_NAME = "getInstance()";
+        Log.d(LOG_TAG, METHOD_NAME + ": entered.");
+        if(instance == null){
+            instance = new DatabaseHelper(context);
+            Log.d(LOG_TAG, METHOD_NAME + ": new instance created.");
+        }
+        return instance;
+    }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
@@ -45,6 +57,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         Log.d(LOG_TAG, "onUpgrade() called.");
+        Log.d(LOG_TAG, "onUpgrade(): oldVersion = " + oldVersion);
+        Log.d(LOG_TAG, "onUpgrade(): newVersion = " + newVersion);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + SYSTEM_USERS_TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + RESERVATIONS_TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + CARS_TABLE);
@@ -174,21 +188,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(sql);
         Log.d(LOG_TAG,  sql);
     }
-
-    public String getFullNameByUsername(String username){
-        final int FIRST_NAME_COL = 0;
-        final int LAST_NAME_COL = 1;
-        String fullName = "";
-        String sql = "SELECT first_name, last_name FROM " + SYSTEM_USERS_TABLE + " WHERE username = " + AAUtil.quoteStr(username);
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(sql, null);
-        if(cursor.moveToFirst()){
-            fullName = cursor.getString(FIRST_NAME_COL) + " " + cursor.getString(LAST_NAME_COL);
-        }
-        Log.d(LOG_TAG, "getFullNameByUsername: fullName = " + fullName);
-        return fullName;
-    }
-
-
 }

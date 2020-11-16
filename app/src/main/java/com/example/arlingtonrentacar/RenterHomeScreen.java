@@ -8,15 +8,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.arlingtonrentacar.database.SystemUserDAO;
 import com.example.arlingtonrentacar.systemControllers.LoginController;
 import com.example.arlingtonrentacar.database.DatabaseHelper;
 
 public class RenterHomeScreen extends AppCompatActivity {
     private final String LOG_TAG = RenterHomeScreen.class.getSimpleName();
-    private DatabaseHelper dbHelper;
     private String username;
-    private String fullname;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +24,6 @@ public class RenterHomeScreen extends AppCompatActivity {
         Intent intent = getIntent();
         username = intent.getStringExtra(LoginController.USERNAME);
         Log.d(LOG_TAG, "Username passed from login screen: " + username);
-
-        dbHelper = new DatabaseHelper(this);
         initGreetingForRenter(username);
     }
 
@@ -43,11 +39,12 @@ public class RenterHomeScreen extends AppCompatActivity {
     }
 
     private void initGreetingForRenter(String username){
-        fullname = dbHelper.getFullNameByUsername(username);
+        SystemUserDAO systemUserDAO = SystemUserDAO.getInstance(this);
+        String fullName = systemUserDAO.getFullNameByUsername(username);
         TextView userGreeting = findViewById(R.id.tvUserGreeting);
 
         String greeting = AAUtil.getGreetingByHour();
-        greeting += ", " + fullname;
+        greeting += ", " + fullName;
 
         userGreeting.setText(greeting);
     }
