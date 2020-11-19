@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String CARS_TABLE = "cars";
     public static final String AA_STORE_HRS_TABLE = "aa_store_hrs";
     public static final String ARLINGTON_AUTO_DB = "ArlingtonAuto.db";
-    private static final int DB_VERSION  = 4;
+    private static final int DB_VERSION  = 9;
     private static final int DEV_MODE = 1;
 
     private static DatabaseHelper instance;
@@ -99,10 +99,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "first_name TEXT, " +
                 "car_name TEXT, " +
                 "car_capacity INTEGER, " +
-                "start_date TEXT, " +
-                "start_time TEXT, " +
-                "end_date TEXT, " +
-                "end_time TEXT, " +
+                "start_date_time TEXT, " +
+                "end_date_time TEXT, " +
                 "num_of_riders INTEGER, " +
                 "total_price REAL, " +
                 "gps INTEGER, " +
@@ -120,7 +118,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String sql = "CREATE TABLE " + CARS_TABLE + " ( " +
                 "car_name TEXT PRIMARY KEY, " +
                 "capacity INTEGER, " +
-                "car_status TEXT DEFAULT \"\", " +
+                "car_status TEXT DEFAULT \"available\", " +
                 "weekday_rate real, " +
                 "weekend_rate real, " +
                 "weekly_rate real, " +
@@ -161,19 +159,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private void reservationsAddDummyData(SQLiteDatabase sqLiteDatabase){
         final String LOG_TAG = "sysUsersAddDummyData()";
+        // dateForamt = "yyyy-MM-dd HH:mm";
+        String start_date_time_1 = "2020-11-18 08:00";
+        String end_date_time_1 = "2020-11-20 15:30";
+
+        String start_date_time_2 = "2020-11-23 08:00";
+        String end_date_time_2 = "2020-11-27 15:30";
+
+        String start_date_time_3 = "2020-12-01 08:00";
+        String end_date_time_3 = "2020-12-03 15:30";
+
         String sql = "INSERT INTO " + RESERVATIONS_TABLE + "(reservation_id, username, last_name, " +
-                "first_name, car_name, car_capacity, start_date, start_time, end_date, end_time, num_of_riders, total_price," +
+                "first_name, car_name, car_capacity, start_date_time, end_date_time, num_of_riders, total_price," +
                 "gps, siriusxm, onstar, aaa_member_status)" +
                 "VALUES" +
-                "(\"1\",\"johndoe\", \"Doe\", \"John\", \"Smart\", 1, \"01/12/2020\", " +
-                "\"12:00\", \"03/12/2020\", \"1:00\","+
-                "1, 40, 1, 1, 1, 1),"+
-                "(\"2\",\"marryjane\", \"Jane\", \"Marry\", \"Economy\", 3, \"02/12/2020\", " +
-                "\"1:00\", \"04/12/2020\", \"2:00\","+
-                "1, 60, 1, 0, 0, 1),"+
-                "(\"3\",\"brucewayne\", \"Wayne\", \"Bruce\", \"Compact\", 4, \"03/12/2020\", " +
-                "\"11:00\", \"05/12/2020\", \"3:00\","+
-                "1, 80, 1, 1, 0, 1);";
+                "(\"1\",\"johndoe\", \"Doe\", \"John\", \"Smart\", 1, " + AAUtil.quoteStr(start_date_time_1) + ", " + AAUtil.quoteStr(end_date_time_1) +
+                ",1, 40.00, 1, 1, 1, 1),"+
+                "(\"2\",\"johndoe\", \"Doe\", \"John\", \"Economy\", 3, " + AAUtil.quoteStr(start_date_time_2) + ", " + AAUtil.quoteStr(end_date_time_2) +
+                ",1, 60.00, 1, 0, 0, 1),"+
+                "(\"3\",\"johndoe\", \"Doe\", \"John\", \"Compact\", 4, " + AAUtil.quoteStr(start_date_time_3) + ", " + AAUtil.quoteStr(end_date_time_3) +
+                ",1, 80.00, 1, 1, 0, 1);";
         sqLiteDatabase.execSQL(sql);
         Log.d(LOG_TAG,  sql);
     }

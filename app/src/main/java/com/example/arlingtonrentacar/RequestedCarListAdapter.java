@@ -2,6 +2,7 @@ package com.example.arlingtonrentacar;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +11,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.arlingtonrentacar.renter.RequestCarSummaryItem;
+
 import java.util.LinkedList;
 
 public class RequestedCarListAdapter extends RecyclerView.Adapter<RequestedCarListAdapter.RequestedCarViewHolder> {
-    private final LinkedList<String> mCarList;
+    private final String LOG_TAG = RequestedCarListAdapter.class.getSimpleName();
+    private final LinkedList<RequestCarSummaryItem> mCarList;
     private LayoutInflater mInflater;
     private Context context;
 
-    public RequestedCarListAdapter(Context context, LinkedList<String> carList){
+    public RequestedCarListAdapter(Context context, LinkedList<RequestCarSummaryItem> carList){
         mInflater = LayoutInflater.from(context);
         this.mCarList = carList;
     }
@@ -32,8 +36,8 @@ public class RequestedCarListAdapter extends RecyclerView.Adapter<RequestedCarLi
 
     @Override
     public void onBindViewHolder(@NonNull RequestedCarViewHolder holder, int position) {
-        String rCurrent = mCarList.get(position);
-        holder.requestedCarItemView.setText(rCurrent);
+        RequestCarSummaryItem currentCarItem = mCarList.get(position);
+        holder.requestedCarItemView.setText(currentCarItem.toString());
     }
 
     @Override
@@ -42,6 +46,7 @@ public class RequestedCarListAdapter extends RecyclerView.Adapter<RequestedCarLi
     }
 
     class RequestedCarViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        private final String LOG_TAG = RequestedCarViewHolder.class.getSimpleName();
         public final TextView requestedCarItemView;
         final RequestedCarListAdapter mAdapter;
 
@@ -54,8 +59,10 @@ public class RequestedCarListAdapter extends RecyclerView.Adapter<RequestedCarLi
 
         @Override
         public void onClick(View view) {
-            // TODO: for Interation 3 will need to change this, for now just call the target activity
+            int i = this.getAdapterPosition();
+            RequestCarSummaryItem selectedCarSummaryItem = mCarList.get(i);
             Intent intent = new Intent(context, RequestedCarDetailsActivity.class);
+            intent.putExtra(context.getString(R.string.parcelable_selected_requested_car_summary_item), selectedCarSummaryItem);
             context.startActivity(intent);
         }
     }

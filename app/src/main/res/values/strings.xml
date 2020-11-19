@@ -143,11 +143,11 @@
     <string name="car_name">Smart</string>
     <string name="car_capacity_label">Car Capacity:</string>
     <string name="car_capacity">1</string>
-    <string name="start_date_label">Start Date:</string>
+    <string name="start_date_label">Start Date Time:</string>
     <string name="start_date">10/22/2020</string>
     <string name="start_time_label">Start Time:</string>
     <string name="start_time">8:00 AM</string>
-    <string name="end_date_label">End Date:</string>
+    <string name="end_date_label">End Date Time:</string>
     <string name="end_date">10/25/2020</string>
     <string name="end_time_label">End Time:</string>
     <string name="end_time">5:00 PM</string>
@@ -166,6 +166,11 @@
     <string name="sessions_preference_file_key">com.example.arlingtonrentacar.sessions</string>
     <string name="session_loggedin_username">loggedin_username</string>
     <string name="session_loggedin_user_role">loggedin_user_role</string>
+    <string name="session_req_car_form_data_numOfRiders">formDataNumOfRiders</string>
+    <string name="session_req_car_form_date_startDateTime">formDataStartDateTime</string>
+    <string name="session_req_car_form_data_endDateTime">formDataEndDateTime</string>
+    <string name="RequestedCarDetailsActivityLabel">Request Car Item Details</string>
+    <string name="parcelable_selected_requested_car_summary_item">selectedRequestCarSummaryItem</string>
     <string-array name="weekday_hours">
         <item>8:00 AM</item>
         <item>8:30 AM</item>

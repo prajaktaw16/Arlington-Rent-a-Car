@@ -19,12 +19,14 @@
             android:name=".ManagerHomeScreen"
             android:label="@string/manager_screen" />
         <activity
-            android:name=".RequestedCarDetailsActivity"
-            android:label="View Requested Car Details" />
-        <activity
             android:name=".ViewRequestedCarActivity"
             android:label="@string/viewRequestedCarActivityLabel"
             android:parentActivityName=".RequestCarActivity" />
+        <activity
+            android:name=".RequestedCarDetailsActivity"
+            android:label="@string/RequestedCarDetailsActivityLabel"
+            android:parentActivityName=".ViewRequestedCarActivity"/>
+
         <activity
             android:name=".RequestCarActivity"
             android:label="@string/requestCarActivityLabel"

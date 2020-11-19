@@ -15,7 +15,7 @@ import com.example.arlingtonrentacar.users.SystemUser;
 import java.security.KeyStore;
 
 public class SystemUserDAO {
-    public static final String LOG_TAG = SystemUserDAO.class.getSimpleName();
+    private static final String LOG_TAG = SystemUserDAO.class.getSimpleName();
     public static final String SYSTEM_USERS_TABLE = "system_users";
     public static final String COLUMN_USERNAME = "username";
     public static final String COLUMN_PASSWORD = "password";
@@ -135,5 +135,30 @@ public class SystemUserDAO {
         }
         Log.d(LOG_TAG, "getFullNameByUsername: fullName = " + fullName);
         return fullName;
+    }
+
+    public SystemUser getSystemUserByUsername(String username){
+        SystemUser user = null;
+        String sql = "SELECT * FROM " + SYSTEM_USERS_TABLE + " WHERE " + COLUMN_USERNAME + " = ?;";
+        String[] selectionArgs = {username};
+        SQLiteDatabase dbHandle = dbHelper.getReadableDatabase();
+        Cursor cursor = dbHandle.rawQuery(sql, selectionArgs);
+        cursor.moveToFirst();
+        String dbusername = cursor.getString(cursor.getColumnIndex(COLUMN_USERNAME));
+        String password = cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD));
+        String lastName = cursor.getString(cursor.getColumnIndex(COLUMN_LAST_NAME));
+        String firstName = cursor.getString(cursor.getColumnIndex(COLUMN_FIRST_NAME));
+        String role = cursor.getString(cursor.getColumnIndex(COLUMN_ROLE));
+        int utaID = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_UTA_ID)));
+        String phone = cursor.getString(cursor.getColumnIndex(COLUMN_PHONE));
+        String email  = cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL));
+        String address = cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS));
+        String city  = cursor.getString(cursor.getColumnIndex(COLUMN_CITY));
+        String state = cursor.getString(cursor.getColumnIndex(COLUMN_STATE));
+        String zip  = cursor.getString(cursor.getColumnIndex(COLUMN_ZIP));
+        int aaaMemStat = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_AAA_MEM_STAT)));
+        int userStat = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USER_STATUS)));
+        user = new SystemUser(dbusername, password, lastName, firstName, role, utaID, phone, email, address, city, state, zip, aaaMemStat, userStat);
+        return user;
     }
 }
