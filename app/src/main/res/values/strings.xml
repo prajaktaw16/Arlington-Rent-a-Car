@@ -135,8 +135,6 @@
     <string name="rcEndDatePicker">requestCarEndDatePicker</string>
     <string name="requestCarActivityLabel">Request Car</string>
     <string name="renterHomeScreenActivityLabel">Renter Home Screen</string>
-    <string name="adminHomeScreenActivityLabel">Admin Home Screen</string>
-    <string name="managerHomeScreenActivityLabel">Manager Home Screen</string>
     <string name="registerActivityLabel">Register User</string>
     <string name="viewRequestedCarActivityLabel">Request Car Summary</string>
     <string name="car_number_label">Car Number:</string>
@@ -163,8 +161,11 @@
     <string name="gpsSwitchText">GPS</string>
     <string name="sirisuxmSwitchText">SiriusXM</string>
     <string name="onstarSwitchText">OnStar</string>
-    <string name="menu_logout_title">menu_logout_title</string>
     <string name="renter_user_greeting">Good Morning, John Doe</string>
+    <string name="menu_logout_title">Logout</string>
+    <string name="sessions_preference_file_key">com.example.arlingtonrentacar.sessions</string>
+    <string name="session_loggedin_username">loggedin_username</string>
+    <string name="session_loggedin_user_role">loggedin_user_role</string>
     <string-array name="weekday_hours">
         <item>8:00 AM</item>
         <item>8:30 AM</item>

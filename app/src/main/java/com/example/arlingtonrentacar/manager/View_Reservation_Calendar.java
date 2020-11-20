@@ -1,6 +1,9 @@
 package com.example.arlingtonrentacar.manager;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -23,10 +26,15 @@ import com.example.arlingtonrentacar.R;
 import com.example.arlingtonrentacar.RequestCarActivity;
 import com.example.arlingtonrentacar.StartDatePickerFragmentRC;
 import com.example.arlingtonrentacar.StartDatePickerFragment_ViewReservationCalendar;
+import com.example.arlingtonrentacar.database.DatabaseHelper;
 import com.example.arlingtonrentacar.database.Reservations;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class View_Reservation_Calendar extends AppCompatActivity implements ViewReservationCalendar_list_Adapter.ReservationListListener, AdapterView.OnItemSelectedListener {
 
@@ -49,23 +57,43 @@ public class View_Reservation_Calendar extends AppCompatActivity implements View
         layoutManager = new LinearLayoutManager(this);
         mAdapter = new ViewReservationCalendar_list_Adapter( reservationsData, this);
         recyclerView.setAdapter(mAdapter);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this);
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+//      todo: update query after changes to the DB table structure
+        String reservations_query =  "select * from reservations order by start_date desc, start_time desc, car_name asc;";
+        Cursor cursor =  db.rawQuery(reservations_query,null);
 
-        for(int i=1; i<4; i++) {
-            reservationsObj = new Reservations();
-            reservationsObj.setEndDate(i+"1/2/2020");
-            reservationsObj.setEndTime("20PM");
-            reservationsObj.setStartDate(i+"0/2/2020");
-            reservationsObj.setStartTime("1"+i+"PM");
-            if(i==1){
-                reservationsObj.setCarName("Smart");
-            }else{
-                reservationsObj.setCarName("Economy");
-            }
+        if(cursor.moveToFirst()){
+            do{
+                reservationsObj = new Reservations();
+                reservationsObj.setReservationID(cursor.getString(cursor.getColumnIndex("reservation_id")));
+//                reservationsObj.setCar_number(Integer.parseInt(cursor.getString(cursor.getColumnIndex("car_number"))));
+                reservationsObj.setLastname(cursor.getString(cursor.getColumnIndex("last_name")));
+                reservationsObj.setFirstname(cursor.getString(cursor.getColumnIndex("first_name")));
+                reservationsObj.setCarName(cursor.getString(cursor.getColumnIndex("car_name")));
+                reservationsObj.setCarCapacity(Integer.parseInt(cursor.getString(cursor.getColumnIndex("car_capacity"))));
+//                String start_date_time = cursor.getString(cursor.getColumnIndex("start_date_time"));
+//                String end_date_time = cursor.getString(cursor.getColumnIndex("end_date_time"));
+                String start_date_time = "2020-11-18 08:00";
+                String end_date_time = "2020-11-18 08:00";
+                String start_date = start_date_time.split(" ")[0];
+                String start_time = start_date_time.split(" ")[1];
+                String end_date = end_date_time.split(" ")[0];
+                String end_time = end_date_time.split(" ")[1];
+                reservationsObj.setStartDate(start_date);
+                reservationsObj.setStartTime(start_time);
+                reservationsObj.setEndDate(end_date);
+                reservationsObj.setEndTime(end_time);
+                reservationsObj.setNumberOfRiders(Integer.parseInt(cursor.getString(cursor.getColumnIndex("num_of_riders"))));
+                reservationsObj.setTotalPrice(Float.parseFloat(cursor.getString(cursor.getColumnIndex("total_price"))));
+                reservationsObj.setGps(Integer.parseInt(cursor.getString(cursor.getColumnIndex("gps"))));
+                reservationsObj.setSiriusxm(Integer.parseInt(cursor.getString(cursor.getColumnIndex("siriusxm"))));
+                reservationsObj.setOnstar(Integer.parseInt(cursor.getString(cursor.getColumnIndex("onstar"))));
+                reservationsObj.setAaaMemberStatus(Integer.parseInt(cursor.getString(cursor.getColumnIndex("aaa_member_status"))));
 
-            reservationsData.add(reservationsObj);
+                reservationsData.add(reservationsObj);
+            }while(cursor.moveToNext());
         }
-
-
         startDate = Calendar.getInstance();
         startTime = "";
         startDateTextView = findViewById(R.id.startDate_Textview);
@@ -99,6 +127,8 @@ public class View_Reservation_Calendar extends AppCompatActivity implements View
     @Override
     public void onReservationListClick(int position) {
         Intent intent = new Intent(this, View_Reservation_Details.class);
+        intent.putExtra("ReservationsDataObj", reservationsData.get(position));
+        intent.putExtra("Car_Number", position+1);
         startActivity(intent);
     }
 

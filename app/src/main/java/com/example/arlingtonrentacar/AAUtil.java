@@ -15,17 +15,19 @@ public class AAUtil {
         }else if(role.equals("admin")){
             return Role.ADMIN;
         }else{
-            return Role.RENTER;
+            return Role.NONE;
         }
     }
 
     public static String roleEnumToStr(Role role){
         if(role == Role.RENTER){
-            return "Renter";
+            return "renter";
         }else if(role == Role.MANAGER){
-            return  "Manager";
-        }else{
-            return "Admin";
+            return  "manager";
+        }else if(role == Role.ADMIN){
+            return "admin";
+        }else {
+            return "none";
         }
     }
 
@@ -71,5 +73,22 @@ public class AAUtil {
         return "\'" + strToQuote + "\'";
     }
 
+    public static boolean isNumeric(String numStr){
+        final String EMPTY = "";
+        boolean result;
+        if(numStr.equals(EMPTY)){
+            result = false;
+        }else if(numStr == null){
+            result = false;
+        }else{
+            try{
+                double d = Double.parseDouble(numStr);
+                result = true;
+            }catch (Exception e){
+                result = false;
+            }
+        }
+        return result;
+    }
 
 }

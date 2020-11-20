@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.arlingtonrentacar.R;
+import com.example.arlingtonrentacar.database.Reservations;
 
 public class View_Reservation_Details extends AppCompatActivity{
 
@@ -30,6 +31,8 @@ public class View_Reservation_Details extends AppCompatActivity{
     public TextView siriusxm_textview;
     public TextView totalprice_textview;
     public TextView arlingtonautoclubmember_textview;
+    public int car_number;
+    private Reservations reservations;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,22 +54,26 @@ public class View_Reservation_Details extends AppCompatActivity{
         totalprice_textview = findViewById(R.id.totalprice_textview);
         arlingtonautoclubmember_textview = findViewById(R.id.arlingtonautoclubmember_textview);
 
-        reservation_id_textview.setText("1");
-        carnumber_textview.setText("21");
-        carname_textview.setText("Smart");
-        carcapacity_textview.setText("1");
-        startdate_textview.setText("10/10/20");
-        starttime_textview.setText("1:00PM");
-        enddate_textview.setText("10/10/20");
-        endtime_textview.setText("5:00PM");
-        lastname_textview.setText("Jane");
-        firstname_textview.setText("Marry");
-        numberofriders_textview.setText("1");
-        gps_textview.setText("Yes");
-        onstar_textview.setText("No");
-        siriusxm_textview.setText("yes");
-        totalprice_textview.setText("200");
-        arlingtonautoclubmember_textview.setText("Yes");
+        reservations = getIntent().getParcelableExtra("ReservationsDataObj");
+        car_number = getIntent().getExtras().getInt("Car_Number");
+//        System.out.println(reservations);
+
+        reservation_id_textview.setText(reservations.getReservationID());
+        carnumber_textview.setText(String.valueOf(car_number));
+        carname_textview.setText(reservations.getCarName());
+        carcapacity_textview.setText(reservations.getCarCapacity().toString());
+        startdate_textview.setText(reservations.getStartDate());
+        starttime_textview.setText(reservations.getStartTime());
+        enddate_textview.setText(reservations.getEndDate());
+        endtime_textview.setText(reservations.getEndTime());
+        lastname_textview.setText(reservations.getLastname());
+        firstname_textview.setText(reservations.getFirstname());
+        numberofriders_textview.setText(reservations.getNumberOfRiders().toString());
+        gps_textview.setText(reservations.getGps().toString());
+        onstar_textview.setText(reservations.getOnstar().toString());
+        siriusxm_textview.setText(reservations.getSiriusxm().toString());
+        totalprice_textview.setText(reservations.getTotalPrice().toString());
+        arlingtonautoclubmember_textview.setText(reservations.getAaaMemberStatus().toString());
 
     }
 

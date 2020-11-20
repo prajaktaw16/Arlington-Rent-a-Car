@@ -263,7 +263,7 @@
         android:layout_marginLeft="32dp"
         android:ems="10"
 
-        android:inputType="textPostalAddress"
+        android:inputType="number"
         app:layout_constraintBaseline_toBaselineOf="@+id/zipLabel"
         app:layout_constraintStart_toEndOf="@+id/zipLabel" />
 
