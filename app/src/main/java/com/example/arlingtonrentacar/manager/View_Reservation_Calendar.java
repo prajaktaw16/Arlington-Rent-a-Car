@@ -53,7 +53,7 @@ public class View_Reservation_Calendar extends AppCompatActivity implements View
         layoutManager = new LinearLayoutManager(this);
         mAdapter = new ViewReservationCalendar_list_Adapter( reservationsData, this);
         recyclerView.setAdapter(mAdapter);
-
+//      todo: changed instance call method
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
         String reservations_query =  "select * from reservations order by start_date desc, start_time desc, car_name asc;";
@@ -62,7 +62,7 @@ public class View_Reservation_Calendar extends AppCompatActivity implements View
             do{
                 reservationsObj = new Reservations();
                 reservationsObj.setReservationID(cursor.getString(cursor.getColumnIndex("reservation_id")));
-                reservationsObj.setCar_number(Integer.parseInt(cursor.getString(cursor.getColumnIndex("car_number"))));
+//                reservationsObj.setCar_number(Integer.parseInt(cursor.getString(cursor.getColumnIndex("car_number"))));
                 reservationsObj.setLastname(cursor.getString(cursor.getColumnIndex("last_name")));
                 reservationsObj.setFirstname(cursor.getString(cursor.getColumnIndex("first_name")));
                 reservationsObj.setCarName(cursor.getString(cursor.getColumnIndex("car_name")));
@@ -115,6 +115,7 @@ public class View_Reservation_Calendar extends AppCompatActivity implements View
     public void onReservationListClick(int position) {
         Intent intent = new Intent(this, View_Reservation_Details.class);
         intent.putExtra("ReservationsDataObj", reservationsData.get(position));
+        intent.putExtra("Car_Number", position+1);
         startActivity(intent);
     }
 

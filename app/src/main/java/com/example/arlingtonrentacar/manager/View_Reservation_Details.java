@@ -31,6 +31,7 @@ public class View_Reservation_Details extends AppCompatActivity{
     public TextView siriusxm_textview;
     public TextView totalprice_textview;
     public TextView arlingtonautoclubmember_textview;
+    public int car_number;
     private Reservations reservations;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,10 +55,11 @@ public class View_Reservation_Details extends AppCompatActivity{
         arlingtonautoclubmember_textview = findViewById(R.id.arlingtonautoclubmember_textview);
 
         reservations = getIntent().getParcelableExtra("ReservationsDataObj");
+        car_number = getIntent().getExtras().getInt("Car_Number");
 //        System.out.println(reservations);
 
         reservation_id_textview.setText(reservations.getReservationID());
-        carnumber_textview.setText(reservations.getCar_number().toString());
+        carnumber_textview.setText(String.valueOf(car_number));
         carname_textview.setText(reservations.getCarName());
         carcapacity_textview.setText(reservations.getCarCapacity().toString());
         startdate_textview.setText(reservations.getStartDate());
