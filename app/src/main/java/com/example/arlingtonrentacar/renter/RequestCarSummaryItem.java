@@ -1,3 +1,8 @@
+/**
+ * Author: Sudipta Sharif (S.S)
+ * School: University of Texas at Arlington
+ * Course: CSE 5324 Fall 2020
+ */
 package com.example.arlingtonrentacar.renter;
 
 import android.os.Parcel;
@@ -90,8 +95,8 @@ public class RequestCarSummaryItem implements Parcelable {
 
     public String allFieldsToString(){
         String result = this.toString();
-        result += "\nStart Date Time: " + AAUtil.convertDBDateToTargetFormat(this.startDateTime, AAUtil.USER_DATE_TIME_FORMAT) + "\n";
-        result += "End Date Time: " + AAUtil.convertDBDateToTargetFormat(this.endDateTime, AAUtil.USER_DATE_TIME_FORMAT);
+        result += "\nStart Date Time: " + AAUtil.convertDBDateToTargetFormat(this.startDateTime, AAUtil.USER_FRIENDLY_DATE_TIME_FORMAT) + "\n";
+        result += "End Date Time: " + AAUtil.convertDBDateToTargetFormat(this.endDateTime, AAUtil.USER_FRIENDLY_DATE_TIME_FORMAT);
         result += "\nNum of Riders: " + this.numOfRiders;
         return result;
     }

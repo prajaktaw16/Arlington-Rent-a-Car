@@ -1,5 +1,9 @@
+/**
+ * Refactored & Maintained: Sudipta Sharif (S.S)
+ * School: University of Texas at Arlington
+ * Course: CSE 5324 Fall 2020
+ */
 package com.example.arlingtonrentacar.users;
-
 
 import com.example.arlingtonrentacar.AAUtil;
 
@@ -171,5 +175,25 @@ public class SystemUser {
             msg = "Invalid Data.";
         }
         return msg;
+    }
+
+    @Override
+    public String toString() {
+        return "SystemUser{\n" +
+                "username=" + username + '\n' +
+                "password=" + password + '\n' +
+                "lastName=" + lastName + '\n' +
+                "firstName=" + firstName + '\n' +
+                "role=" + role + '\n' +
+                "phone=" + phone + '\n' +
+                "email=" + email + '\n' +
+                "streetAddress=" + streetAddress + '\n' +
+                "city=" + city + '\n' +
+                "state=" + state + '\n' +
+                "zip=" + zip + '\n' +
+                "utaID=" + utaID +
+                "\naaaMemberStatus=" + aaaMemberStatus +
+                "\nuserStatus=" + userStatus +
+                "\n}";
     }
 }

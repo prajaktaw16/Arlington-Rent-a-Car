@@ -1,3 +1,8 @@
+/**
+ * Author: Sudipta Sharif (S.S)
+ * School: University of Texas at Arlington
+ * Course: CSE 5324 Fall 2020
+ */
 package com.example.arlingtonrentacar;
 
 import androidx.annotation.NonNull;
@@ -24,7 +29,7 @@ public class ViewRequestedCarActivity extends AppCompatActivity {
     private RequestedCarListAdapter adapter;
     private SharedPreferences sessionPref;
     private LinkedList<RequestCarSummaryItem> availableCarList;
-    private ViewRequestedCarController guiController;
+    private ViewRequestedCarController mController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +37,9 @@ public class ViewRequestedCarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_requested_car);
         final String METHOD_NAME = "onCreate()";
         sessionPref = AAUtil.getLogInSession(this);
-        guiController = new ViewRequestedCarController(this);
+        mController = new ViewRequestedCarController(this);
         availableCarList =
-                guiController.generateAvailableCarList(
+                mController.generateAvailableCarList(
                 sessionPref.getString(getString(R.string.session_req_car_form_data_numOfRiders),""),
                 sessionPref.getString(getString(R.string.session_req_car_form_date_startDateTime), ""),
                 sessionPref.getString(getString(R.string.session_req_car_form_data_endDateTime),"")

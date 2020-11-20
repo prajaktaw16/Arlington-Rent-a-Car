@@ -1,3 +1,8 @@
+/**
+ * Author: Sudipta Sharif (S.S)
+ * School: University of Texas at Arlington
+ * Course: CSE 5324 Fall 2020
+ */
 package com.example.arlingtonrentacar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +14,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import com.example.arlingtonrentacar.database.SystemUserDAO;
+import com.example.arlingtonrentacar.renter.RenterViewProfileActivity;
+import com.example.arlingtonrentacar.renter.RenterViewReservationsActivity;
 
 public class RenterHomeScreen extends AppCompatActivity {
     private final String LOG_TAG = RenterHomeScreen.class.getSimpleName();
@@ -50,4 +57,13 @@ public class RenterHomeScreen extends AppCompatActivity {
     }
 
 
+    public void launchViewReservationsActivity(View view) {
+        Intent intent = new Intent(this, RenterViewReservationsActivity.class);
+        startActivity(intent);
+    }
+
+    public void launchRenterViewProfileActivity(View view) {
+        Intent intent = new Intent(this, RenterViewProfileActivity.class);
+        startActivity(intent);
+    }
 }

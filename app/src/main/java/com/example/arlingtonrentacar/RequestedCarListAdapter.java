@@ -1,3 +1,8 @@
+/**
+ * Author: Sudipta Sharif (S.S)
+ * School: University of Texas at Arlington
+ * Course: CSE 5324 Fall 2020
+ */
 package com.example.arlingtonrentacar;
 
 import android.content.Context;
@@ -62,7 +67,7 @@ public class RequestedCarListAdapter extends RecyclerView.Adapter<RequestedCarLi
             int i = this.getAdapterPosition();
             RequestCarSummaryItem selectedCarSummaryItem = mCarList.get(i);
             Intent intent = new Intent(context, RequestedCarDetailsActivity.class);
-            intent.putExtra(context.getString(R.string.parcelable_selected_requested_car_summary_item), selectedCarSummaryItem);
+            intent.putExtra(context.getString(R.string.parcel_selected_requested_car_summary_item), selectedCarSummaryItem);
             context.startActivity(intent);
         }
     }

@@ -1,3 +1,8 @@
+/**
+ * Author: Sudipta Sharif (S.S)
+ * School: University of Texas at Arlington
+ * Course: CSE 5324 Fall 2020
+ */
 package com.example.arlingtonrentacar;
 
 import android.content.Context;
@@ -13,37 +18,38 @@ import java.util.UUID;
 
 public class AAUtil {
     public static final String DATABASE_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm";
-    public static final String USER_DATE_TIME_FORMAT = "yyyy-MM-dd hh:mm a";
+    public static final String USER_FRIENDLY_DATE_TIME_FORMAT = "yyyy-MM-dd hh:mm a";
     public static final String DATE_FORMAT_YYYY_MM_DD = "yyyy-MM-dd";
     public static final String USD_CURRENCY_FORMAT = "#,###.##";
+    public static final String RESERVATION_ID_DATETIME_FORMAT = "yyyy.MM.dd.HH.mm.ss.SSS";
     public static final double TAX = 1.0825; // 8.25%
     public static final double DISCOUNT = 0.9; // 10%
     public static final String EMPTYSTR = "";
-    public static final String EIGHT_AM = "8:00 AM";
-    public static final String EIGHT_THIRTY_AM = "8:30 AM";
-    public static final String NINE_AM = "9:00 AM";
-    public static final String NINE_THIRTY_AM = "9:30 AM";
+    public static final String EIGHT_AM = "08:00 AM";
+    public static final String EIGHT_THIRTY_AM = "08:30 AM";
+    public static final String NINE_AM = "09:00 AM";
+    public static final String NINE_THIRTY_AM = "09:30 AM";
     public static final String TEN_AM  = "10:00 AM";
     public static final String TEN_THIRTY_AM = "10:30 AM";
     public static final String ELEVEN_AM = "11:00 AM";
     public static final String ELEVEN_THIRTY_AM = "11:30 AM";
     public static final String TWELVE_PM = "12:00 PM";
     public static final String TWELVE_THIRTY_PM = "12:30 PM";
-    public static final String ONE_PM = "1:00 PM";
-    public static final String ONE_THIRTY_PM = "1:30 PM";
-    public static final String TWO_PM = "2:00 PM";
-    public static final String TWO_THIRTY_PM = "2:30 PM";
-    public static final String THREE_PM = "3:00 PM";
-    public static final String THREE_THIRTY_PM = "3:30 PM";
-    public static final String FOUR_PM = "4:00 PM";
-    public static final String FOUR_THIRTY_PM = "4:30 PM";
-    public static final String FIVE_PM = "5:00 PM";
-    public static final String FIVE_THIRTY_PM = "5:30 PM";
-    public static final String SIX_PM  = "6:00 PM";
-    public static final String SIX_THIRTY_PM = "6:30 PM";
-    public static final String SEVEN_PM = "7:00 PM";
-    public static final String SEVEN_THIRTY_PM = "7:30 PM";
-    public static final String EIGHT_PM = "8:00 PM";
+    public static final String ONE_PM = "01:00 PM";
+    public static final String ONE_THIRTY_PM = "01:30 PM";
+    public static final String TWO_PM = "02:00 PM";
+    public static final String TWO_THIRTY_PM = "02:30 PM";
+    public static final String THREE_PM = "03:00 PM";
+    public static final String THREE_THIRTY_PM = "03:30 PM";
+    public static final String FOUR_PM = "04:00 PM";
+    public static final String FOUR_THIRTY_PM = "04:30 PM";
+    public static final String FIVE_PM = "05:00 PM";
+    public static final String FIVE_THIRTY_PM = "05:30 PM";
+    public static final String SIX_PM  = "06:00 PM";
+    public static final String SIX_THIRTY_PM = "06:30 PM";
+    public static final String SEVEN_PM = "07:00 PM";
+    public static final String SEVEN_THIRTY_PM = "07:30 PM";
+    public static final String EIGHT_PM = "08:00 PM";
 
     public static Role roleStrToEnum(String role){
         role = role.toLowerCase();
@@ -90,6 +96,14 @@ public class AAUtil {
             return AAAMemberStatus.YES;
         }else{
             return AAAMemberStatus.NO;
+        }
+    }
+
+    public static String aaaMemberStatusIntToStr(int status){
+        if(status == 1){
+            return "Yes";
+        }else{
+            return "False";
         }
     }
 
@@ -269,26 +283,8 @@ public class AAUtil {
         return  result;
     }
 
-    public static boolean durationIsAWeek(Calendar date, Calendar otherDate){
-        boolean result = false;
-        Calendar date1 = Calendar.getInstance();
-        date1.clear();
-
-        Calendar date2 = Calendar.getInstance();
-        date2.clear();
-
-        date1.set(date.YEAR, date.MONTH, date.DAY_OF_MONTH);
-        date2.set(otherDate.YEAR, otherDate.MONTH, otherDate.DAY_OF_MONTH);
-
-        date1.add(Calendar.DAY_OF_MONTH, 6);
-        if(equalDate(date1, date2)){
-            result = true;
-        }
-        return result;
-    }
-
     public static Calendar databaseDateTimeToCalendar(String dateTime){
-        // Note: dateTime stored in db: yyyy-MM-dd HH:mm
+        // Note: dateTime must be stored in db as: 'yyyy-MM-dd HH:mm'
         Calendar calendar = Calendar.getInstance();
         calendar.clear();
         String[] arrDatTime = dateTime.trim().split(" ");
@@ -311,15 +307,24 @@ public class AAUtil {
 
     public static String generateGUID(){
         // UUID: Globally Unique ID
-        return UUID.randomUUID().toString().toUpperCase();
+        return UUID.randomUUID().toString().toUpperCase(); // --> This takes up too much screen real-estate, so changing to timestamp
+        //return formatDate(Calendar.getInstance(), AAUtil.RESERVATION_ID_DATETIME_FORMAT);
+
     }
 
     public static String convertDBDateToTargetFormat(String dateInDatabaseFormat, String targetDateFormat){
-        // Note: dateInDatabaseFormat must be in the format: yyyy-MM-dd HH:mm
+        // Note: dateInDatabaseFormat must be in the format: 'yyyy-MM-dd HH:mm'
         String result;
         Calendar calendar = databaseDateTimeToCalendar(dateInDatabaseFormat);
         result = formatDate(calendar, targetDateFormat);
         return result;
+    }
+
+    public static String getUserFriendlyTimeFromCalendarDate(Calendar calendar){
+        String userFriendlyDateTime = formatDate(calendar, AAUtil.USER_FRIENDLY_DATE_TIME_FORMAT);
+        String[] arrDateTime = userFriendlyDateTime.split(" ");
+        return  arrDateTime[1];
+
     }
 
     public static SharedPreferences getLogInSession(Context context){
@@ -400,4 +405,14 @@ public class AAUtil {
         }
         return result;
     }
+
+    public static String intUserStatusToStr(int status){
+        if(status == 1){
+            return "Active";
+        }else{
+            return "Revoked";
+        }
+    }
+
+
 }

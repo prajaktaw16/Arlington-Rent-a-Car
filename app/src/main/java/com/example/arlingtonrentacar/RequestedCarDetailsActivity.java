@@ -1,11 +1,18 @@
+/**
+ * Author: Sudipta Sharif (S.S)
+ * School: University of Texas at Arlington
+ * Course: CSE 5324 Fall 2020
+ */
 package com.example.arlingtonrentacar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +27,7 @@ import android.widget.Toast;
 import com.example.arlingtonrentacar.database.AAReservationsDAO;
 import com.example.arlingtonrentacar.database.CarsDAO;
 import com.example.arlingtonrentacar.database.SystemUserDAO;
+import com.example.arlingtonrentacar.renter.RenterViewReservationsActivity;
 import com.example.arlingtonrentacar.renter.RequestCarSummaryItem;
 import com.example.arlingtonrentacar.users.SystemUser;
 
@@ -42,7 +50,7 @@ public class RequestedCarDetailsActivity extends AppCompatActivity implements Co
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requested_car_details);
         mContext = this;
-        carSummaryItem = (RequestCarSummaryItem) getIntent().getParcelableExtra(getString(R.string.parcelable_selected_requested_car_summary_item));
+        carSummaryItem = (RequestCarSummaryItem) getIntent().getParcelableExtra(getString(R.string.parcel_selected_requested_car_summary_item));
         Log.d(LOG_TAG, METHOD_NAME + ": Parcelled RequestCarSummaryItem: \n" + carSummaryItem.allFieldsToString());
 
         SharedPreferences session = AAUtil.getLogInSession(mContext);
@@ -103,8 +111,8 @@ public class RequestedCarDetailsActivity extends AppCompatActivity implements Co
         tvCarNumber.setText(Integer.toString(this.carSummaryItem.getCarNumber()));
         tvCarName.setText(this.carSummaryItem.getCarName());
         tvCarCapacity.setText(Integer.toString(this.carSummaryItem.getCapacity()));
-        tvStartDateTime.setText(AAUtil.convertDBDateToTargetFormat(this.carSummaryItem.getStartDateTime(), AAUtil.USER_DATE_TIME_FORMAT));
-        tvEndDateTime.setText(AAUtil.convertDBDateToTargetFormat(this.carSummaryItem.getEndDateTime(), AAUtil.USER_DATE_TIME_FORMAT));
+        tvStartDateTime.setText(AAUtil.convertDBDateToTargetFormat(this.carSummaryItem.getStartDateTime(), AAUtil.USER_FRIENDLY_DATE_TIME_FORMAT));
+        tvEndDateTime.setText(AAUtil.convertDBDateToTargetFormat(this.carSummaryItem.getEndDateTime(), AAUtil.USER_FRIENDLY_DATE_TIME_FORMAT));
         tvTotalCost.setText(AAUtil.getAmountInCurrency(this.carSummaryItem.getTotalCost(), AAUtil.USD_CURRENCY_FORMAT));
         tvNumberOfRiders.setText(Integer.toString(this.carSummaryItem.getNumOfRiders()));
     }
@@ -189,10 +197,37 @@ public class RequestedCarDetailsActivity extends AppCompatActivity implements Co
 
         AAReservationsDAO aaReservationsDAO = AAReservationsDAO.getInstance(mContext);
         if(aaReservationsDAO.addReservation(reservation)){
-            msg = "Reservation Added Successfully";
+            Dialog dialog = registrationSuccessAndNavigationDialog(reservationID);
+            dialog.show();
         }else{
-            msg = "Unable to add reservation.\nPlease try again.";
+            msg = "Reservation failed.\nPlease try again.";
+            Toast.makeText(mContext, msg, Toast.LENGTH_LONG).show();
         }
-        Toast.makeText(mContext, msg, Toast.LENGTH_LONG).show();
     }
+
+    private Dialog registrationSuccessAndNavigationDialog(String reservationID){
+        String msg = "Reservation successful. Reservation ID:\n" + reservationID;
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setMessage(msg)
+                .setPositiveButton("View Reservations", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        navigateToTarget(RenterViewReservationsActivity.class);
+                    }
+                })
+                .setNegativeButton("Home", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        navigateToTarget(RenterHomeScreen.class);
+                    }
+                });
+        return builder.create();
+    }
+
+    private void navigateToTarget(Class<?> cls){
+        Intent intent = new Intent(mContext, cls);
+        mContext.startActivity(intent);
+    }
+
+
 }

@@ -1,3 +1,8 @@
+/**
+ * Author: Sudipta Sharif (S.S)
+ * School: University of Texas at Arlington
+ * Course: CSE 5324 Fall 2020
+ */
 package com.example.arlingtonrentacar;
 
 import androidx.annotation.NonNull;
@@ -74,6 +79,7 @@ public class RequestCarActivity extends AppCompatActivity implements AdapterView
     }
 
     public void processStartDatePickerResult(int year, int month, int day){
+        this.startDate.clear();
         this.startDate.set(year, month, day);
         setUpDate(this.startDateTextView, this.startDate);
         resetStartDateSpinner();
@@ -89,6 +95,7 @@ public class RequestCarActivity extends AppCompatActivity implements AdapterView
         endDateFragment.show(getSupportFragmentManager(), getString(R.string.rcEndDatePicker));
     }
     public void processEndDatePickerResult(int year, int month, int day){
+        this.endDate.clear();
         this.endDate.set(year, month, day);
         setUpDate(this.endDateTextView, this.endDate);
         resetEndDateSpinner();

@@ -1,0 +1,108 @@
+/**
+ * Author: Sudipta Sharif (S.S)
+ * School: University of Texas at Arlington
+ * Course: CSE 5324 Fall 2020
+ */
+package com.example.arlingtonrentacar.renter;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.arlingtonrentacar.AAUtil;
+import com.example.arlingtonrentacar.R;
+import com.example.arlingtonrentacar.RequestCarActivity;
+import com.example.arlingtonrentacar.StartDatePickerFragmentRC;
+
+import java.util.Calendar;
+
+public class RenterViewReservationsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+    private static final String LOG_TAG = RenterViewReservationsActivity.class.getSimpleName();
+    private Calendar mStartDate;
+    private String mStartTime;
+    private TextView mStartDateTextView;
+    private Spinner mSpinnerStartTime;
+    private ArrayAdapter<CharSequence> mArrayAdapterStartTime;
+    SharedPreferences session;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_renter_view_reservations);
+
+        mStartDate = Calendar.getInstance();
+        this.mStartDateTextView = findViewById(R.id.tvStartDateRenterViewReservations);
+        setUpDate(mStartDateTextView, mStartDate);
+
+        mSpinnerStartTime = findViewById(R.id.spinnerRenterViewReservationStartTime);
+        mArrayAdapterStartTime = getArrayAdapterByDayOfWeek(mStartDate.get(Calendar.DAY_OF_WEEK));
+        setUpSpinner(mSpinnerStartTime, mArrayAdapterStartTime);
+    }
+
+    public void renterViewReservShowStarteDatePicker(View view) {
+        DialogFragment newFragment = new RenterViewReservationsDatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), getString(R.string.renterViewReservationsDP));
+    }
+
+    public void processDatePickerResult(int year, int month, int day){
+        mStartDate = Calendar.getInstance();
+        mStartDate.clear();
+        mStartDate.set(year, month, day);
+        setUpDate(this.mStartDateTextView, mStartDate);
+        resetStartTimeSpinner();
+    }
+
+    private void setUpDate(TextView targetDateTextView, Calendar calendar){
+        String dateStr = AAUtil.formatDate(calendar, AAUtil.DATE_FORMAT_YYYY_MM_DD);
+        targetDateTextView.setText(dateStr);
+    }
+
+    private ArrayAdapter<CharSequence> getArrayAdapterByDayOfWeek(int dayOfWeek){
+        ArrayAdapter<CharSequence> adapter;
+        if(dayOfWeek == Calendar.SATURDAY){
+            adapter = ArrayAdapter.createFromResource(RenterViewReservationsActivity.this, R.array.saturday_hours, android.R.layout.simple_spinner_item);
+        }else if(dayOfWeek == Calendar.SUNDAY){
+            adapter = ArrayAdapter.createFromResource(RenterViewReservationsActivity.this, R.array.sunday_hours, android.R.layout.simple_spinner_item);
+        }else{
+            adapter = ArrayAdapter.createFromResource(RenterViewReservationsActivity.this, R.array.weekday_hours, android.R.layout.simple_spinner_item);
+        }
+        return adapter;
+    }
+
+    private void resetStartTimeSpinner(){
+        mArrayAdapterStartTime = getArrayAdapterByDayOfWeek(mStartDate.get(Calendar.DAY_OF_WEEK));
+        setUpSpinner(mSpinnerStartTime, mArrayAdapterStartTime);
+    }
+
+    private void setUpSpinner(Spinner spinner, ArrayAdapter<CharSequence> arrayAdapter){
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(arrayAdapter);
+        spinner.setOnItemSelectedListener(RenterViewReservationsActivity.this);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        mStartTime = adapterView.getItemAtPosition(i).toString().trim();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
+    public void renterViewReservationsOnclickHandler(View view) {
+        session = AAUtil.getLogInSession(this);
+        String startTime = mStartTime;
+        RenterViewReservationsController controller = new RenterViewReservationsController(this);
+        controller.viewMyReservations(mStartDate, startTime);
+    }
+}

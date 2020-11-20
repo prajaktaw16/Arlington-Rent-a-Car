@@ -9,6 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".renter.RenterViewProfileActivity"
+            android:label="View Profile"
+            android:parentActivityName=".RenterHomeScreen"/>
+        <activity
+            android:name=".renter.RenterReservationDetailsActivity"
+            android:label="Reservation Details"
+            android:parentActivityName=".renter.RenterReservationsSummaryActivity" />
+        <activity
+            android:name=".renter.RenterReservationsSummaryActivity"
+            android:label="Reservations Summary"
+            android:parentActivityName=".renter.RenterViewReservationsActivity" />
+        <activity
+            android:name=".renter.RenterViewReservationsActivity"
+            android:label="View Reservations"
+            android:parentActivityName=".RenterHomeScreen" />
         <activity
             android:name=".RenterHomeScreen"
             android:label="@string/renter_screen" />
@@ -25,8 +40,7 @@
         <activity
             android:name=".RequestedCarDetailsActivity"
             android:label="@string/RequestedCarDetailsActivityLabel"
-            android:parentActivityName=".ViewRequestedCarActivity"/>
-
+            android:parentActivityName=".ViewRequestedCarActivity" />
         <activity
             android:name=".RequestCarActivity"
             android:label="@string/requestCarActivityLabel"

@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".renter.RenterViewProfileActivity">
+
+    <TextView
+        android:id="@+id/rvpUsernameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/rvp_username_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/rvpPasswordLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/label_rvp_password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvpUsernameLabel" />
+
+    <TextView
+        android:id="@+id/rvpLastNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/label_rvp_last_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvpPasswordLabel" />
+
+    <TextView
+        android:id="@+id/rvpFirstNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/label_rvp_first_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvpLastNameLabel" />
+
+    <TextView
+        android:id="@+id/rvpUTAIDLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/label_rvp_uta_id"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvpFirstNameLabel" />
+
+    <TextView
+        android:id="@+id/rvpRoleLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/label_rvp_role"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvpUTAIDLabel" />
+
+    <TextView
+        android:id="@+id/rvpPhoneLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/label_rvp_phone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvpRoleLabel" />
+
+    <TextView
+        android:id="@+id/rvpEmailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/label_rvp_email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvpPhoneLabel" />
+
+    <TextView
+        android:id="@+id/rvpAddressLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/label_rvp_street_address"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvpEmailLabel" />
+
+    <TextView
+        android:id="@+id/rvpCityLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/label_rvp_city"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvpAddressLabel" />
+
+    <TextView
+        android:id="@+id/rvpStateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginLeft="140dp"
+        android:text="@string/label_rvp_state"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rvpCityLabel"
+        app:layout_constraintStart_toEndOf="@+id/rvpCityLabel" />
+
+    <TextView
+        android:id="@+id/rvpZipCodeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:text="@string/label_rvp_zip"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rvpStateLabel"
+        app:layout_constraintStart_toEndOf="@+id/rvpStateLabel" />
+
+    <TextView
+        android:id="@+id/rvpAAAMemberLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/label_rvp_arlington_auto_club_member"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvpUserStatusLabel" />
+
+    <TextView
+        android:id="@+id/rvpUserStatusLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/label_rvp_user_status"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvpCityLabel" />
+
+    <Button
+        android:id="@+id/rvpBtnUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/label_btn_update_profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/rvpUsernameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Username"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rvpUsernameLabel"
+        app:layout_constraintStart_toEndOf="@+id/rvpUsernameLabel" />
+
+    <EditText
+        android:id="@+id/rvpPasswordEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Password"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rvpPasswordLabel"
+        app:layout_constraintStart_toStartOf="@+id/rvpUsernameEditText" />
+
+    <EditText
+        android:id="@+id/rvpLastNameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Last Name"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rvpLastNameLabel"
+        app:layout_constraintStart_toStartOf="@+id/rvpPasswordEditText" />
+
+    <EditText
+        android:id="@+id/rvpFirstNameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="First Name"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rvpFirstNameLabel"
+        app:layout_constraintStart_toStartOf="@+id/rvpLastNameEditText" />
+
+    <EditText
+        android:id="@+id/rvpUTAIDEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:text="UTA ID"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rvpUTAIDLabel"
+        app:layout_constraintStart_toStartOf="@+id/rvpFirstNameEditText" />
+
+    <EditText
+        android:id="@+id/rvpPhoneEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Phone"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rvpPhoneLabel"
+        app:layout_constraintStart_toStartOf="@+id/rvpUTAIDEditText" />
+
+    <EditText
+        android:id="@+id/rvpEmailEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Email"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rvpEmailLabel"
+        app:layout_constraintStart_toStartOf="@+id/rvpPhoneEditText" />
+
+    <EditText
+        android:id="@+id/rvpAddressEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Street Address"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rvpAddressLabel"
+        app:layout_constraintStart_toStartOf="@+id/rvpEmailEditText" />
+
+    <EditText
+        android:id="@+id/rvpCityEditText"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Arlington"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rvpCityLabel"
+        app:layout_constraintStart_toEndOf="@+id/rvpCityLabel" />
+
+    <EditText
+        android:id="@+id/rvpStateEditText"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="TX"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rvpStateLabel"
+        app:layout_constraintStart_toEndOf="@+id/rvpStateLabel" />
+
+    <EditText
+        android:id="@+id/rvpZipEditText"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="12345"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rvpStateEditText"
+        app:layout_constraintStart_toEndOf="@+id/rvpZipCodeLabel" />
+
+    <EditText
+        android:id="@+id/rvpAAMemberEditText"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Yes"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rvpAAAMemberLabel"
+        app:layout_constraintStart_toEndOf="@+id/rvpAAAMemberLabel" />
+
+    <TextView
+        android:id="@+id/rvcRoleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Renter"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rvpRoleLabel"
+        app:layout_constraintStart_toStartOf="@+id/rvpUTAIDEditText" />
+
+    <TextView
+        android:id="@+id/rvcUserStatusTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Active"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rvpUserStatusLabel"
+        app:layout_constraintStart_toStartOf="@+id/rvpAddressEditText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
