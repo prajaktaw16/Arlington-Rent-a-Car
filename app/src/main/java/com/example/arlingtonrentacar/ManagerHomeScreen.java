@@ -2,24 +2,32 @@ package com.example.arlingtonrentacar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
 import com.example.arlingtonrentacar.manager.View_Reservation_Calendar;
-import com.example.arlingtonrentacar.manager.View_Reservation_Details;
+
 
 public class ManagerHomeScreen extends AppCompatActivity {
+    private final String LOG_TAG = ManagerHomeScreen.class.getSimpleName();
+    private String username;
+    private SharedPreferences sessionPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_home_screen);
+
+        sessionPrefs = getSharedPreferences(getString(R.string.sessions_preference_file_key), Context.MODE_PRIVATE);
+        this.username = sessionPrefs.getString(getString(R.string.session_loggedin_username), "");
+        Log.d(LOG_TAG, "Username passed from login screen: " + username);
 
     }
     public void logout(View view) {

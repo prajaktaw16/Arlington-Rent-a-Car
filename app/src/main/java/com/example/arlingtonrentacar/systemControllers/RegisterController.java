@@ -23,7 +23,7 @@ public class RegisterController {
         final String METHOD_NAME = "register()";
         final String EMPTY = "";
         String msg = "";
-        SystemUserDAO systemUserDAO = new SystemUserDAO(registerGUIContext);
+        SystemUserDAO systemUserDAO = SystemUserDAO.getInstance(registerGUIContext);
         SystemUser user;
         boolean r = systemUserDAO.isRegistered(username);
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.ContactsContract;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -17,14 +18,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String RESERVATIONS_TABLE = "reservations";
     public static final String CARS_TABLE = "cars";
     public static final String AA_STORE_HRS_TABLE = "aa_store_hrs";
-    public static final String ALRINGTON_AUTO_DB = "ArlingtonAuto.db";
-    public static final int VERSION  = 3;
+    public static final String ARLINGTON_AUTO_DB = "ArlingtonAuto.db";
+    private static final int DB_VERSION  = 4;
     private static final int DEV_MODE = 1;
 
-    public DatabaseHelper(@Nullable Context context) {
-        super(context, ALRINGTON_AUTO_DB, null, VERSION);
+    private static DatabaseHelper instance;
+
+    private DatabaseHelper(@Nullable Context context) {
+        super(context, ARLINGTON_AUTO_DB, null, DB_VERSION);
     }
 
+    public static DatabaseHelper getInstance(@Nullable Context context){
+        final String METHOD_NAME = "getInstance()";
+        Log.d(LOG_TAG, METHOD_NAME + ": entered.");
+        if(instance == null){
+            instance = new DatabaseHelper(context);
+            Log.d(LOG_TAG, METHOD_NAME + ": new instance created.");
+        }
+        return instance;
+    }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
@@ -47,6 +59,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         Log.d(LOG_TAG, "onUpgrade() called.");
+        Log.d(LOG_TAG, "onUpgrade(): oldVersion = " + oldVersion);
+        Log.d(LOG_TAG, "onUpgrade(): newVersion = " + newVersion);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + SYSTEM_USERS_TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + RESERVATIONS_TABLE);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + CARS_TABLE);
@@ -80,7 +94,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         final String LOG_TAG = "createTblReservations()";
         String sql = "CREATE TABLE " + RESERVATIONS_TABLE + " ( " +
                 "reservation_id TEXT PRIMARY KEY, " +
-                "car_number INTEGER, " +
+                "username TEXT, " +
                 "last_name TEXT, " +
                 "first_name TEXT, " +
                 "car_name TEXT, " +
@@ -147,17 +161,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private void reservationsAddDummyData(SQLiteDatabase sqLiteDatabase){
         final String LOG_TAG = "sysUsersAddDummyData()";
-        String sql = "INSERT INTO " + RESERVATIONS_TABLE + "(reservation_id, car_number, last_name, " +
+        String sql = "INSERT INTO " + RESERVATIONS_TABLE + "(reservation_id, username, last_name, " +
                 "first_name, car_name, car_capacity, start_date, start_time, end_date, end_time, num_of_riders, total_price," +
                 "gps, siriusxm, onstar, aaa_member_status)" +
                 "VALUES" +
-                "(\"1\",21, \"Doe\", \"John\", \"Smart\", 1, \"01/12/2020\", " +
+                "(\"1\",\"johndoe\", \"Doe\", \"John\", \"Smart\", 1, \"01/12/2020\", " +
                 "\"12:00\", \"03/12/2020\", \"1:00\","+
                 "1, 40, 1, 1, 1, 1),"+
-                "(\"2\",22, \"Jane\", \"Marry\", \"Economy\", 3, \"02/12/2020\", " +
+                "(\"2\",\"marryjane\", \"Jane\", \"Marry\", \"Economy\", 3, \"02/12/2020\", " +
                 "\"1:00\", \"04/12/2020\", \"2:00\","+
                 "1, 60, 1, 0, 0, 1),"+
-                "(\"3\",23, \"Wayne\", \"Bruce\", \"Compact\", 4, \"03/12/2020\", " +
+                "(\"3\",\"brucewayne\", \"Wayne\", \"Bruce\", \"Compact\", 4, \"03/12/2020\", " +
                 "\"11:00\", \"05/12/2020\", \"3:00\","+
                 "1, 80, 1, 1, 0, 1);";
         sqLiteDatabase.execSQL(sql);
@@ -196,21 +210,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(sql);
         Log.d(LOG_TAG,  sql);
     }
-
-    public String getFullNameByUsername(String username){
-        final int FIRST_NAME_COL = 0;
-        final int LAST_NAME_COL = 1;
-        String fullName = "";
-        String sql = "SELECT first_name, last_name FROM " + SYSTEM_USERS_TABLE + " WHERE username = " + AAUtil.quoteStr(username);
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(sql, null);
-        if(cursor.moveToFirst()){
-            fullName = cursor.getString(FIRST_NAME_COL) + " " + cursor.getString(LAST_NAME_COL);
-        }
-        Log.d(LOG_TAG, "getFullNameByUsername: fullName = " + fullName);
-        return fullName;
-    }
-
-
 }

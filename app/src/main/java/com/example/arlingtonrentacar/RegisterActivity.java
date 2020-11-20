@@ -111,7 +111,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         Log.d(LOG_TAG, METHOD_NAME + ": aaa mem status = " + selectedAAStat);
         Log.d(LOG_TAG, METHOD_NAME + ": user status = " + userStatus);
 
-        RegisterController registerController = new RegisterController(RegisterActivity.this);
+        RegisterController registerController = new RegisterController(this);
         registerController.register(
                 etUsername.getText().toString().trim(),
                 etPassword.getText().toString().trim(),
