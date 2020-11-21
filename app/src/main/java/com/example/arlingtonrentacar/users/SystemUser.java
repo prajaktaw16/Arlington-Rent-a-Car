@@ -196,4 +196,12 @@ public class SystemUser {
                 "\nuserStatus=" + userStatus +
                 "\n}";
     }
+
+    public boolean validateData(){
+        if(this.getUsername().equals(AAUtil.EMPTYSTR) || this.getPassword().equals(AAUtil.EMPTYSTR) || this.getRole().equals(AAUtil.EMPTYSTR)){
+            return false;
+        }else{
+            return true;
+        }
+    }
 }

@@ -160,6 +160,7 @@
 
     <Button
         android:id="@+id/rvpBtnUpdate"
+        android:onClick="btnUpdateProfileOnClickHandler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -169,26 +170,16 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/rvpUsernameEditText"
+        android:id="@+id/rvpPasswordEditText"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
         android:layout_marginLeft="56dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Username"
-        app:layout_constraintBaseline_toBaselineOf="@+id/rvpUsernameLabel"
-        app:layout_constraintStart_toEndOf="@+id/rvpUsernameLabel" />
-
-    <EditText
-        android:id="@+id/rvpPasswordEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
         android:text="Password"
         app:layout_constraintBaseline_toBaselineOf="@+id/rvpPasswordLabel"
-        app:layout_constraintStart_toStartOf="@+id/rvpUsernameEditText" />
+        app:layout_constraintStart_toEndOf="@+id/rvpPasswordLabel" />
 
     <EditText
         android:id="@+id/rvpLastNameEditText"
@@ -304,7 +295,7 @@
         android:layout_height="wrap_content"
         android:text="Renter"
         app:layout_constraintBaseline_toBaselineOf="@+id/rvpRoleLabel"
-        app:layout_constraintStart_toStartOf="@+id/rvpUTAIDEditText" />
+        app:layout_constraintStart_toStartOf="@+id/rvcUsernameTextView" />
 
     <TextView
         android:id="@+id/rvcUserStatusTextView"
@@ -312,6 +303,16 @@
         android:layout_height="wrap_content"
         android:text="Active"
         app:layout_constraintBaseline_toBaselineOf="@+id/rvpUserStatusLabel"
-        app:layout_constraintStart_toStartOf="@+id/rvpAddressEditText" />
+        app:layout_constraintStart_toStartOf="@+id/rvcRoleTextView" />
+
+    <TextView
+        android:id="@+id/rvcUsernameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:text="Username"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rvpUsernameLabel"
+        app:layout_constraintStart_toEndOf="@+id/rvpUsernameLabel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

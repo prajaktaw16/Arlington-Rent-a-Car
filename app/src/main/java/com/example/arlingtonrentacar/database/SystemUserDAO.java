@@ -166,4 +166,28 @@ public class SystemUserDAO {
         user = new SystemUser(dbusername, password, lastName, firstName, role, utaID, phone, email, address, city, state, zip, aaaMemStat, userStat);
         return user;
     }
+
+    public boolean updateRenterProfile(SystemUser renter){
+        boolean result = false;
+        SQLiteDatabase dbHandle = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_PASSWORD, renter.getPassword());
+        values.put(COLUMN_LAST_NAME, renter.getLastName());
+        values.put(COLUMN_FIRST_NAME, renter.getFirstName());
+        values.put(COLUMN_UTA_ID, renter.getUtaID());
+        values.put(COLUMN_PHONE, renter.getPhone());
+        values.put(COLUMN_EMAIL, renter.getEmail());
+        values.put(COLUMN_ADDRESS, renter.getStreetAddress());
+        values.put(COLUMN_CITY, renter.getCity());
+        values.put(COLUMN_STATE, renter.getState());
+        values.put(COLUMN_ZIP, renter.getZip());
+        values.put(COLUMN_AAA_MEM_STAT, renter.getAaaMemberStatus());
+        String selection = COLUMN_USERNAME + " = ?";
+        String[] selectionArgs = {renter.getUsername()};
+        int count = dbHandle.update(SYSTEM_USERS_TABLE, values, selection, selectionArgs);
+        if(count == 1){ // num of rows affected should be 1, as username is pk
+            result = true;
+        }
+        return result;
+    }
 }

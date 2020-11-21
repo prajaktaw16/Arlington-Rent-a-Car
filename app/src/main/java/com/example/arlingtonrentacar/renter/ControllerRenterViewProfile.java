@@ -19,4 +19,9 @@ public class ControllerRenterViewProfile {
         user = systemUserDAO.getSystemUserByUsername(username);
         return user;
     }
+
+    public boolean updateRenterProfile(SystemUser renter){
+        SystemUserDAO systemUserDAO = SystemUserDAO.getInstance(mContext);
+        return systemUserDAO.updateRenterProfile(renter);
+    }
 }
