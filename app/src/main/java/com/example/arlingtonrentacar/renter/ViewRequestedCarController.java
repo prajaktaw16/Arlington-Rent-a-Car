@@ -41,31 +41,20 @@ public class ViewRequestedCarController {
         LinkedList<RequestCarSummaryItem> carSummaryItemList = new LinkedList<RequestCarSummaryItem>();
         RequestCarSummaryItem carSummaryItem;
         Invoice invoice;
-        LinkedList<AAReservationModel> reservationList;
+        LinkedList<Calendar> carCurrentReservationDateList;
         CarModel car;
-        AAReservationModel reservation;
-        Calendar calStartDateTime, calEndDateTime;
-        calStartDateTime = AAUtil.databaseDateTimeToCalendar(startDateTime);
-        calEndDateTime = AAUtil.databaseDateTimeToCalendar(endDateTime);
+        Calendar requestedStartDateTime, requestedEndDateTime;
+        requestedStartDateTime = AAUtil.databaseDateTimeToCalendar(startDateTime);
+        requestedEndDateTime = AAUtil.databaseDateTimeToCalendar(endDateTime);
         int carNumber = 0;
         for(int i = 0; i < carList.size(); i++){
             car = carList.get(i);
-            reservationList = reservationsDAO.getReservationsByCarName(car.getName());
-            if(reservationList.size() == 0){
+            carCurrentReservationDateList = reservationsDAO.getAllReservationDatesOfCar(car.getName());
+            if(AAUtil.schedulable(requestedStartDateTime, requestedEndDateTime, carCurrentReservationDateList)){
                 carNumber++;
-                invoice = new Invoice(car, calStartDateTime, calEndDateTime);
+                invoice = new Invoice(car, requestedStartDateTime, requestedEndDateTime);
                 carSummaryItem = createCarSummaryItem(startDateTime, endDateTime, car.getName(), carNumber, car.getCapacity(), numOfRiders, invoice.calculateBasicTotalCost());
                 carSummaryItemList.add(carSummaryItem);
-            }else{
-                for(int j = 0; j < reservationList.size(); j++){
-                    reservation = reservationList.get(j);
-                    if(reservation.validReservationDateTime(calStartDateTime, calEndDateTime)){
-                        carNumber++;
-                        invoice = new Invoice(car, calStartDateTime, calEndDateTime);
-                        carSummaryItem = createCarSummaryItem(startDateTime, endDateTime, car.getName(), carNumber, car.getCapacity(), numOfRiders, invoice.calculateBasicTotalCost());
-                        carSummaryItemList.add(carSummaryItem);
-                    }
-                }
             }
         }
         return carSummaryItemList;

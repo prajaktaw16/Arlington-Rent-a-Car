@@ -16,6 +16,7 @@ import com.example.arlingtonrentacar.AAUtil;
 import com.example.arlingtonrentacar.CarName;
 import com.example.arlingtonrentacar.renter.ReservationSummaryItem;
 
+import java.util.Calendar;
 import java.util.LinkedList;
 
 public class AAReservationsDAO {
@@ -50,34 +51,29 @@ public class AAReservationsDAO {
         return instace;
     }
 
-    public LinkedList<AAReservationModel> getReservationsByCarName(CarName carName){
+    public LinkedList<Calendar> getAllReservationDatesOfCar(CarName carName){
         final String METHOD_NAME = "getReservationsByCarName()";
         String strCarName = AAUtil.carNameEnumToStr(carName);
-        LinkedList<AAReservationModel> reservationList = new LinkedList<AAReservationModel>();
+        LinkedList<Calendar> reservationDateList = new LinkedList<Calendar>();
         SQLiteDatabase dbHandle = this.dbHelper.getWritableDatabase();
-        String sql = "SELECT " + COLUMN_RESERVATION_ID + ", " + COLUMN_USERNAME + ", " +
-                COLUMN_START_DATE_TIME + ", " + COLUMN_END_DATE_TIME + " FROM " + TABLE_RESERVATIONS + " WHERE " +
-                COLUMN_CAR_NAME + " = ?;";
+        String sql = "SELECT " + COLUMN_START_DATE_TIME + ", " + COLUMN_END_DATE_TIME + " FROM " + TABLE_RESERVATIONS + " WHERE " + COLUMN_CAR_NAME + " = ?;";
         String[] selectionArgs = {strCarName};
         Log.d(LOG_TAG, METHOD_NAME + ": SQL = " + sql);
 
         Cursor cursor = dbHandle.rawQuery(sql, selectionArgs);
-        Log.d(LOG_TAG, METHOD_NAME+": Total reservation found for car " + strCarName +" = " + cursor.getCount());
+        Log.d(LOG_TAG, METHOD_NAME+": Total reservation dates found of car " + strCarName +" = " + cursor.getCount());
+        Calendar reservationStartDateTime, reservationEndDateTime;
 
-        AAReservationModel reservationModel;
         while(cursor.moveToNext()){
-            // A partial reservation model is used to just check if a car can be rented with the
-            // provided start/end date time during requesting a car for reservation
-            reservationModel = new AAReservationModel();
-            reservationModel.setReservationID(cursor.getString(cursor.getColumnIndex(COLUMN_RESERVATION_ID)));
-            reservationModel.setUsername(cursor.getString(cursor.getColumnIndex(COLUMN_USERNAME)));
-            reservationModel.setStartDateTime(AAUtil.databaseDateTimeToCalendar(cursor.getString(cursor.getColumnIndex(COLUMN_START_DATE_TIME))));
-            reservationModel.setEndDateTime(AAUtil.databaseDateTimeToCalendar(cursor.getString(cursor.getColumnIndex(COLUMN_END_DATE_TIME))));
-            reservationList.add(reservationModel);
+            reservationStartDateTime = AAUtil.databaseDateTimeToCalendar(cursor.getString(cursor.getColumnIndex(COLUMN_START_DATE_TIME)));
+            reservationDateList.add(reservationStartDateTime);
+
+            reservationEndDateTime = AAUtil.databaseDateTimeToCalendar(cursor.getString(cursor.getColumnIndex(COLUMN_END_DATE_TIME)));
+            reservationDateList.add(reservationEndDateTime);
         }
         cursor.close();
         dbHandle.close();
-        return reservationList;
+        return reservationDateList;
     }
 
     public boolean addReservation(AAReservationModel r){

@@ -190,4 +190,15 @@ public class SystemUserDAO {
         }
         return result;
     }
+
+    public int getSystemUserStatus(String username){
+        int status = 0;
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String sql = "SELECT " + COLUMN_USER_STATUS + " FROM " + SYSTEM_USERS_TABLE + " WHERE " + COLUMN_USERNAME + " = ?;";
+        String[] selectionArgs = {username};
+        Cursor cursor = db.rawQuery(sql, selectionArgs);
+        cursor.moveToFirst();
+        status = cursor.getInt(cursor.getColumnIndex(COLUMN_USER_STATUS));
+        return status;
+    }
 }

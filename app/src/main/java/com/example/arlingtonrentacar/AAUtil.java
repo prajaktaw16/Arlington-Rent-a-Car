@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.UUID;
 
 public class AAUtil {
@@ -21,7 +22,6 @@ public class AAUtil {
     public static final String USER_FRIENDLY_DATE_TIME_FORMAT = "yyyy-MM-dd hh:mm a";
     public static final String DATE_FORMAT_YYYY_MM_DD = "yyyy-MM-dd";
     public static final String USD_CURRENCY_FORMAT = "#,###.##";
-    public static final String RESERVATION_ID_DATETIME_FORMAT = "yyyy.MM.dd.HH.mm.ss.SSS";
     public static final double TAX = 1.0825; // 8.25%
     public static final double DISCOUNT = 0.9; // 10%
     public static final String EMPTYSTR = "";
@@ -306,10 +306,8 @@ public class AAUtil {
     }
 
     public static String generateGUID(){
-        // UUID: Globally Unique ID
-        return UUID.randomUUID().toString().toUpperCase(); // --> This takes up too much screen real-estate, so changing to timestamp
-        //return formatDate(Calendar.getInstance(), AAUtil.RESERVATION_ID_DATETIME_FORMAT);
-
+        // GUID: Globally Unique ID
+        return UUID.randomUUID().toString().toUpperCase();
     }
 
     public static String convertDBDateToTargetFormat(String dateInDatabaseFormat, String targetDateFormat){
@@ -412,6 +410,40 @@ public class AAUtil {
         }else{
             return "Revoked";
         }
+    }
+
+    public static boolean schedulable(Calendar startDateTime, Calendar endDateTime, LinkedList<Calendar> reservationDateList) {
+        boolean result = false;
+        final int INDEX_FIRST_DATE = 0;
+        final int INDEX_LAST_DATE = reservationDateList.size()-1;
+        if(reservationDateList.size() == 0){
+            result = true;
+        }else if(startDateTime.before(reservationDateList.get(INDEX_FIRST_DATE)) && endDateTime.before(reservationDateList.get(INDEX_FIRST_DATE))) {
+            result = true;
+        }else if(startDateTime.after(reservationDateList.get(INDEX_LAST_DATE)) && endDateTime.after(reservationDateList.get(INDEX_LAST_DATE))) {
+            result = true;
+        }else {
+            result = schedulableInBetweenDates(startDateTime, endDateTime, reservationDateList);
+        }
+        return result;
+    }
+
+    public static boolean schedulableInBetweenDates(Calendar startDateTime, Calendar endDateTime, LinkedList<Calendar> reservationDateList) {
+        final int INDEX_FIST_RESERVATION_END_DATE = 1;
+        final int INDEX_ADDEND_FOR_NEXT_RESERVATION_END_DATE = 2;
+        boolean schedulable = false;
+        Calendar currentReservationEndDateTime, nextReservationStartDateTime;
+        int index = INDEX_FIST_RESERVATION_END_DATE;
+        while(!schedulable && (index < reservationDateList.size()-2)) {
+            currentReservationEndDateTime = reservationDateList.get(index);
+            nextReservationStartDateTime = reservationDateList.get(index+1);
+
+            if(startDateTime.after(currentReservationEndDateTime) && endDateTime.before(nextReservationStartDateTime)) {
+                schedulable = true;
+            }
+            index += INDEX_ADDEND_FOR_NEXT_RESERVATION_END_DATE;
+        }
+        return schedulable;
     }
 
 
