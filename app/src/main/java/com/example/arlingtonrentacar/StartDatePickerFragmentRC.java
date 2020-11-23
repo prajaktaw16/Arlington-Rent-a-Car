@@ -1,3 +1,8 @@
+/**
+ * Author: Sudipta Sharif (S.S)
+ * School: University of Texas at Arlington
+ * Course: CSE 5324 Fall 2020
+ */
 package com.example.arlingtonrentacar;
 
 import android.app.Activity;
@@ -20,8 +25,6 @@ import java.util.Calendar;
  * A simple {@link Fragment} subclass.
  */
 public class StartDatePickerFragmentRC extends DialogFragment implements DatePickerDialog.OnDateSetListener {
-
-
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstance){

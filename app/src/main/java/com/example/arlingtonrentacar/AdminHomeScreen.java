@@ -19,7 +19,7 @@ public class AdminHomeScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home_screen);
 
-        sessionPrefs = getSharedPreferences(getString(R.string.sessions_preference_file_key), Context.MODE_PRIVATE);
+        sessionPrefs = AAUtil.getLogInSession(this);
         this.username = sessionPrefs.getString(getString(R.string.session_loggedin_username), "");
         Log.d(LOG_TAG, "Username passed from login screen: " + username);
     }
