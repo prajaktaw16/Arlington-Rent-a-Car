@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.arlingtonrentacar">
 
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,6 +11,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ManagerViewAvailableCarSummaryScreen"></activity>
+        <activity android:name=".ManagerViewAvailableCarsScreen" />
+        <activity android:name=".ManagerViewCarDetailScreen" />
+        <activity android:name=".ManagerSearchCarSummaryScreen" />
+        <activity
+            android:name=".ManagerSearchCarScreen"
+            android:label="@string/title_activity_manager_search_car_screen" />
+
+
+        <!--
+               Set to true if your app is Standalone, that is, it does not require the handheld
+               app to run.
+        -->
+        <meta-data
+            android:name="com.google.android.wearable.standalone"
+            android:value="true" />
+
         <activity
             android:name=".RenterHomeScreen"
             android:label="@string/renter_screen" />
