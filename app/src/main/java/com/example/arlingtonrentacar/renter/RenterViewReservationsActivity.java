@@ -5,12 +5,15 @@
  */
 package com.example.arlingtonrentacar.renter;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -101,5 +104,19 @@ public class RenterViewReservationsActivity extends AppCompatActivity implements
 
     private void setDateButtonLabel(Button btn, String dateLabel){
         btn.setText(dateLabel);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_view_renter_reservations, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.renterViewReservationsMenuLogout){
+            AAUtil.logout(this);
+        }
+        return(super.onOptionsItemSelected(item));
     }
 }

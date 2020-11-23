@@ -34,10 +34,8 @@ public class RenterHomeScreen extends AppCompatActivity {
         initGreetingForRenter(username);
     }
 
-
     public void logout(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        AAUtil.logout(this);
     }
 
     public void launchRequestCarActivity(View view) {

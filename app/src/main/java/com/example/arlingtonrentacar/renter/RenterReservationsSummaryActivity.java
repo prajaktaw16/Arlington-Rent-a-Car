@@ -5,6 +5,7 @@
  */
 package com.example.arlingtonrentacar.renter;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.arlingtonrentacar.AAUtil;
 import com.example.arlingtonrentacar.R;
@@ -44,5 +47,19 @@ public class RenterReservationsSummaryActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.addItemDecoration(itemDecoration);
         mRecyclerView.hasFixedSize();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_view_renter_reservations_summary, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.renterViewReservationsSummaryMenuLogout){
+            AAUtil.logout(this);
+        }
+        return(super.onOptionsItemSelected(item));
     }
 }

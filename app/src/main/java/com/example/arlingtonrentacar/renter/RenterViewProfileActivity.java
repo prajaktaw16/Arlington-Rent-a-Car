@@ -5,12 +5,15 @@
  */
 package com.example.arlingtonrentacar.renter;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -104,5 +107,19 @@ public class RenterViewProfileActivity extends AppCompatActivity {
             }
         }
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_renter_view_profile, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.renterViewProfileMenuLogout){
+            AAUtil.logout(this);
+        }
+        return(super.onOptionsItemSelected(item));
     }
 }

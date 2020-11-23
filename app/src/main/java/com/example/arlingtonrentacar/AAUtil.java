@@ -6,6 +6,7 @@
 package com.example.arlingtonrentacar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 
 import java.math.RoundingMode;
@@ -483,6 +484,15 @@ public class AAUtil {
             capacity = CAPACITY_CAR_NONE;
         }
         return capacity;
+    }
+
+    public static void logout(Context context){
+        SharedPreferences sessionPrefs = getLogInSession(context);
+        SharedPreferences.Editor session = sessionPrefs.edit();
+        session.clear();
+        session.commit();
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
     }
 
 

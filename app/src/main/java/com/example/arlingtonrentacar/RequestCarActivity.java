@@ -147,8 +147,7 @@ public class RequestCarActivity extends AppCompatActivity implements AdapterView
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.rc_menu_logout){
-            Toast.makeText(this, "Logout Menu Clicked", Toast.LENGTH_LONG).show();
-            return(true);
+            AAUtil.logout(this);
         }
         return(super.onOptionsItemSelected(item));
     }
