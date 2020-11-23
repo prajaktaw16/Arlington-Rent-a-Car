@@ -7,36 +7,14 @@
     tools:context=".RequestCarActivity">
 
     <TextView
-        android:id="@+id/rcStartTimeLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:text="@string/rcStartTimeLabel"
-        android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btnStartDatePicker"
-        app:layout_constraintStart_toEndOf="@+id/btnStartDatePicker" />
-
-    <TextView
-        android:id="@+id/rcEndTimeLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:text="@string/rcEndTimeLabel"
-        android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btnEndDatePicker"
-        app:layout_constraintStart_toEndOf="@+id/btnEndDatePicker" />
-
-    <TextView
         android:id="@+id/rcNumOfRidersLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="70dp"
         android:text="@string/rcNumOfRiders"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,93 +22,102 @@
         android:id="@+id/btnRequestCar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginStart="127dp"
+        android:layout_marginLeft="127dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="169dp"
+        android:layout_marginRight="169dp"
+        android:layout_marginBottom="233dp"
         android:onClick="requestCarBtnClickEventHandler"
         android:text="@string/requestCarBtnName"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnEndDatePicker" />
 
     <Button
         android:id="@+id/btnStartDatePicker"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:onClick="showStartDatePicker"
         android:text="@string/rcStartDateLabel"
         android:textAllCaps="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/requestCarStartDateTimeLabel"
+        app:layout_constraintStart_toEndOf="@+id/requestCarStartDateTimeLabel" />
 
     <Button
         android:id="@+id/btnEndDatePicker"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="100dp"
         android:onClick="showEndDatePicker"
         android:text="@string/rcEndDateLabel"
         android:textAllCaps="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnStartDatePicker" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/requestCarEndDateTimeLabel"
+        app:layout_constraintStart_toStartOf="@+id/btnStartDatePicker" />
 
     <EditText
         android:id="@+id/etNumberOfRiders"
         android:layout_width="50dp"
         android:layout_height="45dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:ems="10"
         android:gravity="center"
         android:importantForAutofill="no"
         android:inputType="number"
         android:text="1"
-        app:layout_constraintEnd_toEndOf="@+id/rcNumOfRidersLabel"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/rcNumOfRidersLabel"
-        app:layout_constraintTop_toBottomOf="@+id/rcNumOfRidersLabel" />
-
-    <TextView
-        android:id="@+id/tvStartDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/dateFormat"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/btnStartDatePicker"
-        app:layout_constraintStart_toStartOf="@+id/btnStartDatePicker"
-        app:layout_constraintTop_toBottomOf="@+id/btnStartDatePicker" />
-
-    <TextView
-        android:id="@+id/tvEndDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/dateFormat"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/btnEndDatePicker"
-        app:layout_constraintStart_toStartOf="@+id/btnEndDatePicker"
-        app:layout_constraintTop_toBottomOf="@+id/btnEndDatePicker" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/rcNumOfRidersLabel"
+        app:layout_constraintStart_toEndOf="@+id/rcNumOfRidersLabel" />
 
     <Spinner
         android:id="@+id/spinner_start_time"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvStartDate"
-        app:layout_constraintStart_toEndOf="@+id/tvStartDate" />
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/requestCarStartDateTimeLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnStartDatePicker"
+        app:layout_constraintTop_toTopOf="@+id/requestCarStartDateTimeLabel" />
 
     <Spinner
         android:id="@+id/spinner_end_time"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvEndDate"
-        app:layout_constraintStart_toEndOf="@+id/tvEndDate" />
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/requestCarEndDateTimeLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnEndDatePicker"
+        app:layout_constraintTop_toTopOf="@+id/requestCarEndDateTimeLabel" />
+
+    <TextView
+        android:id="@+id/requestCarStartDateTimeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="64dp"
+        android:text="Start Date Time:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rcNumOfRidersLabel" />
+
+    <TextView
+        android:id="@+id/requestCarEndDateTimeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="80dp"
+        android:text="End Date Time:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/requestCarStartDateTimeLabel" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

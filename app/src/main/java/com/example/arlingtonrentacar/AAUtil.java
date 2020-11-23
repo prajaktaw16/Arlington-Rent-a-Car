@@ -50,6 +50,16 @@ public class AAUtil {
     public static final String SEVEN_PM = "07:00 PM";
     public static final String SEVEN_THIRTY_PM = "07:30 PM";
     public static final String EIGHT_PM = "08:00 PM";
+    public static final int CAPACITY_CAR_SMART = 1;
+    public static final int CAPACITY_CAR_ECONOMY = 3;
+    public static final int CAPACITY_CAR_COMPACT = 4;
+    public static final int CAPACITY_CAR_INTERMEDIATE = 4;
+    public static final int CAPACITY_CAR_STANDARD = 5;
+    public static final int CAPACITY_CAR_FULL_SIZE = 6;
+    public static final int CAPACITY_CAR_SUV = 8;
+    public static final int CAPACITY_CAR_MINIVAN = 9;
+    public static final int CAPACITY_CAR_ULTRASPORTS = 2;
+    public static final int CAPACITY_CAR_NONE = 0; // this will give invalid data whenever called/used as form input
 
     public static Role roleStrToEnum(String role){
         role = role.toLowerCase();
@@ -318,11 +328,16 @@ public class AAUtil {
         return result;
     }
 
+
     public static String getUserFriendlyTimeFromCalendarDate(Calendar calendar){
+        // In retrospect should have stored all datetime in database as "yyyy-MM-dd'T'HH:mm"
         String userFriendlyDateTime = formatDate(calendar, AAUtil.USER_FRIENDLY_DATE_TIME_FORMAT);
         String[] arrDateTime = userFriendlyDateTime.split(" ");
-        return  arrDateTime[1];
-
+        if(arrDateTime.length == 3){
+            return  arrDateTime[1] + " " + arrDateTime[2];
+        }else{
+            return "";
+        }
     }
 
     public static SharedPreferences getLogInSession(Context context){
@@ -444,6 +459,38 @@ public class AAUtil {
             index += INDEX_ADDEND_FOR_NEXT_RESERVATION_END_DATE;
         }
         return schedulable;
+    }
+
+    public static String getLoggedInUserName(Context context){
+        SharedPreferences sessionPref = getLogInSession(context);
+        String username = sessionPref.getString(context.getString(R.string.session_loggedin_username), "");
+        return username;
+    }
+
+    public static int getCarCapcityByName(CarName carName){
+        int capacity;
+        if(carName == CarName.SMART){
+            capacity = CAPACITY_CAR_SMART;
+        }else if(carName == CarName.ECONOMY){
+            capacity = CAPACITY_CAR_ECONOMY;
+        }else if(carName == CarName.COMPACT){
+            capacity = CAPACITY_CAR_COMPACT;
+        }else if(carName == CarName.INTERMEDIATE){
+            capacity = CAPACITY_CAR_INTERMEDIATE;
+        }else if(carName == CarName.STANDARD){
+            capacity = CAPACITY_CAR_STANDARD;
+        }else if(carName == CarName.FULLSIZE){
+            capacity = CAPACITY_CAR_FULL_SIZE;
+        }else if(carName == CarName.SUV){
+            capacity = CAPACITY_CAR_SUV;
+        }else if(carName == CarName.MINIVAN){
+            capacity = CAPACITY_CAR_MINIVAN;
+        }else if(carName == CarName.ULTRASPORTS){
+            capacity = CAPACITY_CAR_ULTRASPORTS;
+        }else{
+            capacity = CAPACITY_CAR_NONE;
+        }
+        return capacity;
     }
 
 

@@ -8,55 +8,51 @@
 
     <Button
         android:id="@+id/btnRenterViewReservationsDatePicker"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="136dp"
         android:onClick="renterViewReservShowStarteDatePicker"
-        android:text="@string/rcStartDateLabel"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvStartDateRenterViewReservations"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/rcStartDateLabel"
-        app:layout_constraintEnd_toEndOf="@+id/btnRenterViewReservationsDatePicker"
-        app:layout_constraintStart_toStartOf="@+id/btnRenterViewReservationsDatePicker"
-        app:layout_constraintTop_toBottomOf="@+id/btnRenterViewReservationsDatePicker" />
-
-    <TextView
-        android:id="@+id/tvStartTimeLabelRenterViewReservations"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="114dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
-        android:text="@string/tvStartTimeRenterViewReservations"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="xxx-xx-x"
+        app:layout_constraintEnd_toEndOf="@+id/btnRenterViewReservations"
+        app:layout_constraintStart_toStartOf="@+id/btnRenterViewReservations"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerRenterViewReservationStartTime"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/tvStartTimeLabelRenterViewReservations"
-        app:layout_constraintStart_toStartOf="@+id/tvStartTimeLabelRenterViewReservations"
-        app:layout_constraintTop_toTopOf="@+id/tvStartDateRenterViewReservations" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/renterViewReservationStartDateTimeLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/renterViewReservationStartDateTimeLabel" />
 
     <Button
         android:id="@+id/btnRenterViewReservations"
-        android:onClick="renterViewReservationsOnclickHandler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="135dp"
+        android:layout_marginLeft="135dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="153dp"
+        android:layout_marginRight="153dp"
+        android:layout_marginBottom="336dp"
+        android:onClick="renterViewReservationsOnclickHandler"
         android:text="@string/renter_view_my_reservations"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.459" />
+        app:layout_constraintTop_toBottomOf="@+id/btnRenterViewReservationsDatePicker" />
+
+    <TextView
+        android:id="@+id/renterViewReservationStartDateTimeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="150dp"
+        android:text="Start Date Time:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

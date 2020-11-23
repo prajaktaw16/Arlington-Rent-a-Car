@@ -40,7 +40,6 @@ public class RequestedCarDetailsActivity extends AppCompatActivity implements Co
     private Switch gpsSwitch, onStarSwitch, xmSwitch;
     private SystemUser user;
     private CarModel car;
-    private AAReservationModel reservation;
     private Context mContext;
     private Invoice invoice;
 
@@ -90,7 +89,7 @@ public class RequestedCarDetailsActivity extends AppCompatActivity implements Co
             }else {
                 this.invoice.setOnStarSelected(false);
             }
-        }else if(compoundButton == xmSwitch){
+        }else{
             if(isChecked){
                 this.invoice.setXmSelected(true);
             }else {

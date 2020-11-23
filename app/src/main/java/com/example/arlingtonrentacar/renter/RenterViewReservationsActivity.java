@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,10 +30,9 @@ public class RenterViewReservationsActivity extends AppCompatActivity implements
     private static final String LOG_TAG = RenterViewReservationsActivity.class.getSimpleName();
     private Calendar mStartDate;
     private String mStartTime;
-    private TextView mStartDateTextView;
     private Spinner mSpinnerStartTime;
     private ArrayAdapter<CharSequence> mArrayAdapterStartTime;
-    SharedPreferences session;
+    private Button mBtnStartDatePicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +40,13 @@ public class RenterViewReservationsActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_renter_view_reservations);
 
         mStartDate = Calendar.getInstance();
-        this.mStartDateTextView = findViewById(R.id.tvStartDateRenterViewReservations);
-        setUpDate(mStartDateTextView, mStartDate);
 
         mSpinnerStartTime = findViewById(R.id.spinnerRenterViewReservationStartTime);
         mArrayAdapterStartTime = getArrayAdapterByDayOfWeek(mStartDate.get(Calendar.DAY_OF_WEEK));
         setUpSpinner(mSpinnerStartTime, mArrayAdapterStartTime);
+
+        mBtnStartDatePicker = findViewById(R.id.btnRenterViewReservationsDatePicker);
+        mBtnStartDatePicker.setText(AAUtil.formatDate(mStartDate, AAUtil.DATE_FORMAT_YYYY_MM_DD));
     }
 
     public void renterViewReservShowStarteDatePicker(View view) {
@@ -54,16 +55,10 @@ public class RenterViewReservationsActivity extends AppCompatActivity implements
     }
 
     public void processDatePickerResult(int year, int month, int day){
-        mStartDate = Calendar.getInstance();
         mStartDate.clear();
         mStartDate.set(year, month, day);
-        setUpDate(this.mStartDateTextView, mStartDate);
         resetStartTimeSpinner();
-    }
-
-    private void setUpDate(TextView targetDateTextView, Calendar calendar){
-        String dateStr = AAUtil.formatDate(calendar, AAUtil.DATE_FORMAT_YYYY_MM_DD);
-        targetDateTextView.setText(dateStr);
+        setDateButtonLabel(mBtnStartDatePicker, AAUtil.formatDate(mStartDate, AAUtil.DATE_FORMAT_YYYY_MM_DD));
     }
 
     private ArrayAdapter<CharSequence> getArrayAdapterByDayOfWeek(int dayOfWeek){
@@ -100,9 +95,11 @@ public class RenterViewReservationsActivity extends AppCompatActivity implements
     }
 
     public void renterViewReservationsOnclickHandler(View view) {
-        session = AAUtil.getLogInSession(this);
-        String startTime = mStartTime;
         RenterViewReservationsController controller = new RenterViewReservationsController(this);
-        controller.viewMyReservations(mStartDate, startTime);
+        controller.viewMyReservations(mStartDate, mStartTime);
+    }
+
+    private void setDateButtonLabel(Button btn, String dateLabel){
+        btn.setText(dateLabel);
     }
 }

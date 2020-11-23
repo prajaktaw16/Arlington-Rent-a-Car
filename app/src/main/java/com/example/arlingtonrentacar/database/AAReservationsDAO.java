@@ -51,13 +51,13 @@ public class AAReservationsDAO {
         return instace;
     }
 
-    public LinkedList<Calendar> getAllReservationDatesOfCar(CarName carName){
+    public LinkedList<Calendar> getAllReservationDatesOfUserByCarName(CarName carName, String username){
         final String METHOD_NAME = "getReservationsByCarName()";
         String strCarName = AAUtil.carNameEnumToStr(carName);
         LinkedList<Calendar> reservationDateList = new LinkedList<Calendar>();
         SQLiteDatabase dbHandle = this.dbHelper.getWritableDatabase();
-        String sql = "SELECT " + COLUMN_START_DATE_TIME + ", " + COLUMN_END_DATE_TIME + " FROM " + TABLE_RESERVATIONS + " WHERE " + COLUMN_CAR_NAME + " = ?;";
-        String[] selectionArgs = {strCarName};
+        String sql = "SELECT " + COLUMN_START_DATE_TIME + ", " + COLUMN_END_DATE_TIME + " FROM " + TABLE_RESERVATIONS + " WHERE " + COLUMN_CAR_NAME + " = ? AND " + COLUMN_USERNAME + " = ?;";
+        String[] selectionArgs = {strCarName, username};
         Log.d(LOG_TAG, METHOD_NAME + ": SQL = " + sql);
 
         Cursor cursor = dbHandle.rawQuery(sql, selectionArgs);

@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -29,9 +30,9 @@ public class RequestCarActivity extends AppCompatActivity implements AdapterView
     private Calendar startDate, endDate;
     private String startTime, endTime;
     private String numOfRiders;
-    private TextView startDateTextView, endDateTextView;
     private Spinner spinnerStartTime, spinnerEndTime;
     private ArrayAdapter<CharSequence> arrayAdapterStartTime, arrayAdapterEndTime;
+    private Button mBtnStartDate, mBtnEndDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,36 +42,28 @@ public class RequestCarActivity extends AppCompatActivity implements AdapterView
         this.startDate = Calendar.getInstance();
         this.startTime = "";
         this.endDate = Calendar.getInstance();
+        this.endDate.add(Calendar.DAY_OF_MONTH, 1);
         this.endTime = "";
 
-        this.startDateTextView = findViewById(R.id.tvStartDate);
-        this.endDateTextView = findViewById(R.id.tvEndDate);
 
         this.spinnerStartTime = findViewById(R.id.spinner_start_time);
         this.arrayAdapterStartTime = getArrayAdapterByDayOfWeek(startDate.get(Calendar.DAY_OF_WEEK));
         setUpSpinner(this.spinnerStartTime, this.arrayAdapterStartTime);
 
         this.spinnerEndTime = findViewById(R.id.spinner_end_time);
-        setViewVisibility(this.spinnerEndTime, false);
+        this.arrayAdapterEndTime = getArrayAdapterByDayOfWeek(endDate.get(Calendar.DAY_OF_WEEK));
+        setUpSpinner(this.spinnerEndTime, this.arrayAdapterEndTime);
 
-        setUpDate(this.startDateTextView, this.startDate);
-        clearTextView(this.endDateTextView);
+        mBtnStartDate = findViewById(R.id.btnStartDatePicker);
+        mBtnEndDate = findViewById(R.id.btnEndDatePicker);
+        setDateButtonLabel(mBtnStartDate, AAUtil.formatDate(this.startDate, AAUtil.DATE_FORMAT_YYYY_MM_DD));
+        setDateButtonLabel(mBtnEndDate, AAUtil.formatDate(this.endDate, AAUtil.DATE_FORMAT_YYYY_MM_DD));
     }
 
     public void requestCarBtnClickEventHandler(View view){
         this.numOfRiders = ((EditText)findViewById(R.id.etNumberOfRiders)).getText().toString();
         RequestCarController requestCarController = new RequestCarController(this);
         requestCarController.geAvailableCarList(this.numOfRiders, this.startDate, this.startTime, this.endDate, this.endTime);
-    }
-
-    private void setUpDate(TextView targetDateTextView, Calendar calendar){
-        String dateStr = AAUtil.formatDate(calendar, AAUtil.DATE_FORMAT_YYYY_MM_DD);
-        targetDateTextView.setText(dateStr);
-        Log.d(LOG_TAG, "Day of the Week: " + calendar.get(Calendar.DAY_OF_WEEK));
-    }
-
-    private void clearTextView(TextView textView){
-        textView.setText("");
     }
 
     public void showStartDatePicker(View view) {
@@ -81,7 +74,7 @@ public class RequestCarActivity extends AppCompatActivity implements AdapterView
     public void processStartDatePickerResult(int year, int month, int day){
         this.startDate.clear();
         this.startDate.set(year, month, day);
-        setUpDate(this.startDateTextView, this.startDate);
+        setDateButtonLabel(mBtnStartDate, AAUtil.formatDate(this.startDate, AAUtil.DATE_FORMAT_YYYY_MM_DD));
         resetStartDateSpinner();
     }
     private void resetStartDateSpinner(){
@@ -97,13 +90,12 @@ public class RequestCarActivity extends AppCompatActivity implements AdapterView
     public void processEndDatePickerResult(int year, int month, int day){
         this.endDate.clear();
         this.endDate.set(year, month, day);
-        setUpDate(this.endDateTextView, this.endDate);
+        setDateButtonLabel(mBtnEndDate, AAUtil.formatDate(this.endDate, AAUtil.DATE_FORMAT_YYYY_MM_DD));
         resetEndDateSpinner();
     }
     private void resetEndDateSpinner(){
         this.arrayAdapterEndTime = getArrayAdapterByDayOfWeek(this.endDate.get(Calendar.DAY_OF_WEEK));
         setUpSpinner(this.spinnerEndTime, this.arrayAdapterEndTime);
-        setViewVisibility(this.spinnerEndTime, true);
         Log.d(LOG_TAG, "resetting end date spinner");
     }
 
@@ -159,5 +151,9 @@ public class RequestCarActivity extends AppCompatActivity implements AdapterView
             return(true);
         }
         return(super.onOptionsItemSelected(item));
+    }
+
+    private void setDateButtonLabel(Button btn, String dateLabel){
+        btn.setText(dateLabel);
     }
 }

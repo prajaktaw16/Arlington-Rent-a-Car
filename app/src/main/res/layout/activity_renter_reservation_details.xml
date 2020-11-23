@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/rd_reservation_id"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -72,39 +72,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvRDCarCapacityLabel" />
 
-    <TextView
-        android:id="@+id/tvRDStartTimeLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/rd_start_time"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRDStartDate" />
-
-    <Button
-        android:id="@+id/btnRDStartDate"
-        android:layout_width="115dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/rd_start_date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRDNumberOfRidersLabel" />
-
-    <Button
-        android:id="@+id/btnRDEndDate"
-        android:layout_width="115dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/rd_end_date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRDStartTimeLabel" />
-
     <Switch
         android:id="@+id/switchRDGPS"
         android:layout_width="wrap_content"
@@ -114,7 +81,18 @@
         android:layout_marginTop="24dp"
         android:text="@string/rd_gps"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRDEndTime"
+        app:layout_constraintTop_toBottomOf="@+id/rdLabelTotalPriceTextView"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <Switch
+        android:id="@+id/switchRDOnStar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:text="@string/rd_onstar"
+        app:layout_constraintBaseline_toBaselineOf="@+id/switchRDXM"
+        app:layout_constraintStart_toEndOf="@+id/switchRDXM"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <Switch
@@ -126,41 +104,7 @@
         android:text="@string/rd_siriusxm"
         app:layout_constraintBaseline_toBaselineOf="@+id/switchRDGPS"
         app:layout_constraintStart_toEndOf="@+id/switchRDGPS"
-        tools:ignore="UseSwitchCompatOrMaterialXml"/>
-
-    <Switch
-        android:id="@+id/switchRDOnStar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:text="@string/rd_onstar"
-        app:layout_constraintBaseline_toBaselineOf="@+id/switchRDXM"
-        app:layout_constraintStart_toEndOf="@+id/switchRDXM"
-        tools:ignore="UseSwitchCompatOrMaterialXml"/>
-
-    <TextView
-        android:id="@+id/tvRDEndTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/rd_end_time"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRDEndDate" />
-
-    <Button
-        android:id="@+id/btnRDCancelReservation"
-        android:onClick="cancelReservationBtnOnClickHandler"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/rd_cancel_reservation_btn_label"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <Button
         android:id="@+id/btnRDUpdateReservation"
@@ -168,20 +112,162 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="48dp"
+        android:onClick="btnUpdateReservationOnClickHandler"
         android:text="@string/rd_update_reservation_btn_label"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnRDCancelReservation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="48dp"
+        android:onClick="cancelReservationBtnOnClickHandler"
+        android:text="@string/rd_cancel_reservation_btn_label"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/rdReservationIDTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="16dp"
+        android:text="XXXXXXXXXXXX"
         app:layout_constraintStart_toEndOf="@+id/tvRDReservationIDLabel"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/rdAAMemberStatusTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="YES/NO"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvRDAAAMemStatLabel"
+        app:layout_constraintStart_toEndOf="@+id/tvRDAAAMemStatLabel" />
+
+    <TextView
+        android:id="@+id/rdCarNumberTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="XX"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvRDCarNumberLabel"
+        app:layout_constraintStart_toStartOf="@+id/rdReservationIDTextView" />
+
+    <TextView
+        android:id="@+id/rdCarCapacityTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="XX"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvRDCarCapacityLabel"
+        app:layout_constraintStart_toStartOf="@+id/rdCarNumberTextView" />
+
+    <EditText
+        android:id="@+id/rdNumOfRidersEditText"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number"
+        android:text="XX"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvRDNumberOfRidersLabel"
+        app:layout_constraintStart_toEndOf="@+id/tvRDNumberOfRidersLabel" />
+
+    <TextView
+        android:id="@+id/rdStartDateTimeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="32dp"
+        android:text="Start Date Time:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRDNumberOfRidersLabel" />
+
+    <TextView
+        android:id="@+id/rdEndDateTimeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="32dp"
+        android:text="End Date Time:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rdStartDateTimeLabel" />
+
+    <TextView
+        android:id="@+id/rdLabelTotalPriceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="32dp"
+        android:text="Total Price:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rdEndDateTimeLabel" />
+
+    <TextView
+        android:id="@+id/rdTotalPriceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$XXX.XX"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rdLabelTotalPriceTextView"
+        app:layout_constraintStart_toStartOf="@+id/rdBtnEndDate" />
+
+    <Spinner
+        android:id="@+id/rdSpinnerCarName"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRDCarNameLabel"
+        app:layout_constraintStart_toEndOf="@+id/tvRDCarNameLabel" />
+
+
+    <Spinner
+        android:id="@+id/rdSpinnerStartTime"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rdStartDateTimeLabel"
+        app:layout_constraintStart_toEndOf="@+id/rdBtnStartDate"
+        app:layout_constraintTop_toTopOf="@+id/rdStartDateTimeLabel" />
+
+    <Spinner
+        android:id="@+id/rdSpinnerEndTime"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rdEndDateTimeLabel"
+        app:layout_constraintStart_toEndOf="@+id/rdBtnEndDate"
+        app:layout_constraintTop_toTopOf="@+id/rdEndDateTimeLabel" />
+
+    <Button
+        android:id="@+id/rdBtnStartDate"
+        android:onClick="showRDStartDatePicker"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="XXX-XX-XX"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rdStartDateTimeLabel"
+        app:layout_constraintStart_toStartOf="@+id/rdNumOfRidersEditText" />
+
+    <Button
+        android:id="@+id/rdBtnEndDate"
+        android:onClick="showRDEndDatePicker"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="XXXX-XX-X"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rdEndDateTimeLabel"
+        app:layout_constraintStart_toStartOf="@+id/rdBtnStartDate" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

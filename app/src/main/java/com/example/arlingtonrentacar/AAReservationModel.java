@@ -44,18 +44,6 @@ public class AAReservationModel {
         this.aaaMemStatus = aaaMemStatus;
     }
 
-    public boolean validReservationDateTime(Calendar otherStartDateTime, Calendar otherEndDateTime){
-        boolean result;
-        if(otherStartDateTime.before(this.startDateTime) && otherEndDateTime.before(this.startDateTime)){
-            result = true;
-        }else if(otherStartDateTime.after(this.endDateTime) && otherEndDateTime.after(this.endDateTime)){
-            result = true;
-        }else{
-            result = false;
-        }
-        return result;
-    }
-
     public String getReservationID() {
         return reservationID;
     }
