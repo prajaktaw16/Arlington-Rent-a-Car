@@ -217,9 +217,11 @@
         android:id="@+id/rdTotalPriceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
         android:text="$XXX.XX"
         app:layout_constraintBaseline_toBaselineOf="@+id/rdLabelTotalPriceTextView"
-        app:layout_constraintStart_toStartOf="@+id/rdBtnEndDate" />
+        app:layout_constraintStart_toEndOf="@+id/rdLabelTotalPriceTextView" />
 
     <Spinner
         android:id="@+id/rdSpinnerCarName"

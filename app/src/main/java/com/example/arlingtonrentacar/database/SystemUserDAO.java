@@ -150,7 +150,7 @@ public class SystemUserDAO {
         String lastName = cursor.getString(cursor.getColumnIndex(COLUMN_LAST_NAME));
         String firstName = cursor.getString(cursor.getColumnIndex(COLUMN_FIRST_NAME));
         String role = cursor.getString(cursor.getColumnIndex(COLUMN_ROLE));
-        int utaID = Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_UTA_ID)));
+        int utaID = cursor.getInt(cursor.getColumnIndex(COLUMN_UTA_ID));
         String phone = cursor.getString(cursor.getColumnIndex(COLUMN_PHONE));
         String email  = cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL));
         String address = cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS));

@@ -7,6 +7,7 @@ package com.example.arlingtonrentacar.renter;
 
 import android.content.Context;
 
+import com.example.arlingtonrentacar.AAUtil;
 import com.example.arlingtonrentacar.database.AAReservationsDAO;
 
 import java.util.LinkedList;
@@ -22,7 +23,7 @@ public class ControllerRenterReservationsSummary {
     public LinkedList<ReservationSummaryItem> generateReservationSummaryItemList(String startDateTime){
         LinkedList<ReservationSummaryItem> summaryItemList;
         AAReservationsDAO reservationsDAO = AAReservationsDAO.getInstance(mContext);
-        summaryItemList = reservationsDAO.getRenterReservationSummaryItems(startDateTime);
+        summaryItemList = reservationsDAO.getRenterReservationSummaryItems(startDateTime, AAUtil.getLoggedInUserName(mContext));
         return  summaryItemList;
     }
 }

@@ -145,7 +145,7 @@ public class RequestedCarDetailsActivity extends AppCompatActivity implements Co
 
     public void onClickEventHandlerRequestCarBtn(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setMessage("Do you want to request this car and make reservation?")
+        builder.setMessage("Do you want to request this car and make reservation? Total Price: " + AAUtil.getAmountInCurrency(invoice.calculateTotalCost(), AAUtil.USD_CURRENCY_FORMAT))
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -227,6 +227,4 @@ public class RequestedCarDetailsActivity extends AppCompatActivity implements Co
         Intent intent = new Intent(mContext, cls);
         mContext.startActivity(intent);
     }
-
-
 }

@@ -100,13 +100,13 @@ public class AAReservationsDAO {
         return result;
     }
 
-    public LinkedList<ReservationSummaryItem> getRenterReservationSummaryItems(String startDateTime){
+    public LinkedList<ReservationSummaryItem> getRenterReservationSummaryItems(String startDateTime, String username){
         final String METHOD_NAME = "getRenterReservationSummaryItems()";
         LinkedList<ReservationSummaryItem> summaryItemList = new LinkedList<ReservationSummaryItem>();
         ReservationSummaryItem summaryItem;
         SQLiteDatabase dbHandle = dbHelper.getReadableDatabase();
-        String sql = "SELECT * FROM " + TABLE_RESERVATIONS + " WHERE " + COLUMN_START_DATE_TIME + " >= ? ORDER BY " + COLUMN_START_DATE_TIME +" DESC, " + COLUMN_END_DATE_TIME + " DESC, " + COLUMN_TOTAL_PRICE + " ASC;";
-        String[] selectionArgs = {startDateTime};
+        String sql = "SELECT * FROM " + TABLE_RESERVATIONS + " WHERE " + COLUMN_START_DATE_TIME + " >= ? AND "+ COLUMN_USERNAME +" =? ORDER BY " + COLUMN_START_DATE_TIME +" DESC, " + COLUMN_END_DATE_TIME + " DESC, " + COLUMN_TOTAL_PRICE + " ASC;";
+        String[] selectionArgs = {startDateTime, username};
         Cursor cursor = dbHandle.rawQuery(sql, selectionArgs);
         int carNumber = 0;
         int carCapacity;

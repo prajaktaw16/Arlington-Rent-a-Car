@@ -24,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String CARS_TABLE = "cars";
     public static final String AA_STORE_HRS_TABLE = "aa_store_hrs";
     public static final String ARLINGTON_AUTO_DB = "ArlingtonAuto.db";
-    private static final int DB_VERSION  = 10;
+    private static final int DB_VERSION  = 12;
     private static final int DEV_MODE = 1;
 
     private static DatabaseHelper instance;
@@ -152,12 +152,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "first_name, role, uta_id, phone, email, street_address, city, state, zip_code," +
                 "aaa_member_status, user_status)" +
                 "VALUES" +
-                "(\"johndoe\", \"asdf\", \"Doe\", \"John\", \"renter\", 1999999999, \"1234567890\", " +
+                "(\"johndoe\", \"asdf\", \"Doe\", \"John\", \"renter\", 1001880001, \"1234567890\", " +
                 "\"a@a.com\", \"Main Street\", \"Fort Wayne\", \"IN\", \"12345\", 1, 1)," +
-                "(\"marryjane\", \"asdf\", \"Jane\", \"Marry\", \"manager\", 2999999999, \"1234567891\", " +
+                "(\"marryjane\", \"asdf\", \"Jane\", \"Marry\", \"manager\", 1001880002, \"1234567891\", " +
                 "\"b@b.com\", \"Wall Street\", \"New York\", \"NY\", \"54321\", 0, 0)," +
-                "(\"brucewayne\", \"asdf\", \"Wayne\", \"Bruce\", \"admin\", 3999999999, \"1234567892\", " +
-                "\"c@c.com\", \"Back Street\", \"Gotham City\", \"NJ\", \"56789\", 0, 0);";
+                "(\"brucewayne\", \"asdf\", \"Wayne\", \"Bruce\", \"admin\", 1001880003, \"1234567892\", " +
+                "\"c@c.com\", \"Back Street\", \"Gotham City\", \"NJ\", \"56789\", 0, 0)," +
+                "(\"camerica\", \"asdf\", \"Rodgers\", \"Steve\", \"renter\", 1001880004, \"1234567893\", " +
+                "\"d@d.com\", \"123 Brooklyn\", \"New York\", \"NY\", \"12345\", 0, 0);" ;
         sqLiteDatabase.execSQL(sql);
         Log.d(LOG_TAG,  sql);
     }
@@ -165,29 +167,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private void reservationsAddDummyData(SQLiteDatabase sqLiteDatabase){
         final String LOG_TAG = "sysUsersAddDummyData()";
         // dateForamt = "yyyy-MM-dd HH:mm";
-        String start_date_time_1 = "2020-11-18 08:00";
-        String end_date_time_1 = "2020-11-20 15:30";
+        String start_date_time_1 = "2020-12-10 08:30";
+        String end_date_time_1 = "2020-12-14 15:30";
 
-        String start_date_time_2 = "2020-11-23 08:00";
-        String end_date_time_2 = "2020-11-27 15:30";
+        String start_date_time_2 = "2020-12-18 11:30";
+        String end_date_time_2 = "2020-12-22 17:30";
 
-        String start_date_time_3 = "2020-12-01 08:00";
-        String end_date_time_3 = "2020-12-03 15:30";
-
-        String reservationID_1 = AAUtil.generateGUID();
-        String reservationID_2 = AAUtil.generateGUID();
-        String reservationID_3 = AAUtil.generateGUID();
+        String start_date_time_3 = "2020-12-28 12:30";
+        String end_date_time_3 = "2020-12-30 14:00";
 
         String sql = "INSERT INTO " + RESERVATIONS_TABLE + "(reservation_id, username, last_name, " +
                 "first_name, car_name, car_capacity, start_date_time, end_date_time, num_of_riders, total_price," +
                 "gps, siriusxm, onstar, aaa_member_status)" +
                 "VALUES" +
-                "(" + AAUtil.quoteStr(reservationID_1) + ",\"johndoe\", \"Doe\", \"John\", \"Smart\", 1, " + AAUtil.quoteStr(start_date_time_1) + ", " + AAUtil.quoteStr(end_date_time_1) +
-                ",1, 40.00, 1, 1, 1, 1),"+
-                "(" + AAUtil.quoteStr(reservationID_2) + ",\"johndoe\", \"Doe\", \"John\", \"Economy\", 3, " + AAUtil.quoteStr(start_date_time_2) + ", " + AAUtil.quoteStr(end_date_time_2) +
-                ",1, 60.00, 1, 0, 0, 1),"+
-                "(" + AAUtil.quoteStr(reservationID_3) + ",\"johndoe\", \"Doe\", \"John\", \"Compact\", 4, " + AAUtil.quoteStr(start_date_time_3) + ", " + AAUtil.quoteStr(end_date_time_3) +
-                ",1, 80.00, 1, 1, 0, 1);";
+                "(" + AAUtil.quoteStr(AAUtil.generateGUID()) + ",\"johndoe\", \"Doe\", \"John\", \"Smart\", 1, " + AAUtil.quoteStr(start_date_time_1) + ", " + AAUtil.quoteStr(end_date_time_1) +
+                ",1, 243.5137, 1, 1, 1, 1),"+
+                "(" + AAUtil.quoteStr(AAUtil.generateGUID()) + ",\"johndoe\", \"Doe\", \"John\", \"Economy\", 3, " + AAUtil.quoteStr(start_date_time_2) + ", " + AAUtil.quoteStr(end_date_time_2) +
+                ",1, 219.1575, 1, 0, 0, 1),"+
+                "(" + AAUtil.quoteStr(AAUtil.generateGUID()) + ",\"camerica\", \"Rodgers\", \"Steve\", \"Compact\", 4, " + AAUtil.quoteStr(start_date_time_3) + ", " + AAUtil.quoteStr(end_date_time_3) +
+                ",1, 146.1050, 0, 0, 0, 0);";
         sqLiteDatabase.execSQL(sql);
         Log.d(LOG_TAG,  sql);
     }
