@@ -60,6 +60,7 @@ public class AAUtil {
     public static final int CAPACITY_CAR_MINIVAN = 9;
     public static final int CAPACITY_CAR_ULTRASPORTS = 2;
     public static final int CAPACITY_CAR_NONE = 0; // this will give invalid data whenever called/used as form input
+    public static final int PLANET_EARTH_WEEK_SIZE = 7;
 
     public static Role roleStrToEnum(String role){
         role = role.toLowerCase();
@@ -137,9 +138,8 @@ public class AAUtil {
     }
 
     public static boolean isNumeric(String numStr){
-        final String EMPTY = "";
         boolean result;
-        if(numStr.equals(EMPTY)){
+        if(numStr.equals(EMPTYSTR)){
             result = false;
         }else if(numStr == null){
             result = false;
@@ -283,16 +283,6 @@ public class AAUtil {
         return  result;
     }
 
-    public static boolean equalDate(Calendar date1, Calendar date2){
-        boolean result = false;
-        if((date1.get(Calendar.YEAR) == date2.get(Calendar.YEAR) &&
-                (date1.get(Calendar.MONTH) == date2.get(Calendar.MONTH)) &&
-                (date1.get(Calendar.DAY_OF_MONTH) == date2.get(Calendar.DAY_OF_MONTH)))){
-            result = true;
-        }
-        return  result;
-    }
-
     public static Calendar databaseDateTimeToCalendar(String dateTime){
         // Note: dateTime must be stored in db as: 'yyyy-MM-dd HH:mm'
         Calendar calendar = Calendar.getInstance();
@@ -351,16 +341,18 @@ public class AAUtil {
 
         Calendar date1 = Calendar.getInstance();
         date1.clear();
-        date1.set(date.get(Calendar.YEAR), date.get(Calendar.MONTH)-1, date.get(Calendar.DAY_OF_MONTH));
+        date1.set(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH));
 
         Calendar date2 = Calendar.getInstance();
         date2.clear();
-        date2.set(other.get(Calendar.YEAR), other.get(Calendar.MONTH)-1, other.get(Calendar.DAY_OF_MONTH));
+        date2.set(other.get(Calendar.YEAR), other.get(Calendar.MONTH), other.get(Calendar.DAY_OF_MONTH));
 
-        while(date1.get(Calendar.DAY_OF_MONTH) <= date2.get(Calendar.DAY_OF_MONTH)) {
+        while(!date1.equals(date2)) {
             days.add(date1.get(Calendar.DAY_OF_WEEK));
             date1.add(Calendar.DAY_OF_MONTH, DAY_ADDEND);
         }
+        // need to add the last day, as we are doing partial days
+        days.add(date1.get(Calendar.DAY_OF_WEEK));
         return days;
     }
 

@@ -68,7 +68,6 @@ public class CarsDAO {
             );
             carList.add(carModel);
         }
-        cursor.close();
         return carList;
     }
 

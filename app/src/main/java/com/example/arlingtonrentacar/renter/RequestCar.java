@@ -21,24 +21,21 @@ public class RequestCar{
         this.endDate = endDate;
     }
 
-    public boolean validRequestCarFormData(){
-        final int WEEK_LENGTH = 7;
-        final int MAX_NUM_OF_RIDERS = 9;
-        final int MIN_NUM_OF_RIDERS = 1;
-        boolean result = true;
+    public String validRequestCarFormData(){
+        String result = "";
         Calendar today = Calendar.getInstance();
         if(this.numOfRiders.equals(AAUtil.EMPTYSTR)|| !AAUtil.isNumeric(this.numOfRiders)){
-            result = false;
-        }else if(Integer.parseInt(this.numOfRiders) > MAX_NUM_OF_RIDERS || Integer.parseInt(this.numOfRiders) < MIN_NUM_OF_RIDERS){
-            result = false;
+            result = "Invalid number of riders. It can't be empty or non-numeric.";
+        }else if(Integer.parseInt(this.numOfRiders) > AAUtil.CAPACITY_CAR_MINIVAN || Integer.parseInt(this.numOfRiders) < AAUtil.CAPACITY_CAR_SMART){
+            result = "Invalid number of riders. It must be between " + AAUtil.CAPACITY_CAR_SMART + " and " + AAUtil.CAPACITY_CAR_MINIVAN;
+        }else if(AAUtil.getdaysOfWeekBetweenDates(this.startDate, this.endDate).size() > AAUtil.PLANET_EARTH_WEEK_SIZE){
+            result = "Invalid data: can't rent for more than a week.";
         }else if(this.startDate.before(today) || endDate.before(today)){
-            result = false;
+            result = "Invalid data: Start/End date time can't be before today's date time.";
         }else if(AAUtil.equalDateAndTime(this.startDate, this.endDate)){
-            result = false;
+            result = "Invalid data: Start/End date time can't be equal.";
         }else if(this.startDate.after(this.endDate) || this.endDate.before(this.startDate)){
-            result = false;
-        }else if(AAUtil.getdaysOfWeekBetweenDates(this.startDate, this.endDate).size() > WEEK_LENGTH){
-            result = false;
+            result = "Invalid data: Start/End date not in chronological order.";
         }
         return result;
     }

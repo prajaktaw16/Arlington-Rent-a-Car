@@ -49,7 +49,7 @@ public class ViewRequestedCarController {
         int carNumber = 0;
         for(int i = 0; i < carList.size(); i++){
             car = carList.get(i);
-            carCurrentReservationDateList = reservationsDAO.getAllReservationDatesOfUserByCarName(car.getName(), AAUtil.getLoggedInUserName(mvContext));
+            carCurrentReservationDateList = reservationsDAO.getAllReservationDatesOfCar(car.getName());
             if(AAUtil.schedulable(requestedStartDateTime, requestedEndDateTime, carCurrentReservationDateList)){
                 carNumber++;
                 invoice = new Invoice(car, requestedStartDateTime, requestedEndDateTime);

@@ -61,7 +61,6 @@ public class SystemUserDAO {
         Cursor cursor = databaseHandle.rawQuery(sql, selectionArgs);
         if(cursor.getCount() == 1)
             result = true;
-        databaseHandle.close();
         return result;
     }
 
@@ -79,7 +78,6 @@ public class SystemUserDAO {
         }else{
             Log.d(LOG_TAG, METHOD_NAME + "moveToFirst() returned false. returned role is empty string. user won't be able to login.");
         }
-        databaseHandle.close();
         return role;
     }
 
@@ -96,7 +94,6 @@ public class SystemUserDAO {
         }else{
             result = true;
         }
-        dbHandle.close();
         return result;
     }
 
@@ -124,7 +121,6 @@ public class SystemUserDAO {
             msg = "Registration failed.\nPlease try again.";
             Log.e(LOG_TAG, METHOD_NAME + "This should never happen.\nFailed to register user.\n Error: Conflict with pre-existing data in the database");
         }
-        dbHandle.close();
         return msg;
     }
 

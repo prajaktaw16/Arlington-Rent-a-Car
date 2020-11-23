@@ -27,7 +27,9 @@ import android.widget.Toast;
 
 import com.example.arlingtonrentacar.AAReservationModel;
 import com.example.arlingtonrentacar.AAUtil;
+import com.example.arlingtonrentacar.CarModel;
 import com.example.arlingtonrentacar.CarName;
+import com.example.arlingtonrentacar.Invoice;
 import com.example.arlingtonrentacar.R;
 import com.example.arlingtonrentacar.RenterHomeScreen;
 import com.example.arlingtonrentacar.RequestCarActivity;
@@ -41,7 +43,6 @@ public class RenterReservationDetailsActivity extends AppCompatActivity implemen
     private AAReservationModel mReservation;
     private ControllerRenterReservationDetails mReservationDetailsController;
     private String mStartTime, mEndTime;
-    private boolean gpsSelected, xmSelected, onStarSelected;
     private EditText mETNumOfRiders;
     private Switch mSwitchGPS, mSwitchXM, mSwitchOnStar;
     private TextView mTVReservationID, mTVCarCapacity,
@@ -53,8 +54,11 @@ public class RenterReservationDetailsActivity extends AppCompatActivity implemen
     private String mSelectedStartTime, mSelectedEndTime;
     private SharedPreferences mSessionPref;
     private Button mBtnStartDate, mBtnEndDate;
-
     private ArrayAdapter<CharSequence> mAdapterStartTime, mAdapterEndTime, mAdapterCarName;
+
+    private CarModel mSelectedCarObj;
+    private Invoice mInvoice;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         final String METHOD_NAME = "onCreate()";
@@ -70,8 +74,18 @@ public class RenterReservationDetailsActivity extends AppCompatActivity implemen
         mSelectedEndDate = mReservation.getEndDateTime();
         addDataToSession(AAUtil.formatDate(mSelectedStartDate, AAUtil.DATE_FORMAT_YYYY_MM_DD), AAUtil.formatDate(mSelectedEndDate, AAUtil.DATE_FORMAT_YYYY_MM_DD));
 
+        mSelectedCarObj = mReservationDetailsController.getSelectedCar(mReservation.getCarName());
+        initInvoice(mSelectedCarObj, mReservation);
         createGUIViews();
-        setUpReservationDetailsGUI();
+        initGUIViews();
+    }
+
+    private void initInvoice(CarModel carObj, AAReservationModel reservationObj){
+        mInvoice = new Invoice(carObj,  reservationObj.getStartDateTime(), reservationObj.getEndDateTime());
+        mInvoice.setUserIsAAAMember(AAUtil.intToBool(reservationObj.getAaaMemStatus()));
+        mInvoice.setGpsSelected(AAUtil.intToBool(reservationObj.getGps()));
+        mInvoice.setXmSelected(AAUtil.intToBool(reservationObj.getXm()));
+        mInvoice.setOnStarSelected(AAUtil.intToBool(reservationObj.getOnStar()));
     }
 
     private void setUpSpinner(Spinner spinner, ArrayAdapter<CharSequence> arrayAdapter){
@@ -114,7 +128,7 @@ public class RenterReservationDetailsActivity extends AppCompatActivity implemen
         mBtnEndDate = findViewById(R.id.rdBtnEndDate);
     }
 
-    private void setUpReservationDetailsGUI(){
+    private void initGUIViews(){
         mTVReservationID.setText(mReservation.getReservationID().trim());
         mTVAAAMemStatus.setText(AAUtil.aaaMemberStatusIntToStr(mReservation.getAaaMemStatus()));
         mTVCarNumber.setText(Integer.toString(mSelectedSummaryItem.getCarNumber()));
@@ -126,12 +140,9 @@ public class RenterReservationDetailsActivity extends AppCompatActivity implemen
         mTVTotalPrice.setText(AAUtil.getAmountInCurrency(mReservation.getTotalPrice(), AAUtil.USD_CURRENCY_FORMAT));
 
         // switch
-        gpsSelected = AAUtil.intToBool(mReservation.getGps());
-        xmSelected = AAUtil.intToBool(mReservation.getXm());
-        onStarSelected = AAUtil.intToBool(mReservation.getOnStar());
-        mSwitchGPS.setChecked(gpsSelected);
-        mSwitchXM.setChecked(xmSelected);
-        mSwitchOnStar.setChecked(onStarSelected);
+        mSwitchGPS.setChecked(AAUtil.intToBool(mReservation.getGps()));
+        mSwitchXM.setChecked(AAUtil.intToBool(mReservation.getXm()));
+        mSwitchOnStar.setChecked(AAUtil.intToBool(mReservation.getOnStar()));
         mSwitchGPS.setOnCheckedChangeListener(this);
         mSwitchXM.setOnCheckedChangeListener(this);
         mSwitchOnStar.setOnCheckedChangeListener(this);
@@ -173,14 +184,17 @@ public class RenterReservationDetailsActivity extends AppCompatActivity implemen
             selectedCarName = AAUtil.carNameStrToEnum(adapterView.getItemAtPosition(i).toString().trim());
             mCarCapacity = AAUtil.getCarCapcityByName(selectedCarName);
             mTVCarCapacity.setText(Integer.toString(mCarCapacity));
+            mSelectedCarObj = mReservationDetailsController.getSelectedCar(selectedCarName);
+            mReservation.setCarName(selectedCarName);
+            mReservation.setCarCapacity(mCarCapacity);
         }else if(adapterView.getId() == R.id.rdSpinnerStartTime){
             mSelectedStartTime = adapterView.getItemAtPosition(i).toString().trim();
+            mReservation.setStartDateTime(AAUtil.getCalendarDateWithTime(mSelectedStartDate, mSelectedStartTime));
         }else if(adapterView.getId() == R.id.rdSpinnerEndTime){
             mSelectedEndTime = adapterView.getItemAtPosition(i).toString().trim();
+            mReservation.setEndDateTime(AAUtil.getCalendarDateWithTime(mSelectedEndDate, mSelectedEndTime));
         }
-        Log.d(LOG_TAG, METHOD_NAME + ": selected car: " + AAUtil.carNameEnumToStr(selectedCarName));
-        Log.d(LOG_TAG, METHOD_NAME + ": selected start time: " + mSelectedStartTime);
-        Log.d(LOG_TAG, METHOD_NAME + ": selected end time: " + mSelectedEndTime);
+        recalculateTotalPrice();
     }
 
     @Override
@@ -192,23 +206,30 @@ public class RenterReservationDetailsActivity extends AppCompatActivity implemen
     public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
         if(compoundButton == mSwitchGPS){
             if(isChecked){
-                gpsSelected = true;
+                mReservation.setGps(AAUtil.boolToInt(true));
+                mSwitchGPS.setChecked(true);
             }else{
-                gpsSelected = false;
+                mReservation.setGps(AAUtil.boolToInt(false));
+                mSwitchGPS.setChecked(false);
             }
         }else if(compoundButton == mSwitchXM){
             if(isChecked){
-                xmSelected = true;
+                mReservation.setXm(AAUtil.boolToInt(true));
+                mSwitchXM.setChecked(true);
             }else{
-                xmSelected = false;
+                mReservation.setXm(AAUtil.boolToInt(false));
+                mSwitchXM.setChecked(false);
             }
         }else {
             if(isChecked){
-                onStarSelected = true;
+                mReservation.setOnStar(AAUtil.boolToInt(true));
+                mSwitchOnStar.setChecked(true);
             }else{
-                onStarSelected = false;
+                mReservation.setOnStar(AAUtil.boolToInt(false));
+                mSwitchOnStar.setChecked(false);
             }
         }
+        recalculateTotalPrice();
     }
 
     private ArrayAdapter<CharSequence> getArrayAdapterByDayOfWeek(int dayOfWeek){
@@ -241,7 +262,41 @@ public class RenterReservationDetailsActivity extends AppCompatActivity implemen
     }
 
     public void btnUpdateReservationOnClickHandler(View view) {
+        mReservation.setNumOfRiders(getNumberOfRidersFromGUI());
+        String msg = mReservationDetailsController.validateData(mReservation);
+        if(!msg.equals(AAUtil.EMPTYSTR)){
+            Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+        }else{
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Are you sure you want to update this reservation?\nNew Total Price: " + AAUtil.getAmountInCurrency(mReservation.getTotalPrice(), AAUtil.USD_CURRENCY_FORMAT))
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            updateReservation();
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
 
+                        }
+                    });
+            builder.create().show();
+        }
+    }
+
+    private int getNumberOfRidersFromGUI(){
+        String numOfRidersInput = mETNumOfRiders.getText().toString().trim();
+        if(!AAUtil.isNumeric(numOfRidersInput)){
+            return 0;
+        }else{
+            return Integer.parseInt(numOfRidersInput);
+        }
+    }
+
+    public void updateReservation(){
+        String msg = mReservationDetailsController.upDateReservation(mReservation);
+        Toast.makeText(mContext, msg, Toast.LENGTH_LONG).show();
     }
 
     public void showRDStartDatePicker(View view) {
@@ -259,6 +314,8 @@ public class RenterReservationDetailsActivity extends AppCompatActivity implemen
         mSelectedStartDate.set(year, month, day);
         setDateButtonLabel(mBtnStartDate, AAUtil.formatDate(mSelectedStartDate, AAUtil.DATE_FORMAT_YYYY_MM_DD));
         resetStartTimeSpinner();
+        mReservation.setStartDateTime(AAUtil.getCalendarDateWithTime(mSelectedStartDate, mSelectedStartTime));
+        recalculateTotalPrice();
     }
 
     public void processRDEndDatePickerResult(int year, int month, int day){
@@ -266,9 +323,20 @@ public class RenterReservationDetailsActivity extends AppCompatActivity implemen
         mSelectedEndDate.set(year, month, day);
         setDateButtonLabel(mBtnEndDate, AAUtil.formatDate(mSelectedEndDate, AAUtil.DATE_FORMAT_YYYY_MM_DD));
         resetEndTimeSpinner();
+        mReservation.setEndDateTime(AAUtil.getCalendarDateWithTime(mSelectedEndDate, mSelectedEndTime));
+        recalculateTotalPrice();
     }
 
     private void setDateButtonLabel(Button btn, String dateLabel){
         btn.setText(dateLabel);
+    }
+
+
+    private void recalculateTotalPrice(){
+        if(mSelectedStartDate.before(mSelectedEndDate)){
+            initInvoice(mSelectedCarObj, mReservation);
+            mReservation.setTotalPrice(mInvoice.calculateTotalCost());
+            mTVTotalPrice.setText(AAUtil.getAmountInCurrency(mReservation.getTotalPrice(), AAUtil.USD_CURRENCY_FORMAT));
+        }
     }
 }

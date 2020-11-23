@@ -51,13 +51,13 @@ public class AAReservationsDAO {
         return instace;
     }
 
-    public LinkedList<Calendar> getAllReservationDatesOfUserByCarName(CarName carName, String username){
+    public LinkedList<Calendar> getAllReservationDatesOfCar(CarName carName){
         final String METHOD_NAME = "getReservationsByCarName()";
         String strCarName = AAUtil.carNameEnumToStr(carName);
         LinkedList<Calendar> reservationDateList = new LinkedList<Calendar>();
         SQLiteDatabase dbHandle = this.dbHelper.getWritableDatabase();
-        String sql = "SELECT " + COLUMN_START_DATE_TIME + ", " + COLUMN_END_DATE_TIME + " FROM " + TABLE_RESERVATIONS + " WHERE " + COLUMN_CAR_NAME + " = ? AND " + COLUMN_USERNAME + " = ?;";
-        String[] selectionArgs = {strCarName, username};
+        String sql = "SELECT " + COLUMN_START_DATE_TIME + ", " + COLUMN_END_DATE_TIME + " FROM " + TABLE_RESERVATIONS + " WHERE " + COLUMN_CAR_NAME + " = ?;";
+        String[] selectionArgs = {strCarName};
         Log.d(LOG_TAG, METHOD_NAME + ": SQL = " + sql);
 
         Cursor cursor = dbHandle.rawQuery(sql, selectionArgs);
@@ -71,8 +71,6 @@ public class AAReservationsDAO {
             reservationEndDateTime = AAUtil.databaseDateTimeToCalendar(cursor.getString(cursor.getColumnIndex(COLUMN_END_DATE_TIME)));
             reservationDateList.add(reservationEndDateTime);
         }
-        cursor.close();
-        dbHandle.close();
         return reservationDateList;
     }
 
@@ -99,7 +97,6 @@ public class AAReservationsDAO {
         if(rowID == -1){
             result = false;
         }
-        dbHandle.close();
         return result;
     }
 
@@ -127,8 +124,6 @@ public class AAReservationsDAO {
             summaryItemList.add(summaryItem);
             Log.d(LOG_TAG, METHOD_NAME + ": Reservation Summary Items:\n" + summaryItem.toString());
         }
-        cursor.close();
-        dbHandle.close();
         return summaryItemList;
     }
 
@@ -170,8 +165,6 @@ public class AAReservationsDAO {
         reservation.setOnStar(onStar);
         reservation.setAaaMemStatus(aaaMemStat);
 
-        cursor.close();
-        dbHandle.close();
         return reservation;
     }
 
@@ -185,6 +178,33 @@ public class AAReservationsDAO {
         }else{
             return true;
         }
+    }
+
+    public boolean updateReservation(AAReservationModel reservation){
+        boolean result = false;
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_CAR_NAME, AAUtil.carNameEnumToStr(reservation.getCarName()));
+        values.put(COLUMN_CAR_CAPACITY, reservation.getCarCapacity());
+        values.put(COLUMN_START_DATE_TIME, AAUtil.formatDate(reservation.getStartDateTime(), AAUtil.DATABASE_DATE_TIME_FORMAT));
+        values.put(COLUMN_END_DATE_TIME, AAUtil.formatDate(reservation.getEndDateTime(), AAUtil.DATABASE_DATE_TIME_FORMAT));
+        values.put(COLUMN_NUM_OF_RIDERS, reservation.getNumOfRiders());
+        values.put(COLUMN_TOTAL_PRICE, reservation.getTotalPrice());
+        values.put(COLUMN_GPS, reservation.getGps());
+        values.put(COLUMN_XM, reservation.getXm());
+        values.put(COLUMN_ONSTAR, reservation.getOnStar());
+        String selection = COLUMN_RESERVATION_ID + " = ?";
+        String[] selectionArgs = {reservation.getReservationID()};
+        int count = db.update(
+          TABLE_RESERVATIONS,
+          values,
+          selection,
+          selectionArgs
+        );
+        if(count == 1){
+            result = true;
+        }
+        return result;
     }
 
 }
