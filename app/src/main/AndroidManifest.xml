@@ -10,11 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ViewProfile"></activity>
-            android:name=".RenterHomeScreen"
-            android:label="@string/renter_screen" />
-        <activity
-            android:name=".AdminHomeScreen"
-            android:label="@string/admin_screen" />
         <activity
             android:name=".ManagerHomeScreen"
             android:label="@string/manager_screen" />

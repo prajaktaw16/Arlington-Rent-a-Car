@@ -35,10 +35,7 @@ public class ManagerHomeScreen extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-    public void viewProfile(View view) {
-        Intent intent = new Intent(this, ViewProfile.class);
-        startActivity(intent);
-    }
+
     @Override public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
@@ -56,5 +53,9 @@ public class ManagerHomeScreen extends AppCompatActivity {
             return(true);
         }
         return(super.onOptionsItemSelected(item));
+    }
+    public void viewProfile(View view) {
+        Intent intent = new Intent(this, ViewProfile.class);
+        startActivity(intent);
     }
 }
