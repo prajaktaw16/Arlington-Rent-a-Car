@@ -129,7 +129,7 @@
     <string name="rcEndTimeLabel">End Time</string>
     <string name="rcNumOfRiders">Number of Riders</string>
     <string name="requestCarBtnName">Request Car</string>
-    <string name="dateFormat">mm/dd/yyyy</string>
+    <string name="dateFormat">yyyy-MM-dd</string>
     <string name="numOfRidersHint">1</string>
     <string name="rcStartDatePicker">requestCarStartDatePicker</string>
     <string name="rcEndDatePicker">requestCarEndDatePicker</string>
@@ -143,11 +143,11 @@
     <string name="car_name">Smart</string>
     <string name="car_capacity_label">Car Capacity:</string>
     <string name="car_capacity">1</string>
-    <string name="start_date_label">Start Date:</string>
+    <string name="start_date_label">Start Date Time:</string>
     <string name="start_date">10/22/2020</string>
     <string name="start_time_label">Start Time:</string>
     <string name="start_time">8:00 AM</string>
-    <string name="end_date_label">End Date:</string>
+    <string name="end_date_label">End Date Time:</string>
     <string name="end_date">10/25/2020</string>
     <string name="end_time_label">End Time:</string>
     <string name="end_time">5:00 PM</string>
@@ -166,32 +166,37 @@
     <string name="sessions_preference_file_key">com.example.arlingtonrentacar.sessions</string>
     <string name="session_loggedin_username">loggedin_username</string>
     <string name="session_loggedin_user_role">loggedin_user_role</string>
+    <string name="session_req_car_form_data_numOfRiders">formDataNumOfRiders</string>
+    <string name="session_req_car_form_date_startDateTime">formDataStartDateTime</string>
+    <string name="session_req_car_form_data_endDateTime">formDataEndDateTime</string>
+    <string name="RequestedCarDetailsActivityLabel">Request Car Item Details</string>
+    <string name="parcel_selected_requested_car_summary_item">selectedRequestCarSummaryItem</string>
     <string-array name="weekday_hours">
-        <item>8:00 AM</item>
-        <item>8:30 AM</item>
-        <item>9:00 AM</item>
-        <item>9:30 AM</item>
+        <item>08:00 AM</item>
+        <item>08:30 AM</item>
+        <item>09:00 AM</item>
+        <item>09:30 AM</item>
         <item>10:00 AM</item>
         <item>10:30 AM</item>
         <item>11:00 AM</item>
         <item>11:30 AM</item>
         <item>12:00 PM</item>
         <item>12:30 PM</item>
-        <item>1:00 PM</item>
-        <item>1:30 PM</item>
-        <item>2:00 PM</item>
-        <item>2:30 PM</item>
-        <item>3:00 PM</item>
-        <item>3:30 PM</item>
-        <item>4:00 PM</item>
-        <item>4:30 PM</item>
-        <item>5:00 PM</item>
-        <item>5:30 PM</item>
-        <item>6:00 PM</item>
-        <item>6:30 PM</item>
-        <item>7:00 PM</item>
-        <item>7:30 PM</item>
-        <item>8:00 PM</item>
+        <item>01:00 PM</item>
+        <item>01:30 PM</item>
+        <item>02:00 PM</item>
+        <item>02:30 PM</item>
+        <item>03:00 PM</item>
+        <item>03:30 PM</item>
+        <item>04:00 PM</item>
+        <item>04:30 PM</item>
+        <item>05:00 PM</item>
+        <item>05:30 PM</item>
+        <item>06:00 PM</item>
+        <item>06:30 PM</item>
+        <item>07:00 PM</item>
+        <item>07:30 PM</item>
+        <item>08:00 PM</item>
     </string-array>
     <string-array name="saturday_hours">
         <item>8:00 AM</item>
@@ -227,5 +232,58 @@
         <item>4:30 PM</item>
         <item>5:00 PM</item>
     </string-array>
+    <string name="title_activity_manager_search_car_screen">ManagerSearchCarScreen</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="renterViewReservationsDP">renterViewReservationStartDatePicker</string>
+    <string name="tvStartTimeRenterViewReservations">Start Time</string>
+    <string name="renter_view_my_reservations">Reservations</string>
+    <string name="sessionStartDateTimeViewReservationFormData">startDateTimeViewReservationsFormData</string>
+    <string name="parcel_selected_reservation_summary_item">selectedReservationSummaryItem</string>
+    <string name="rd_reservation_id">Reservation ID:</string>
+    <string name="rd_arlington_auto_club_member">Arlington Auto Club Member:</string>
+    <string name="rd_car_number">Car Number:</string>
+    <string name="rd_car_name">Car Name:</string>
+    <string name="rd_car_capacity">Car Capacity:</string>
+    <string name="rd_number_of_riders">Number of Riders:</string>
+    <string name="rd_gps">GPS</string>
+    <string name="rd_siriusxm">SiriusXM</string>
+    <string name="rd_onstar">OnStar</string>
+    <string name="rd_end_time">End Time:</string>
+    <string name="rd_cancel_reservation_btn_label">Cancel Reservation</string>
+    <string name="rd_update_reservation_btn_label">Update Reservation</string>
+    <string name="rvp_username_label">Username:</string>
+    <string name="label_rvp_password">Password:</string>
+    <string name="label_rvp_last_name">Last Name:</string>
+    <string name="label_rvp_first_name">First Name:</string>
+    <string name="label_rvp_uta_id">UTA ID:</string>
+    <string name="label_rvp_role">Role:</string>
+    <string name="label_rvp_phone">Phone:</string>
+    <string name="label_rvp_email">Email:</string>
+    <string name="label_rvp_street_address">Street Address:</string>
+    <string name="label_rvp_city">City:</string>
+    <string name="label_rvp_state">State</string>
+    <string name="label_rvp_zip">Zip:</string>
+    <string name="label_rvp_arlington_auto_club_member">Arlington Auto Club Member:</string>
+    <string name="label_rvp_user_status">User Status:</string>
+    <string name="label_btn_update_profile">Update Profile</string>
+    <string name="session_reservation_details_start_date_yyyy_mm_dd">reservationDetailsStartDateYYYYMMDD</string>
+    <string name="session_reservation_details_end_date_yyyy_mm_dd">reservationDetailsEndDateYYYYMMDD</string>
+    <string-array name="aaCarNames">
+        <item>Smart</item>
+        <item>Economy</item>
+        <item>Compact</item>
+        <item>Intermediate</item>
+        <item>Standard</item>
+        <item>Full Size</item>
+        <item>SUV</item>
+        <item>MiniVan</item>
+        <item>Ultra Sports</item>
+    </string-array>
 </resources>

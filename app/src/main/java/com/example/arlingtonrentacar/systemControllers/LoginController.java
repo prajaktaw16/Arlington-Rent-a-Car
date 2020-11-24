@@ -1,3 +1,8 @@
+/**
+ * Author: Sudipta Sharif (S.S)
+ * School: University of Texas at Arlington
+ * Course: CSE 5324 Fall 2020
+ */
 package com.example.arlingtonrentacar.systemControllers;
 
 import android.content.Context;
@@ -65,6 +70,7 @@ public class LoginController {
     private void setUpLoggedInUserSession(Role role, String username){
         sessionPrefs = loginGUIContext.getSharedPreferences(loginGUIContext.getString(R.string.sessions_preference_file_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor sessions = sessionPrefs.edit();
+        // clear is only called during login and logout
         sessions.clear();
         sessions.putString(loginGUIContext.getString(R.string.session_loggedin_username), username);
         sessions.putString(loginGUIContext.getString(R.string.session_loggedin_user_role), AAUtil.roleEnumToStr(role));

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.arlingtonrentacar">
 
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,16 +12,55 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ViewProfile"></activity>
+        <activity android:name=".ManagerViewAvailableCarSummaryScreen"></activity>
+        <activity android:name=".ManagerViewAvailableCarsScreen" />
+        <activity android:name=".ManagerViewCarDetailScreen" />
+        <activity android:name=".ManagerSearchCarSummaryScreen" />
+        <activity
+            android:name=".ManagerSearchCarScreen"
+            android:label="@string/title_activity_manager_search_car_screen" />
+
+
+        <!--
+               Set to true if your app is Standalone, that is, it does not require the handheld
+               app to run.
+        -->
+        <meta-data
+            android:name="com.google.android.wearable.standalone"
+            android:value="true" />
+
+        <activity android:name=".renter.RenterViewProfileActivity"
+            android:label="View Profile"
+            android:parentActivityName=".RenterHomeScreen"/>
+        <activity
+            android:name=".renter.RenterReservationDetailsActivity"
+            android:label="Reservation Details"
+            android:parentActivityName=".renter.RenterReservationsSummaryActivity" />
+        <activity
+            android:name=".renter.RenterReservationsSummaryActivity"
+            android:label="Reservations Summary"
+            android:parentActivityName=".renter.RenterViewReservationsActivity" />
+        <activity
+            android:name=".renter.RenterViewReservationsActivity"
+            android:label="View Reservations"
+            android:parentActivityName=".RenterHomeScreen" />
+        <activity
+            android:name=".RenterHomeScreen"
+            android:label="@string/renter_screen" />
+        <activity
+            android:name=".AdminHomeScreen"
+            android:label="@string/admin_screen" />
         <activity
             android:name=".ManagerHomeScreen"
             android:label="@string/manager_screen" />
         <activity
-            android:name=".RequestedCarDetailsActivity"
-            android:label="View Requested Car Details" />
-        <activity
             android:name=".ViewRequestedCarActivity"
             android:label="@string/viewRequestedCarActivityLabel"
             android:parentActivityName=".RequestCarActivity" />
+        <activity
+            android:name=".RequestedCarDetailsActivity"
+            android:label="@string/RequestedCarDetailsActivityLabel"
+            android:parentActivityName=".ViewRequestedCarActivity" />
         <activity
             android:name=".RequestCarActivity"
             android:label="@string/requestCarActivityLabel"

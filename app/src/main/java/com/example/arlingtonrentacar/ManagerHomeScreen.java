@@ -58,4 +58,12 @@ public class ManagerHomeScreen extends AppCompatActivity {
         Intent intent = new Intent(this, ViewProfile.class);
         startActivity(intent);
     }
+    public void view_manager_search_car(View view){
+        Intent intent = new Intent(this, ManagerSearchCarScreen.class);
+        startActivity(intent);
+    }
+    public void view_manager_view_available_car(View view){
+        Intent intent = new Intent(this, ManagerViewAvailableCarsScreen.class);
+        startActivity(intent);
+    }
 }

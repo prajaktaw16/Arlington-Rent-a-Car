@@ -3,9 +3,7 @@ package com.example.arlingtonrentacar.manager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,8 +21,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.arlingtonrentacar.R;
-import com.example.arlingtonrentacar.RequestCarActivity;
-import com.example.arlingtonrentacar.StartDatePickerFragmentRC;
 import com.example.arlingtonrentacar.StartDatePickerFragment_ViewReservationCalendar;
 import com.example.arlingtonrentacar.database.DatabaseHelper;
 import com.example.arlingtonrentacar.database.Reservations;
@@ -96,7 +92,7 @@ public class View_Reservation_Calendar extends AppCompatActivity implements View
         }
         startDate = Calendar.getInstance();
         startTime = "";
-        startDateTextView = findViewById(R.id.startDate_Textview);
+        startDateTextView = findViewById(R.id.tv_StartDateTime);
         spinnerStartTime = findViewById(R.id.startTime_spinner);
         arrayAdapterStartTime = getArrayAdapterByDayOfWeek(startDate.get(Calendar.DAY_OF_WEEK));
         setUpSpinner(spinnerStartTime, arrayAdapterStartTime);
