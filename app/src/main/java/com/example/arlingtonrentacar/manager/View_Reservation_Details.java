@@ -1,3 +1,9 @@
+/**
+ * Author: Shubham Patil
+ * School: University of Texas at Arlington
+ * Course: CSE 5324 Fall 2020
+ */
+
 package com.example.arlingtonrentacar.manager;
 
 import android.content.Context;
@@ -48,6 +54,15 @@ public class View_Reservation_Details extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_reservation_details_screen);
         viewReservationDetails_Context = this ;
+
+        getGUI();
+        reservations = getIntent().getParcelableExtra("ReservationsDataObj");
+        car_number = getIntent().getExtras().getInt("Car_Number");
+        setGUI();
+
+    }
+
+    public void getGUI(){
         reservation_id_textview = findViewById(R.id.reservationID_textview);
         carnumber_textview = findViewById(R.id.carnumber_textView);;
         carname_textview = findViewById(R.id.carname_textview);
@@ -64,10 +79,9 @@ public class View_Reservation_Details extends AppCompatActivity{
         siriusxm_textview = findViewById(R.id.siriusxm_textview);
         totalprice_textview = findViewById(R.id.totalprice_textview);
         arlingtonautoclubmember_textview = findViewById(R.id.arlingtonautoclubmember_textview);
+    }
 
-        reservations = getIntent().getParcelableExtra("ReservationsDataObj");
-        car_number = getIntent().getExtras().getInt("Car_Number");
-//        System.out.println(reservations);
+    public void setGUI(){
         reservation_id_textview.setText(reservations.getReservationID());
         carnumber_textview.setText(String.valueOf(car_number));
         carname_textview.setText(reservations.getCarName());
@@ -84,7 +98,6 @@ public class View_Reservation_Details extends AppCompatActivity{
         siriusxm_textview.setText(reservations.getSiriusxm().toString());
         totalprice_textview.setText(reservations.getTotalPrice().toString());
         arlingtonautoclubmember_textview.setText(reservations.getAaaMemberStatus().toString());
-
     }
 
     public void onDeleteClick(View view){
@@ -116,9 +129,6 @@ public class View_Reservation_Details extends AppCompatActivity{
                     }
                 });
         builder.create().show();
-
-
-
     }
 
     @Override

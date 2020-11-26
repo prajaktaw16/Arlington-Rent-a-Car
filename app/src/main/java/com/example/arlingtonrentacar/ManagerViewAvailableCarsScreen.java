@@ -49,7 +49,7 @@ public class ManagerViewAvailableCarsScreen extends AppCompatActivity {
         });
 
         /*Calendar*/
-        dateView=(TextView)findViewById(R.id.textView27);
+        dateView=(TextView)findViewById(R.id.textview_date);
         final TextView eText=(TextView) findViewById(R.id.textview_date);
         eText.setInputType(InputType.TYPE_NULL);
         eText.setOnClickListener(new View.OnClickListener() {
