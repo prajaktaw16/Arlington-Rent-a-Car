@@ -21,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.arlingtonrentacar.AAUtil;
 import com.example.arlingtonrentacar.R;
 import com.example.arlingtonrentacar.RenterHomeScreen;
 import com.example.arlingtonrentacar.database.Reservations;
@@ -140,7 +141,7 @@ public class View_Reservation_Details extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.vrc_menu_logout){
-            Toast.makeText(this, "Logout Menu Clicked", Toast.LENGTH_LONG).show();
+            AAUtil.logout(this);
             return(true);
         }
         return(super.onOptionsItemSelected(item));

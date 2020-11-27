@@ -368,11 +368,11 @@
         android:id="@+id/button_deleteReservation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
-        android:layout_marginLeft="104dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginLeft="108dp"
+        android:layout_marginTop="6dp"
         android:onClick="onDeleteClick"
         android:text="Delete Reservation"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+        app:layout_constraintTop_toBottomOf="@+id/arlingtonautoclubmember_textview" />
 </androidx.constraintlayout.widget.ConstraintLayout>

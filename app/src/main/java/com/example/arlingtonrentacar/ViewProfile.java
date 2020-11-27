@@ -1,5 +1,6 @@
 package com.example.arlingtonrentacar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,6 +45,7 @@ public class ViewProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ViewProfile_Context = this;
         setContentView(R.layout.activity_view_profile);
+        dbHelper = DatabaseHelper.getInstance(ViewProfile_Context);
         sessionPrefs = getSharedPreferences(getString(R.string.sessions_preference_file_key), Context.MODE_PRIVATE);
         username = sessionPrefs.getString(getString(R.string.session_loggedin_username), "");
         role = sessionPrefs.getString(getString(R.string.session_loggedin_user_role),"");
@@ -142,27 +145,28 @@ public class ViewProfile extends AppCompatActivity {
 
     public boolean updateManagerProfile(SystemUser manager){
         boolean result = false;
-        dbHelper = DatabaseHelper.getInstance(ViewProfile_Context);
         SQLiteDatabase dbHandle = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("last_name", manager.getLastName());
-        values.put("first_name", manager.getFirstName());
-        values.put("username", manager.getUsername());
-        values.put("password", manager.getPassword());
-        values.put("uta_id", Integer.toString(manager.getUtaID()));
-        values.put("role", manager.getRole());
-        values.put("phone", manager.getPhone());
-        values.put("email", manager.getEmail());
-        values.put("street_address", manager.getStreetAddress());
-        values.put("city", manager.getCity());
-        values.put("state", manager.getState());
-        values.put("zip_code", manager.getZip());
+        values.put("username", mETUsername.getText().toString());
+        values.put("password", mETPassword.getText().toString());
+        values.put("last_name", mETLastName.getText().toString());
+        values.put("first_name", mETFirstName.getText().toString());
+        values.put("role", mETRole.getText().toString());
+        values.put("uta_id", mETUTAID.getText().toString());
+        values.put("phone", mETPhone.getText().toString());
+        values.put("email", mETPhone.getText().toString());
+        values.put("street_address", mETAddress.getText().toString());
+        values.put("city", mETCity.getText().toString());
+        values.put("state", mETState.getText().toString());
+        values.put("zip_code", mETZip.getText().toString());
 
-        String selection = "username" + " = ?";
-        String[] selectionArgs = {manager.getUsername()};
-        int count = dbHandle.update("system_users", values, selection, selectionArgs);
+        String selection = "username = \""+manager.getUsername()+"\"";
+//        String[] selectionArgs = {manager.getUsername()};
+        int count = dbHandle.update("system_users", values, selection, null);
+//        sql = "update system_users set lastname = \"" + manager+ "
         if(count == 1){ // num of rows affected should be 1, as username is pk
             result = true;
+            dbHandle.close();
         }
         return result;
     }
@@ -182,4 +186,12 @@ public class ViewProfile extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.vrc_menu_logout){
+            AAUtil.logout(this);
+            return(true);
+        }
+        return(super.onOptionsItemSelected(item));
+    }
 }
