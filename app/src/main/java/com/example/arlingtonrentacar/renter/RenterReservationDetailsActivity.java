@@ -28,6 +28,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.arlingtonrentacar.AAAMemberStatus;
 import com.example.arlingtonrentacar.AAReservationModel;
 import com.example.arlingtonrentacar.AAUtil;
 import com.example.arlingtonrentacar.CarModel;
@@ -269,23 +270,41 @@ public class RenterReservationDetailsActivity extends AppCompatActivity implemen
         String msg = mReservationDetailsController.validateData(mReservation);
         if(!msg.equals(AAUtil.EMPTYSTR)){
             Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+        }else if(AAUtil.getSystemUserStatus(this) == AAAMemberStatus.NO){
+            showUserStatusRevokedAlertDialog();
         }else{
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Are you sure you want to update this reservation? New Total Price: " + AAUtil.getAmountInCurrency(mReservation.getTotalPrice(), AAUtil.USD_CURRENCY_FORMAT))
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            updateReservation();
-                        }
-                    })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-
-                        }
-                    });
-            builder.create().show();
+            showUpdateConfirmationDialog();
         }
+    }
+
+    private void showUserStatusRevokedAlertDialog(){
+        String msg = "Oops! Sorry, you can't update any reservation. Your rental status is 'Revoked'. Please contact: aarentalservice@customercare.com";
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setMessage(msg)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+        builder.create().show();
+    }
+
+    private void showUpdateConfirmationDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to update this reservation? New Total Price: " + AAUtil.getAmountInCurrency(mReservation.getTotalPrice(), AAUtil.USD_CURRENCY_FORMAT))
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        updateReservation();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+        builder.create().show();
     }
 
     private int getNumberOfRidersFromGUI(){

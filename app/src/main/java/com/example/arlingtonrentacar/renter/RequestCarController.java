@@ -31,15 +31,11 @@ public class RequestCarController {
 
     public void geAvailableCarList(String numOfRiders, Calendar startDate, String startTime, Calendar endDate, String endTime){
         String msg = "";
-        int userSatus = getRenterSatus();
         startDate = AAUtil.getCalendarDateWithTime(startDate, startTime);
         endDate = AAUtil.getCalendarDateWithTime(endDate, endTime);
         RequestCar requestCar = new RequestCar(numOfRiders, startDate, endDate);
         msg = requestCar.validRequestCarFormData();
-        if(userSatus == 0){
-            msg = "You can't rent any car. Your rental status is 'Revoked'";
-            Toast.makeText(requestCarActivityContext, msg, Toast.LENGTH_LONG).show();
-        }else if(!msg.equals(AAUtil.EMPTYSTR)){
+        if(!msg.equals(AAUtil.EMPTYSTR)){
             Toast.makeText(requestCarActivityContext, msg, Toast.LENGTH_LONG).show();
         }else{
             addDataToSession(numOfRiders, AAUtil.formatDate(startDate, AAUtil.DATABASE_DATE_TIME_FORMAT), AAUtil.formatDate(endDate, AAUtil.DATABASE_DATE_TIME_FORMAT));
@@ -54,11 +50,5 @@ public class RequestCarController {
         sessions.putString(requestCarActivityContext.getString(R.string.session_req_car_form_date_startDateTime), startDateTime);
         sessions.putString(requestCarActivityContext.getString(R.string.session_req_car_form_data_endDateTime), endDateTime);
         sessions.commit();
-    }
-
-    private int getRenterSatus(){
-        String username = sessionPrefs.getString(requestCarActivityContext.getString(R.string.session_loggedin_username), "");
-        SystemUserDAO systemUserDAO = SystemUserDAO.getInstance(requestCarActivityContext);
-        return systemUserDAO.getSystemUserStatus(username);
     }
 }

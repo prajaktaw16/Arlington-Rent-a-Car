@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import com.example.arlingtonrentacar.database.SystemUserDAO;
+
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -495,5 +497,8 @@ public class AAUtil {
         context.startActivity(intent);
     }
 
+    public static AAAMemberStatus getSystemUserStatus(Context context){
+        return AAUtil.aaaMemberStatusIntToEnum(SystemUserDAO.getInstance(context).getSystemUserStatus(AAUtil.getLoggedInUserName(context)));
+    }
 
 }
