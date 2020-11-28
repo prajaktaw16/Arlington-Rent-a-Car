@@ -1,17 +1,31 @@
+/**
+ * Author: Shubham Patil
+ * School: University of Texas at Arlington
+ * Course: CSE 5324 Fall 2020
+ */
+
 package com.example.arlingtonrentacar.manager;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.arlingtonrentacar.AAUtil;
 import com.example.arlingtonrentacar.R;
+import com.example.arlingtonrentacar.RenterHomeScreen;
 import com.example.arlingtonrentacar.database.Reservations;
+import com.example.arlingtonrentacar.database.ReservationsDAO;
 
 public class View_Reservation_Details extends AppCompatActivity{
 
@@ -33,10 +47,23 @@ public class View_Reservation_Details extends AppCompatActivity{
     public TextView arlingtonautoclubmember_textview;
     public int car_number;
     private Reservations reservations;
+    private ReservationsDAO reservationsDAO;
+    private Context viewReservationDetails_Context;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_reservation_details_screen);
+        viewReservationDetails_Context = this ;
+
+        getGUI();
+        reservations = getIntent().getParcelableExtra("ReservationsDataObj");
+        car_number = getIntent().getExtras().getInt("Car_Number");
+        setGUI();
+
+    }
+
+    public void getGUI(){
         reservation_id_textview = findViewById(R.id.reservationID_textview);
         carnumber_textview = findViewById(R.id.carnumber_textView);;
         carname_textview = findViewById(R.id.carname_textview);
@@ -53,11 +80,9 @@ public class View_Reservation_Details extends AppCompatActivity{
         siriusxm_textview = findViewById(R.id.siriusxm_textview);
         totalprice_textview = findViewById(R.id.totalprice_textview);
         arlingtonautoclubmember_textview = findViewById(R.id.arlingtonautoclubmember_textview);
+    }
 
-        reservations = getIntent().getParcelableExtra("ReservationsDataObj");
-        car_number = getIntent().getExtras().getInt("Car_Number");
-//        System.out.println(reservations);
-
+    public void setGUI(){
         reservation_id_textview.setText(reservations.getReservationID());
         carnumber_textview.setText(String.valueOf(car_number));
         carname_textview.setText(reservations.getCarName());
@@ -74,7 +99,37 @@ public class View_Reservation_Details extends AppCompatActivity{
         siriusxm_textview.setText(reservations.getSiriusxm().toString());
         totalprice_textview.setText(reservations.getTotalPrice().toString());
         arlingtonautoclubmember_textview.setText(reservations.getAaaMemberStatus().toString());
+    }
 
+    public void onDeleteClick(View view){
+        reservationsDAO = ReservationsDAO.getInstance(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to delete this reservation?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        boolean flag = reservationsDAO.deleteReservation(reservations.getReservationID());
+//                        if deleted successfully redirect and show toast
+                        if(flag){
+                            Intent intent = new Intent(viewReservationDetails_Context, View_Reservation_Calendar.class);
+                            Toast toast = Toast.makeText(viewReservationDetails_Context, "Reservation deleted successfully", Toast.LENGTH_SHORT);
+                            toast.show();
+                            startActivity(intent);
+                        }
+//                        if failed show only toast
+                        else{
+                            Toast toast = Toast.makeText(viewReservationDetails_Context, "Could not delete reservation!", Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+        builder.create().show();
     }
 
     @Override
@@ -86,7 +141,7 @@ public class View_Reservation_Details extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.vrc_menu_logout){
-            Toast.makeText(this, "Logout Menu Clicked", Toast.LENGTH_LONG).show();
+            AAUtil.logout(this);
             return(true);
         }
         return(super.onOptionsItemSelected(item));

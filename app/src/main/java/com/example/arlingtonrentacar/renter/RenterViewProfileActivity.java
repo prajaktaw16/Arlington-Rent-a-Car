@@ -6,9 +6,11 @@
 package com.example.arlingtonrentacar.renter;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -81,7 +83,7 @@ public class RenterViewProfileActivity extends AppCompatActivity {
         mETState.setText(mRenter.getState());
         mETZip.setText(mRenter.getZip());
         mETAAAmemberStat.setText(AAUtil.aaaMemberStatusIntToStr(mRenter.getAaaMemberStatus()));
-        mTVUserStatus.setText(AAUtil.intUserStatusToStr(mRenter.getUserStatus()));
+        mTVUserStatus.setText(AAUtil.userStatusEnumToStr(AAUtil.userStatusIntToEnum(mRenter.getUserStatus())));
     }
 
     public void btnUpdateProfileOnClickHandler(View view) {
@@ -99,14 +101,10 @@ public class RenterViewProfileActivity extends AppCompatActivity {
         String msg;
         if(!mRenter.validateData()){
             msg = "Invalid Data";
+            Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
         }else{
-            if(mViewRenterProfileController.updateRenterProfile(mRenter)){
-                msg = "Update Successful";
-            }else{
-                msg = "Update failed. Please try again.";
-            }
+            showConfirmUpdateAlertDialog();
         }
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -121,5 +119,33 @@ public class RenterViewProfileActivity extends AppCompatActivity {
             AAUtil.logout(this);
         }
         return(super.onOptionsItemSelected(item));
+    }
+
+    private void showConfirmUpdateAlertDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to update your profile?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        updateProfile();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+        builder.create().show();
+    }
+
+    private void updateProfile(){
+        String msg;
+        if(mViewRenterProfileController.updateRenterProfile(mRenter)){
+            msg = "Update Successful";
+        }else{
+            msg = "Update failed. Please try again.";
+        }
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 }

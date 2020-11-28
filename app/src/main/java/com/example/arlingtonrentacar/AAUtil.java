@@ -9,7 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-import java.math.RoundingMode;
+import com.example.arlingtonrentacar.database.SystemUserDAO;
+
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -412,14 +413,6 @@ public class AAUtil {
         return result;
     }
 
-    public static String intUserStatusToStr(int status){
-        if(status == 1){
-            return "Active";
-        }else{
-            return "Revoked";
-        }
-    }
-
     public static boolean schedulable(Calendar startDateTime, Calendar endDateTime, LinkedList<Calendar> reservationDateList) {
         boolean result = false;
         final int INDEX_FIRST_DATE = 0;
@@ -495,5 +488,24 @@ public class AAUtil {
         context.startActivity(intent);
     }
 
+    public static UserStatus getSystemUserStatus(Context context){
+        return AAUtil.userStatusIntToEnum(SystemUserDAO.getInstance(context).getSystemUserStatus(AAUtil.getLoggedInUserName(context)));
+    }
+
+    public static UserStatus userStatusIntToEnum(int userStatus){
+        if(userStatus == 1){
+            return UserStatus.ACTIVE;
+        }else{
+            return UserStatus.REVOKED;
+        }
+    }
+
+    public static String userStatusEnumToStr(UserStatus userStatus){
+        if(userStatus == UserStatus.ACTIVE){
+            return "Active";
+        }else{
+            return "Revoked";
+        }
+    }
 
 }

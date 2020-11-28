@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
 import com.example.arlingtonrentacar.manager.View_Reservation_Calendar;
@@ -35,24 +36,27 @@ public class ManagerHomeScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
     public void view_reservation_calendar(View view){
         Intent intent = new Intent(this, View_Reservation_Calendar.class);
         startActivity(intent);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.vrc_menu_logout){
-            Toast.makeText(this, "Logout Menu Clicked", Toast.LENGTH_LONG).show();
+            AAUtil.logout(this);
             return(true);
         }
         return(super.onOptionsItemSelected(item));
+    }
+    public void viewProfile(View view) {
+        Intent intent = new Intent(this, ViewProfile.class);
+        startActivity(intent);
     }
     public void view_manager_search_car(View view){
         Intent intent = new Intent(this, ManagerSearchCarScreen.class);

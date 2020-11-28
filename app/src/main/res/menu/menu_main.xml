@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.arlingtonrentacar.MainActivity">
+
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
@@ -11,6 +12,10 @@
     <item
         android:id="@+id/vrc_menu_logout"
         android:title="menu logout title"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_lock_power_off"/>
+        android:id="@+id/rc_menu_logout"
+        android:title="@string/menu_logout_title"
         app:showAsAction="always"
         android:icon="@android:drawable/ic_lock_power_off"/>
 </menu>

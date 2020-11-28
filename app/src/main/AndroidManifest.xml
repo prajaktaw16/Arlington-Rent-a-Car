@@ -11,19 +11,14 @@
         android:theme="@style/AppTheme">
         <activity android:name=".UserProfile"></activity>
         <activity android:name=".ManagerViewAvailableCarSummaryScreen" />
+        <activity android:name=".ViewProfile"></activity>
         <activity android:name=".ManagerViewAvailableCarsScreen" />
         <activity android:name=".ManagerViewCarDetailScreen" />
         <activity android:name=".ManagerSearchCarSummaryScreen" />
         <activity
             android:name=".ManagerSearchCarScreen"
             android:label="@string/title_activity_manager_search_car_screen" />
-        <!--
-               Set to true if your app is Standalone, that is, it does not require the handheld
-               app to run.
-        -->
-        <meta-data
-            android:name="com.google.android.wearable.standalone"
-            android:value="true" />
+
 
         <activity
             android:name=".renter.RenterViewProfileActivity"

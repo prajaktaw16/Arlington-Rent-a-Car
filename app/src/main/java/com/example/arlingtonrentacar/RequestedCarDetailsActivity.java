@@ -31,6 +31,8 @@ import com.example.arlingtonrentacar.renter.RenterViewReservationsActivity;
 import com.example.arlingtonrentacar.renter.RequestCarSummaryItem;
 import com.example.arlingtonrentacar.users.SystemUser;
 
+import org.w3c.dom.Text;
+
 import java.util.Calendar;
 
 public class RequestedCarDetailsActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
@@ -97,6 +99,7 @@ public class RequestedCarDetailsActivity extends AppCompatActivity implements Co
             }
         }
         this.tvTotalCost.setText(AAUtil.getAmountInCurrency(this.invoice.calculateTotalCost(), AAUtil.USD_CURRENCY_FORMAT));
+        updateTextViewLabel((TextView) findViewById(R.id.totalPriceLabel), "Total Price (Full):");
     }
 
     private void setUpDetails(){
@@ -144,8 +147,19 @@ public class RequestedCarDetailsActivity extends AppCompatActivity implements Co
     }
 
     public void onClickEventHandlerRequestCarBtn(View view) {
+        if(AAUtil.getSystemUserStatus(this) == UserStatus.REVOKED){
+            showUserStatusRevokedAlertDialog();
+        }else {
+            this.tvTotalCost.setText(AAUtil.getAmountInCurrency(this.invoice.calculateTotalCost(), AAUtil.USD_CURRENCY_FORMAT));
+            updateTextViewLabel((TextView) findViewById(R.id.totalPriceLabel), "Total Price (Full):");
+            showRequestCarConfirmationAlertDialog();
+        }
+    }
+
+    private void showRequestCarConfirmationAlertDialog(){
+        String msg = "Do you want to request this car and make reservation? Total Price: " + AAUtil.getAmountInCurrency(invoice.calculateTotalCost(), AAUtil.USD_CURRENCY_FORMAT);
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setMessage("Do you want to request this car and make reservation? Total Price: " + AAUtil.getAmountInCurrency(invoice.calculateTotalCost(), AAUtil.USD_CURRENCY_FORMAT))
+        builder.setMessage(msg)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -153,6 +167,18 @@ public class RequestedCarDetailsActivity extends AppCompatActivity implements Co
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+        builder.create().show();
+    }
+
+    private void showUserStatusRevokedAlertDialog(){
+        String msg = "Oops! Sorry, you can't rent any car. Your rental status is 'Revoked'. Please contact: aarentalservice@customercare.com";
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setMessage(msg)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                     }
@@ -226,5 +252,9 @@ public class RequestedCarDetailsActivity extends AppCompatActivity implements Co
     private void navigateToTarget(Class<?> cls){
         Intent intent = new Intent(mContext, cls);
         mContext.startActivity(intent);
+    }
+
+    private void updateTextViewLabel(TextView textView, String newLabel){
+        textView.setText(newLabel.trim());
     }
 }

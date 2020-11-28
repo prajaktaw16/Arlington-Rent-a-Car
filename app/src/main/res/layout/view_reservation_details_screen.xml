@@ -11,11 +11,15 @@
         android:id="@+id/reservationID_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="140dp"
-        android:layout_marginRight="140dp"
+        android:layout_marginStart="154dp"
+        android:layout_marginLeft="154dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="216dp"
+        android:layout_marginRight="216dp"
         android:text="TextView"
+        android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -35,11 +39,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="71dp"
         android:layout_marginLeft="71dp"
+        android:layout_marginTop="16dp"
         android:text="@string/reservation_id"
-        app:layout_constraintBottom_toBottomOf="@+id/reservationID_textview"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/reservationID_textview"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
@@ -352,7 +355,7 @@
         app:layout_constraintTop_toTopOf="@+id/totalprice_textview" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/editText_firstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
@@ -362,13 +365,14 @@
         app:layout_constraintTop_toTopOf="@+id/arlingtonautoclubmember_textview" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/button_deleteReservation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginLeft="96dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginLeft="108dp"
+        android:layout_marginTop="6dp"
+        android:onClick="onDeleteClick"
         android:text="Delete Reservation"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+        app:layout_constraintTop_toBottomOf="@+id/arlingtonautoclubmember_textview" />
 </androidx.constraintlayout.widget.ConstraintLayout>
