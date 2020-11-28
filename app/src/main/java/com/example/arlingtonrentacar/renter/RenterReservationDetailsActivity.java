@@ -37,6 +37,7 @@ import com.example.arlingtonrentacar.Invoice;
 import com.example.arlingtonrentacar.R;
 import com.example.arlingtonrentacar.RenterHomeScreen;
 import com.example.arlingtonrentacar.RequestCarActivity;
+import com.example.arlingtonrentacar.UserStatus;
 
 import java.util.Calendar;
 
@@ -157,6 +158,15 @@ public class RenterReservationDetailsActivity extends AppCompatActivity implemen
     }
 
     public void cancelReservationBtnOnClickHandler(View view){
+        if(AAUtil.getSystemUserStatus(this) == UserStatus.REVOKED){
+            String msg = "Oops! Sorry, you can't cancel this reservation. Your rental status is 'Revoked'. Please contact: aarentalservice@customercare.com";
+            showUserStatusRevokedAlertDialog(msg);
+        }else{
+            showCancelConfirmationDialog();
+        }
+    }
+
+    private void showCancelConfirmationDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Are you sure you want to cancel this reservation?If Yes, you will be redirected back to your Home Screen.")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -270,15 +280,15 @@ public class RenterReservationDetailsActivity extends AppCompatActivity implemen
         String msg = mReservationDetailsController.validateData(mReservation);
         if(!msg.equals(AAUtil.EMPTYSTR)){
             Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
-        }else if(AAUtil.getSystemUserStatus(this) == AAAMemberStatus.NO){
-            showUserStatusRevokedAlertDialog();
+        }else if(AAUtil.getSystemUserStatus(this) == UserStatus.REVOKED){
+            msg = "Oops! Sorry, you can't update this reservation. Your rental status is 'Revoked'. Please contact: aarentalservice@customercare.com";
+            showUserStatusRevokedAlertDialog(msg);
         }else{
             showUpdateConfirmationDialog();
         }
     }
 
-    private void showUserStatusRevokedAlertDialog(){
-        String msg = "Oops! Sorry, you can't update any reservation. Your rental status is 'Revoked'. Please contact: aarentalservice@customercare.com";
+    private void showUserStatusRevokedAlertDialog(String msg){
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setMessage(msg)
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {

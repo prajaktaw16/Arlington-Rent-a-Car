@@ -147,7 +147,7 @@ public class RequestedCarDetailsActivity extends AppCompatActivity implements Co
     }
 
     public void onClickEventHandlerRequestCarBtn(View view) {
-        if(AAUtil.getSystemUserStatus(this) == AAAMemberStatus.NO){
+        if(AAUtil.getSystemUserStatus(this) == UserStatus.REVOKED){
             showUserStatusRevokedAlertDialog();
         }else {
             this.tvTotalCost.setText(AAUtil.getAmountInCurrency(this.invoice.calculateTotalCost(), AAUtil.USD_CURRENCY_FORMAT));
