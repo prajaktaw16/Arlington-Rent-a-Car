@@ -28,4 +28,9 @@ public class AdminHomeScreen extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+    //delete this func after adding sassyalis
+    public void viewuser(View view) {
+        Intent intent = new Intent(this, UserProfile.class);
+        startActivity(intent);
+    }
 }

@@ -6,6 +6,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.example.arlingtonrentacar.users.SystemUser;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -60,6 +63,33 @@ public class UserDao extends SQLiteOpenHelper{
             return "failed";
         else
             return "Account Created Successfully";
+
+    }
+
+    public String updateUserRecord(String firstname, String lastname, String username,String password,String UTAID,String role,
+                            String email,String phone,String street_address, String city, String state,String zipcode, String arlington_auto_member)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("firstname",firstname);
+        cv.put("lastname",lastname);
+        cv.put("username",username);
+        cv.put("password",password);
+        cv.put("UTAID",UTAID);
+        cv.put("role",role);
+        cv.put("email",email);
+        cv.put("phone",phone);
+        cv.put("street_address",street_address);
+        cv.put("city",city);
+        cv.put("state",state);
+        cv.put("zipcode",zipcode);
+        cv.put("arlington_auto_member",arlington_auto_member);
+
+        long res =  db.update("system_users", cv,username + "= ?", new String[]{} );
+        if(res== -1)
+            return "failed";
+        else
+            return "User Profile Updated Successfully";
 
     }
 }
