@@ -1,3 +1,9 @@
+/**
+ * Author: Shubham Patil
+ * School: University of Texas at Arlington
+ * Course: CSE 5324 Fall 2020
+ */
+
 package com.example.arlingtonrentacar.manager;
 
 import android.content.Context;

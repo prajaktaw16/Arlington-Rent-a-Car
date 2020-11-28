@@ -197,4 +197,55 @@ public class SystemUserDAO {
         status = cursor.getInt(cursor.getColumnIndex(COLUMN_USER_STATUS));
         return status;
     }
+    public boolean updateSelectedUserProfile(SystemUser user){
+        boolean result = false;
+        SQLiteDatabase dbHandle = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_PASSWORD, user.getPassword());
+        values.put(COLUMN_LAST_NAME, user.getLastName());
+        values.put(COLUMN_FIRST_NAME, user.getFirstName());
+        values.put(COLUMN_UTA_ID, user.getUtaID());
+        values.put(COLUMN_PHONE, user.getPhone());
+        values.put(COLUMN_EMAIL, user.getEmail());
+        values.put(COLUMN_ADDRESS, user.getStreetAddress());
+        values.put(COLUMN_CITY, user.getCity());
+        values.put(COLUMN_STATE, user.getState());
+        values.put(COLUMN_ZIP, user.getZip());
+        values.put(COLUMN_AAA_MEM_STAT, user.getAaaMemberStatus());
+        String selection = COLUMN_USERNAME + " = ?";
+        String[] selectionArgs = {user.getUsername()};
+        int count = dbHandle.update(SYSTEM_USERS_TABLE, values, selection, selectionArgs);
+        if(count == 1){ // num of rows affected should be 1, as username is pk
+            result = true;
+        }
+        return result;
+    }
+    public boolean updateUserRole(SystemUser user){
+        boolean result = false;
+        SQLiteDatabase dbHandle = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_ROLE, user.getRole());
+        String selection = COLUMN_USERNAME + " = ?";
+        String[] selectionArgs = {user.getUsername()};
+        int count = dbHandle.update(SYSTEM_USERS_TABLE, values, selection, selectionArgs);
+        if(count == 1){ // num of rows affected should be 1, as username is pk
+            result = true;
+        }
+        return result;
+    }
+    public boolean revokeUser(SystemUser user){
+        boolean result = false;
+        SQLiteDatabase dbHandle = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_USER_STATUS, user.getUserStatus());
+        String selection = COLUMN_USERNAME + " = ?";
+        String[] selectionArgs = {user.getUsername()};
+        int count = dbHandle.update(SYSTEM_USERS_TABLE, values, selection, selectionArgs);
+        if(count == 1){ // num of rows affected should be 1, as username is pk
+            result = true;
+        }
+        return result;
+    }
 }

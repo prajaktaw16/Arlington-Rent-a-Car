@@ -1,3 +1,9 @@
+/**
+ * Author: Shubham Patil
+ * School: University of Texas at Arlington
+ * Course: CSE 5324 Fall 2020
+ */
+
 package com.example.arlingtonrentacar.manager;
 
 import android.content.Intent;
@@ -20,10 +26,13 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.arlingtonrentacar.AAUtil;
 import com.example.arlingtonrentacar.R;
 import com.example.arlingtonrentacar.StartDatePickerFragment_ViewReservationCalendar;
 import com.example.arlingtonrentacar.database.DatabaseHelper;
 import com.example.arlingtonrentacar.database.Reservations;
+import com.example.arlingtonrentacar.database.ReservationsDAO;
+import com.example.arlingtonrentacar.database.SystemUserDAO;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -44,6 +53,9 @@ public class View_Reservation_Calendar extends AppCompatActivity implements View
     private Spinner spinnerStartTime;
     private ArrayAdapter<CharSequence> arrayAdapterStartTime;
     private String startTime;
+    private String start_Date_Time;
+    private ReservationsDAO reservationsDAO;
+    private Cursor cursor;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,22 +68,49 @@ public class View_Reservation_Calendar extends AppCompatActivity implements View
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this);
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
 //      todo: update query after changes to the DB table structure
-        String reservations_query =  "select * from reservations order by start_date desc, start_time desc, car_name asc;";
-        Cursor cursor =  db.rawQuery(reservations_query,null);
 
+//        String reservations_query =  "select * from reservations order by start_date_time desc, car_name asc;";
+//        Cursor cursor =  db.rawQuery(reservations_query,null);
+        startDate = Calendar.getInstance();
+        startTime = "";
+        startDateTextView = findViewById(R.id.startDate_Textview);
+        spinnerStartTime = findViewById(R.id.startTime_spinner);
+        arrayAdapterStartTime = getArrayAdapterByDayOfWeek(startDate.get(Calendar.DAY_OF_WEEK));
+        setUpSpinner(spinnerStartTime, arrayAdapterStartTime);
+        setUpDate(startDateTextView, startDate);
+
+        reservationsDAO = ReservationsDAO.getInstance(this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.vrc_menu_logout){
+            AAUtil.logout(this);
+            return(true);
+        }
+        return(super.onOptionsItemSelected(item));
+    }
+
+    public void onSubmitClick(View view){
+        recyclerView.setLayoutManager(layoutManager);
+        start_Date_Time = AAUtil.formatDate(startDate, AAUtil.DATE_FORMAT_YYYY_MM_DD) +" "+ startTime.split(" ")[0];
+        cursor = reservationsDAO.viewReservations(start_Date_Time);
         if(cursor.moveToFirst()){
             do{
                 reservationsObj = new Reservations();
                 reservationsObj.setReservationID(cursor.getString(cursor.getColumnIndex("reservation_id")));
-//                reservationsObj.setCar_number(Integer.parseInt(cursor.getString(cursor.getColumnIndex("car_number"))));
                 reservationsObj.setLastname(cursor.getString(cursor.getColumnIndex("last_name")));
                 reservationsObj.setFirstname(cursor.getString(cursor.getColumnIndex("first_name")));
                 reservationsObj.setCarName(cursor.getString(cursor.getColumnIndex("car_name")));
                 reservationsObj.setCarCapacity(Integer.parseInt(cursor.getString(cursor.getColumnIndex("car_capacity"))));
-//                String start_date_time = cursor.getString(cursor.getColumnIndex("start_date_time"));
-//                String end_date_time = cursor.getString(cursor.getColumnIndex("end_date_time"));
-                String start_date_time = "2020-11-18 08:00";
-                String end_date_time = "2020-11-18 08:00";
+                String start_date_time = cursor.getString(cursor.getColumnIndex("start_date_time"));
+                String end_date_time = cursor.getString(cursor.getColumnIndex("end_date_time"));
                 String start_date = start_date_time.split(" ")[0];
                 String start_time = start_date_time.split(" ")[1];
                 String end_date = end_date_time.split(" ")[0];
@@ -90,34 +129,10 @@ public class View_Reservation_Calendar extends AppCompatActivity implements View
                 reservationsData.add(reservationsObj);
             }while(cursor.moveToNext());
         }
-        startDate = Calendar.getInstance();
-        startTime = "";
-        startDateTextView = findViewById(R.id.tv_StartDateTime);
-        spinnerStartTime = findViewById(R.id.startTime_spinner);
-        arrayAdapterStartTime = getArrayAdapterByDayOfWeek(startDate.get(Calendar.DAY_OF_WEEK));
-        setUpSpinner(spinnerStartTime, arrayAdapterStartTime);
-
-        setUpDate(startDateTextView, startDate);
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.vrc_menu_logout){
-            Toast.makeText(this, "Logout Menu Clicked", Toast.LENGTH_LONG).show();
-            return(true);
+        else{
+            Toast toast = Toast.makeText(this, "No Reservations found for this date and time", Toast.LENGTH_SHORT);
+            toast.show();
         }
-        return(super.onOptionsItemSelected(item));
-    }
-
-    public void onSubmitClick(View view){
-        recyclerView.setLayoutManager(layoutManager);
     }
 
     @Override

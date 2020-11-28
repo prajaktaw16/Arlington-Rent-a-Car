@@ -53,4 +53,5 @@ public class RegisterController {
         Toast.makeText(this.registerGUIContext, msg, Toast.LENGTH_LONG).show();
     }
 
+
 }
