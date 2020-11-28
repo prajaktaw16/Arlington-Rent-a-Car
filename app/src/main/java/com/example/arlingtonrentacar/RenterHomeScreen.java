@@ -60,10 +60,6 @@ public class RenterHomeScreen extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-    public void viewProfile(View view) {
-        Intent intent = new Intent(this, ViewProfile.class);
-        startActivity(intent);
-    }
     public void launchViewReservationsActivity(View view) {
         Intent intent = new Intent(this, RenterViewReservationsActivity.class);
         startActivity(intent);

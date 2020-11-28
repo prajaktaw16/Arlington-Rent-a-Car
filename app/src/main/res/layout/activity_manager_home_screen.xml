@@ -22,7 +22,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
-        android:layout_marginLeft="70dp"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="450dp"
         android:onClick="view_reservation_calendar"
@@ -35,43 +34,28 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="400dp"
-        android:text="Search car"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="350dp"
         android:onClick="view_manager_search_car"
+        android:text="Search car"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="350dp"
-        android:text="View Available Cars"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="200dp"
         android:onClick="view_manager_view_available_car"
+        android:text="View Available Cars"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button3" />
-
-    <Button
-        android:id="@+id/button_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="233dp"
-        android:onClick="logout"
-        android:text="Logout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
 
     <TextView
         android:id="@+id/welcomeText"

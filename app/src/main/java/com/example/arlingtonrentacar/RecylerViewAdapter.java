@@ -43,13 +43,13 @@ public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.textview1.setText(carDetails.get(position).getCarName());
-        holder.textview2.setText(carDetails.get(position).getCarNumber());
-        holder.textview1.setText(carDetails.get(position).getCarCapacity());
-        holder.textview1.setText(carDetails.get(position).getCarCostPerDay());
-        holder.textview1.setText(carDetails.get(position).getCarStatus());
+        holder.carName_textView.setText(carDetails.get(position).getCarName());
+        holder.startDate_textView.setText(carDetails.get(position).getCarNumber());
+        holder.startTime_textView.setText(carDetails.get(position).getCarCapacity());
+        holder.endDate_textView.setText(carDetails.get(position).getCarCostPerDay());
+        holder.endTime_textView.setText(carDetails.get(position).getCarStatus());
 
-        holder.textview1.setOnClickListener(new View.OnClickListener() {
+        holder.carName_textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mcontext.startActivity(new Intent(mcontext, ManagerViewCarDetailScreen.class));
@@ -65,20 +65,20 @@ public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener {
-        TextView textview1;
-        TextView textview2;
-        TextView textview3;
-        TextView textview4;
-        TextView textview5;
+        public TextView carName_textView;
+        public TextView startDate_textView;
+        public TextView startTime_textView;
+        public TextView endDate_textView;
+        public TextView endTime_textView;
         SearchCarListListener rearchCarListListener;
         public ViewHolder(@NonNull View itemView, SearchCarListListener mSearchCarListListener) {
 
             super(itemView);
-            textview1 = itemView.findViewById(R.id.car_name);
-            textview2 = itemView.findViewById(R.id.car_number);
-            textview3 = itemView.findViewById(R.id.car_status);
-            textview4 = itemView.findViewById(R.id.car_capacity);
-            textview5 = itemView.findViewById(R.id.cost_per_day);
+            carName_textView = itemView.findViewById(R.id.car_name);
+            startDate_textView = itemView.findViewById(R.id.car_number);
+            startTime_textView = itemView.findViewById(R.id.car_status);
+            endDate_textView = itemView.findViewById(R.id.car_capacity);
+            endTime_textView = itemView.findViewById(R.id.cost_per_day);
             this.rearchCarListListener=mListListener;
             itemView.setOnClickListener((View.OnClickListener) this);
 

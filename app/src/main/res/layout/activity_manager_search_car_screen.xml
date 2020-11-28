@@ -50,17 +50,17 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="280dp"
         android:layout_marginEnd="8dp"
-        android:spinnerMode="dropdown"
         android:gravity="center"
+        android:spinnerMode="dropdown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.881"
+        app:layout_constraintHorizontal_bias="0.922"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.025" />
+        app:layout_constraintVertical_bias="0.054" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/mgr_searchcars_btn"
         android:layout_width="163dp"
         android:layout_height="51dp"
         android:layout_marginStart="50dp"
@@ -77,24 +77,22 @@
         app:layout_constraintVertical_bias="0.678" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/sel_time"
         android:layout_width="131dp"
         android:layout_height="53dp"
         android:layout_marginStart="35dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-        android:text="   Select Time"
+        android:layout_marginBottom="200dp"
         android:gravity="center"
+        android:text="   Select Time"
         android:textColor="#0B0A0A"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/spinner"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clickCal"
-        app:layout_constraintVertical_bias="0.021" />
+        app:layout_constraintTop_toBottomOf="@+id/Start_date"
+        app:layout_constraintVertical_bias="0.197" />
 
     <TextView
         android:id="@+id/setDate"
@@ -110,19 +108,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
-    <TextView
-        android:id="@+id/clickCal"
-        android:layout_width="175dp"
-        android:layout_height="56dp"
+    <Button
+        android:id="@+id/Start_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="200dp"
-        android:text="   Click for Date       "
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#090808"
-        android:gravity="center"
-        android:textSize="18sp"
+        android:layout_marginTop="33dp"
+        android:text="Start Date"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

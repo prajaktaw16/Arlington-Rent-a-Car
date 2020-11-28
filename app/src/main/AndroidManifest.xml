@@ -70,9 +70,6 @@
             android:label="@string/registerActivityLabel"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".RenterHomeScreen"
-            android:label="@string/renterHomeScreenActivityLabel" />
-        <activity
             android:name=".testactivity"
             android:label="@string/admin_screen"
             android:theme="@style/AppTheme.NoActionBar" />

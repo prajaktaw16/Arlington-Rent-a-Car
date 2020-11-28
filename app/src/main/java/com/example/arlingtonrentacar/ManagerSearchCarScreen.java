@@ -1,14 +1,19 @@
 package com.example.arlingtonrentacar;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,45 +23,33 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ManagerSearchCarScreen extends AppCompatActivity {
+
+import java.util.Calendar;
+
+public class ManagerSearchCarScreen extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    private static String LOG_TAG = ManagerSearchCarScreen.class.getSimpleName();
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+    //private TextView startDateTextView;
+    private Calendar startDate;
+    private Spinner spinnerStartTime;
+    private ArrayAdapter<CharSequence> arrayAdapterStartTime;
+    private String startTime;
     private TextView dateView;
+    private String numOfRiders;
+    private Button mBtnStartDate;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_search_car_screen);
-        final String[] arraySpinner = new String[] {
-                "12am","1am","2am","3am","4am","5am","6am","7am",
-                "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm","3pm",
-                "4pm","5pm","6pm","7pm","8pm","9pm","10pm","11pm"
-        };
-        Spinner s = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, arraySpinner);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        s.setAdapter(adapter);
 
-        s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
-                // TODO Auto-generated method stub
-                Toast.makeText(getBaseContext(), arraySpinner[position], Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
-            }
-        });
-
-
-        /*Calendar*/
         dateView=(TextView)findViewById(R.id.setDate);
-        final TextView eText=(TextView) findViewById(R.id.clickCal);
-        eText.setInputType(InputType.TYPE_NULL);
-        eText.setOnClickListener(new View.OnClickListener() {
+        mBtnStartDate = findViewById(R.id.Start_date);
+        mBtnStartDate.setInputType(InputType.TYPE_NULL);
+        mBtnStartDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Calendar cldr = Calendar.getInstance();
@@ -75,8 +68,12 @@ public class ManagerSearchCarScreen extends AppCompatActivity {
                 picker.show();
             }
         });
-
-
+        startDate = Calendar.getInstance();
+        startTime = "";
+        spinnerStartTime = findViewById(R.id.spinner);
+        arrayAdapterStartTime = getArrayAdapterByDayOfWeek(startDate.get(Calendar.DAY_OF_WEEK));
+        setUpSpinner(spinnerStartTime, arrayAdapterStartTime);
+        setUpDate(dateView, startDate);
 
     }
 
@@ -84,5 +81,78 @@ public class ManagerSearchCarScreen extends AppCompatActivity {
         Intent intent = new Intent(this, ManagerSearchCarSummaryScreen.class);
         startActivity(intent);
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.vrc_menu_logout){
+            AAUtil.logout(this);
+        }
+        return(super.onOptionsItemSelected(item));
+    }
+
+    public void showStartDatePicker(View view) {
+        DialogFragment startDateFragment = new StartDatePickerFragment_ViewReservationCalendar();
+        startDateFragment.show(getSupportFragmentManager(), getString(R.string.rcStartDatePicker));
+    }
+
+    private void setUpDate(TextView targetDateTextView, Calendar calendar){
+        String dateStr = formatDateAsMMDDYYYY(calendar);
+        targetDateTextView.setText(dateStr);
+    }
+
+    public void processStartDatePickerResult(int year, int month, int day){
+        startDate.set(year, month, day);
+        setUpDate(mBtnStartDate, startDate);
+    }
+
+    private void setUpSpinner(Spinner spinner, ArrayAdapter<CharSequence> arrayAdapter){
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(arrayAdapter);
+        spinner.setOnItemSelectedListener(ManagerSearchCarScreen.this);
+    }
+
+    private ArrayAdapter<CharSequence> getArrayAdapterByDayOfWeek(int dayOfWeek){
+        ArrayAdapter<CharSequence> adapter;
+        if(dayOfWeek == Calendar.SATURDAY){
+            adapter = ArrayAdapter.createFromResource(ManagerSearchCarScreen.this, R.array.saturday_hours, android.R.layout.simple_spinner_item);
+        }else if(dayOfWeek == Calendar.SUNDAY){
+            adapter = ArrayAdapter.createFromResource(ManagerSearchCarScreen.this, R.array.sunday_hours, android.R.layout.simple_spinner_item);
+        }else{
+            adapter = ArrayAdapter.createFromResource(ManagerSearchCarScreen.this, R.array.weekday_hours, android.R.layout.simple_spinner_item);
+        }
+        return adapter;
+    }
+
+    private String formatDateAsMMDDYYYY(Calendar calendar){
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        String yearStr = Integer.toString(year);
+        String monthStr = Integer.toString(month + 1);
+        String dayStr = Integer.toString(day);
+
+        String dateStr = (monthStr + "/" + dayStr + "/" + yearStr);
+        return dateStr;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        if(adapterView.getId() == R.id.startTime_spinner){
+            startTime = adapterView.getItemAtPosition(i).toString();
+        }
+//        }else if(adapterView.getId() == R.id.spinner_end_time){
+//            endTime = adapterView.getItemAtPosition(i).toString();
+//        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 }
