@@ -186,8 +186,11 @@ public class RenterReservationDetailsActivity extends AppCompatActivity implemen
 
     public void cancelReservationAndNavigateToTargetScreen(){
         if(mReservationDetailsController.cancelReservation(mReservation.getReservationID())){
+            Toast.makeText(mContext, "Reservation cancelled successfully.", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(mContext, RenterHomeScreen.class);
             mContext.startActivity(intent);
+        }else{
+            Toast.makeText(mContext, "Failed to cancel reservation.", Toast.LENGTH_LONG).show();
         }
     }
 
