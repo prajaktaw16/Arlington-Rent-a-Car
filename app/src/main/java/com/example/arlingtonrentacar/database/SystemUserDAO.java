@@ -234,6 +234,7 @@ public class SystemUserDAO {
         }
         return result;
     }
+
     public boolean revokeUser(SystemUser user){
         boolean result = false;
         SQLiteDatabase dbHandle = dbHelper.getWritableDatabase();

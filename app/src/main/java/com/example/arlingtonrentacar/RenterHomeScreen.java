@@ -14,14 +14,20 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.arlingtonrentacar.database.SystemUserDAO;
+import com.example.arlingtonrentacar.renter.ControllerRenterViewProfile;
 import com.example.arlingtonrentacar.renter.RenterViewProfileActivity;
 import com.example.arlingtonrentacar.renter.RenterViewReservationsActivity;
+import com.example.arlingtonrentacar.users.SystemUser;
 
 public class RenterHomeScreen extends AppCompatActivity {
     private final String LOG_TAG = RenterHomeScreen.class.getSimpleName();
     private String username;
     private SharedPreferences sessionPrefs;
+    private String mUsername;
+    private SystemUser mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +46,22 @@ public class RenterHomeScreen extends AppCompatActivity {
     }
 
     public void launchRequestCarActivity(View view) {
-        Intent intent = new Intent(this, RequestCarActivity.class);
-        startActivity(intent);
+        final String METHOD_NAME = "launchRequestCarActivity()";
+        sessionPrefs = AAUtil.getLogInSession(this);
+        username = sessionPrefs.getString(getString(R.string.session_loggedin_username), "");
+        Log.d(LOG_TAG, METHOD_NAME + ": usermame: " + username);//prints current logged in user
+        mUser = ControllerRenterViewProfile.getSystemUserByUsername(username);
+        if(mUser.getUserStatus()==0)
+        {
+            Toast.makeText(RenterHomeScreen.this, "Your status is revoked",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, RenterHomeScreen.class);
+        }
+        else
+        {
+            Intent intent = new Intent(this, RequestCarActivity.class);
+            startActivity(intent);
+        }
+
     }
 
     private void initGreetingForRenter(String username){

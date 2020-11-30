@@ -11,14 +11,16 @@ import com.example.arlingtonrentacar.database.SystemUserDAO;
 import com.example.arlingtonrentacar.users.SystemUser;
 
 public class ControllerRenterViewProfile {
+    private static Context mContext;
+    //private static Context mContext;
     private final String LOG_TAG = ControllerRenterViewProfile.class.getSimpleName();
-    private Context mContext;
+    //private Context mContext;
 
     public ControllerRenterViewProfile(Context context){
         mContext = context;
     }
 
-    public SystemUser getSystemUserByUsername(String username){
+    public static SystemUser getSystemUserByUsername(String username){
         SystemUser user;
         SystemUserDAO systemUserDAO = SystemUserDAO.getInstance(mContext);
         user = systemUserDAO.getSystemUserByUsername(username);
