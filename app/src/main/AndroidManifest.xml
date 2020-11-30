@@ -9,17 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UserProfile"></activity>
+        <activity android:name=".admin.search_user"></activity>
+        <activity android:name=".UserProfile" />
         <activity android:name=".ManagerViewAvailableCarSummaryScreen" />
-        <activity android:name=".ViewProfile"></activity>
+        <activity android:name=".ViewProfile" />
         <activity android:name=".ManagerViewAvailableCarsScreen" />
         <activity android:name=".ManagerViewCarDetailScreen" />
         <activity android:name=".ManagerSearchCarSummaryScreen" />
         <activity
             android:name=".ManagerSearchCarScreen"
             android:label="@string/title_activity_manager_search_car_screen" />
-
-
         <activity
             android:name=".renter.RenterViewProfileActivity"
             android:label="View Profile"
@@ -77,6 +76,9 @@
         </activity>
         <activity android:name=".manager.View_Reservation_Calendar" />
         <activity android:name=".manager.View_Reservation_Details" />
+        <activity android:name=".search_user" />
+        <activity android:name=".search_user_list" />
+        <activity android:name=".view_selected_user_profile" />
     </application>
 
 </manifest>
