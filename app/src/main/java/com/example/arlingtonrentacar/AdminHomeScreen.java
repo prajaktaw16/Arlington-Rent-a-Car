@@ -30,7 +30,7 @@ public class AdminHomeScreen extends AppCompatActivity {
     }
     //delete this func after adding sassyalis
     public void viewuser(View view) {
-        Intent intent = new Intent(this, UserProfile.class);
+        Intent intent = new Intent(this, search_user.class);
         startActivity(intent);
     }
     public void viewProfile(View view) {

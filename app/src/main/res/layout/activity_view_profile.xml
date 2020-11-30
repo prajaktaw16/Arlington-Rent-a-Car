@@ -7,7 +7,7 @@
     tools:context="com.example.arlingtonrentacar.ViewProfile">
 
     <Button
-        android:id="@+id/update_btn"
+        android:id="@+id/update_btn3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -16,7 +16,7 @@
         android:onClick="update"
         android:text="Update Profile"
         android:visibility="visible"
-        app:layout_constraintStart_toEndOf="@+id/button7"
+        app:layout_constraintStart_toEndOf="@+id/homebtn_admin"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -28,7 +28,7 @@
         android:layout_marginTop="20dp"
         android:text="First Name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/update_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/update_btn3" />
 
     <TextView
         android:id="@+id/textView3"
@@ -116,7 +116,7 @@
         android:layout_marginTop="19dp"
         android:text="Phone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_utaID" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_utaID3" />
 
     <TextView
         android:id="@+id/textView11"
@@ -137,8 +137,8 @@
         android:layout_marginLeft="28dp"
         android:layout_marginTop="24dp"
         android:text="State"
-        app:layout_constraintStart_toEndOf="@+id/editText_city"
-        app:layout_constraintTop_toBottomOf="@+id/editText_streetAddress" />
+        app:layout_constraintStart_toEndOf="@+id/editText_city3"
+        app:layout_constraintTop_toBottomOf="@+id/editText_streetAddress3" />
 
     <TextView
         android:id="@+id/textView13"
@@ -152,7 +152,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <EditText
-        android:id="@+id/editText_firstName"
+        android:id="@+id/editText_firstName3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
@@ -160,10 +160,10 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/update_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/update_btn3" />
 
     <EditText
-        android:id="@+id/editText_lastName"
+        android:id="@+id/editText_lastName3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
@@ -171,10 +171,10 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/editText_firstName" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_firstName3" />
 
     <EditText
-        android:id="@+id/editText_userName"
+        android:id="@+id/editText_userName3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
@@ -182,10 +182,10 @@
         android:layout_marginTop="11dp"
         android:ems="10"
         app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/editText_lastName" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_lastName3" />
 
     <EditText
-        android:id="@+id/editText_password"
+        android:id="@+id/editText_password3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
@@ -193,10 +193,10 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/editText_userName" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_userName3" />
 
     <EditText
-        android:id="@+id/editText_utaID"
+        android:id="@+id/editText_utaID3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
@@ -204,10 +204,10 @@
         android:layout_marginTop="14dp"
         android:ems="10"
         app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/editText_password" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_password3" />
 
     <TextView
-        android:id="@+id/userrole"
+        android:id="@+id/userrole3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -215,20 +215,20 @@
         android:layout_marginTop="24dp"
         android:ems="3"
         app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/editText_utaID" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_utaID3" />
 
     <EditText
-        android:id="@+id/editText_phone"
+        android:id="@+id/editText_phone3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
         android:ems="3"
         app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/editText_utaID" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_utaID3" />
 
     <EditText
-        android:id="@+id/editText_email"
+        android:id="@+id/editText_email3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -236,10 +236,10 @@
         android:layout_marginTop="8dp"
         android:ems="5"
         app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/userrole" />
+        app:layout_constraintTop_toBottomOf="@+id/userrole3" />
 
     <EditText
-        android:id="@+id/editText_streetAddress"
+        android:id="@+id/editText_streetAddress3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -247,10 +247,10 @@
         android:layout_marginTop="8dp"
         android:ems="5"
         app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/editText_email" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_email3" />
 
     <EditText
-        android:id="@+id/editText_city"
+        android:id="@+id/editText_city3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -258,10 +258,10 @@
         android:layout_marginTop="9dp"
         android:ems="3"
         app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/editText_streetAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_streetAddress3" />
 
     <EditText
-        android:id="@+id/editText_state"
+        android:id="@+id/editText_state3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -269,10 +269,10 @@
         android:layout_marginTop="8dp"
         android:ems="3"
         app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/editText_streetAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_streetAddress3" />
 
     <EditText
-        android:id="@+id/editText_zipCode"
+        android:id="@+id/editText_zipCode3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -280,10 +280,10 @@
         android:layout_marginTop="4dp"
         android:ems="3"
         app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/editText_city" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_city3" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/homebtn_admin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"

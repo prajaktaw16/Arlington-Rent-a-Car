@@ -355,7 +355,7 @@
         app:layout_constraintTop_toTopOf="@+id/totalprice_textview" />
 
     <TextView
-        android:id="@+id/editText_firstName"
+        android:id="@+id/editText_firstName3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"

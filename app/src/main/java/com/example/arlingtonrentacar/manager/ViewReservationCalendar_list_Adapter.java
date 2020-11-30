@@ -47,7 +47,7 @@ public class ViewReservationCalendar_list_Adapter extends RecyclerView.Adapter<V
         holder.startDate_textView.setText(reservationsData.get(position).getStartDate());
         holder.startTime_textView.setText(reservationsData.get(position).getStartTime());
         holder.endDate_textView.setText(reservationsData.get(position).getEndDate());
-        holder.endTime_textView.setText(reservationsData.get(position).getEndTime());
+        holder.endTime_textView.setText(String.valueOf(reservationsData.get(position).getEndTime()));
     }
 
     @Override
