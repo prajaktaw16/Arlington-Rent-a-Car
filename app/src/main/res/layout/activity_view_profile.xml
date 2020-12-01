@@ -285,7 +285,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editText_streetAddress" />
 
     <EditText
-        android:id="@+id/editText_state"
+        android:id="@+id/dateTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
