@@ -20,6 +20,7 @@
             android:parentActivityName=".ManagerSearchCarScreen"/>
         <activity
             android:name=".ManagerSearchCarScreen"
+            android:label="@string/title_activity_manager_search_car_screen" />
             android:label="@string/title_activity_manager_search_car_screen"
             android:parentActivityName=".ManagerHomeScreen"/>
 
@@ -82,6 +83,9 @@
         <activity android:name=".manager.View_Reservation_Calendar"
             android:parentActivityName=".ManagerHomeScreen"/>
         <activity android:name=".manager.View_Reservation_Details" />
+        <activity android:name=".search_user" />
+        <activity android:name=".search_user_list" />
+        <activity android:name=".view_selected_user_profile" />
     </application>
 
 </manifest>

@@ -64,18 +64,18 @@ public class ViewProfile extends AppCompatActivity {
 
     private void initGUIViews(){
         // rvp = renter view profile
-        mETLastName = findViewById(R.id.editText_lastName);
-        mETFirstName = findViewById(R.id.editText_firstName);
-        mETUsername  = findViewById(R.id.editText_userName);
-        mETPassword = findViewById(R.id.editText_password);
-        mETUTAID = findViewById(R.id.editText_utaID);
-        mETRole = findViewById(R.id.userrole);
-        mETPhone = findViewById(R.id.editText_phone);
-        mETEmail = findViewById(R.id.editText_email);
-        mETAddress = findViewById(R.id.editText_streetAddress);
-        mETCity = findViewById(R.id.editText_city);
-        mETState = findViewById(R.id.dateTv);
-        mETZip = findViewById(R.id.editText_zipCode);
+        mETLastName = findViewById(R.id.editText_lastName3);
+        mETFirstName = findViewById(R.id.editText_firstName3);
+        mETUsername  = findViewById(R.id.editText_userName3);
+        mETPassword = findViewById(R.id.editText_password3);
+        mETUTAID = findViewById(R.id.editText_utaID3);
+        mETRole = findViewById(R.id.userrole3);
+        mETPhone = findViewById(R.id.editText_phone3);
+        mETEmail = findViewById(R.id.editText_email3);
+        mETAddress = findViewById(R.id.editText_streetAddress3);
+        mETCity = findViewById(R.id.editText_city3);
+        mETState = findViewById(R.id.editText_state3);
+        mETZip = findViewById(R.id.editText_zipCode3);
     }
 
     private void setGUIViews(){
