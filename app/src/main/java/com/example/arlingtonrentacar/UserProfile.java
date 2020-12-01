@@ -239,7 +239,7 @@ public class UserProfile extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_user_profile, menu);
+        getMenuInflater().inflate(R.menu.menu_renter_view_profile, menu);
         return true;
     }
 }

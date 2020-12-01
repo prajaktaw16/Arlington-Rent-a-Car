@@ -182,7 +182,6 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="40dp"
         android:text="Marry"
-        app:layout_constraintStart_toEndOf="@+id/sel_time"
         android:ems="10"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/update_btn3" />

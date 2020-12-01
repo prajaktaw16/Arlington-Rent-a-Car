@@ -80,8 +80,7 @@
         android:id="@+id/dateTv"
         android:layout_width="122dp"
         android:layout_height="36dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
+        android:layout_marginStart="200dp"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="230dp"
         android:gravity="center"
@@ -91,21 +90,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.316" />
-
-    <TextView
-        android:id="@+id/editText_state3"
-        android:layout_width="122dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="230dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.316" />
+        app:layout_constraintVertical_bias="0.284" />
 
     <Button
         android:id="@+id/button5"
