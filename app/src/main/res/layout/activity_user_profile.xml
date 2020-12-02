@@ -6,24 +6,12 @@
     android:layout_height="match_parent"
     tools:context="com.example.arlingtonrentacar.UserProfile">
 
-    <Button
-        android:id="@+id/changerole"
-        android:layout_width="129dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="24dp"
-        android:onClick="btnChangeRole"
-        android:text="Change Role"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
         android:id="@+id/textView31"
         android:layout_width="241dp"
         android:layout_height="38dp"
         android:layout_marginTop="16dp"
-        android:text="View Selected User Details"
+        android:text="View Admin Profile"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,14 +21,15 @@
 
     <EditText
         android:id="@+id/user_name"
-        android:layout_width="179dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="216dp"
-        android:layout_marginTop="96dp"
+        android:layout_width="173dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="212dp"
+        android:layout_marginTop="68dp"
         android:ems="10"
+        android:focusable="false"
         android:inputType="textPersonName"
-        android:text="johndoe"
         android:textColor="#0E0D0D"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,12 +37,12 @@
         android:id="@+id/textView32"
         android:layout_width="125dp"
         android:layout_height="25dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="68dp"
         android:text="Username"
         android:textColor="#070707"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/user_name"
-        app:layout_constraintHorizontal_bias="0.385"
+        app:layout_constraintHorizontal_bias="0.378"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,7 +51,7 @@
         android:layout_width="125dp"
         android:layout_height="25dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="120dp"
         android:text="Password"
         android:textColor="#070707"
         android:textStyle="bold"
@@ -71,14 +60,14 @@
 
     <EditText
         android:id="@+id/user_pswd"
-        android:layout_width="181dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="216dp"
-        android:layout_marginTop="132dp"
+        android:layout_width="175dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="212dp"
+        android:layout_marginTop="116dp"
         android:ems="10"
+        android:focusable="false"
         android:inputType="textPersonName"
-        android:text="asdf"
-        android:textSize="8sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -96,14 +85,14 @@
 
     <EditText
         android:id="@+id/user_last_name"
-        android:layout_width="179dp"
-        android:layout_height="25dp"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
         android:layout_marginTop="164dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
+        android:focusable="false"
         android:inputType="textPersonName"
-        android:text=" Doe"
-        android:textSize="2sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -112,7 +101,7 @@
         android:layout_width="125dp"
         android:layout_height="25dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="204dp"
+        android:layout_marginTop="216dp"
         android:text="First Name"
         android:textColor="#070707"
         android:textStyle="bold"
@@ -121,41 +110,29 @@
 
     <EditText
         android:id="@+id/user_first_name"
-        android:layout_width="179dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="204dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="172dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="216dp"
+        android:layout_marginEnd="24dp"
         android:ems="10"
+        android:focusable="false"
         android:inputType="textPersonName"
-        android:text="John"
-        android:textSize="2sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textview_role"
-        android:layout_width="125dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="244dp"
-        android:text="Role"
-        android:textColor="#070707"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/user_zipcode"
-        android:layout_width="179dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="508dp"
+        android:layout_width="174dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="612dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
+        android:focusable="false"
         android:inputType="textPersonName"
-        android:textSize="2sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="12345" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView37"
@@ -171,14 +148,14 @@
 
     <EditText
         android:id="@+id/user_utaid"
-        android:layout_width="179dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="284dp"
+        android:layout_width="202dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="272dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
+        android:focusable="false"
         android:inputType="textPersonName"
-        android:text="1999999999"
-        android:textSize="2sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -196,25 +173,24 @@
 
     <EditText
         android:id="@+id/user_phone"
-        android:layout_width="179dp"
-        android:layout_height="25dp"
+        android:layout_width="177dp"
+        android:layout_height="38dp"
         android:layout_marginTop="320dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
+        android:focusable="false"
         android:inputType="textPersonName"
         android:selectAllOnFocus="true"
-        android:text="1234567890"
-        android:textSize="2sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="1234567890" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView39"
         android:layout_width="125dp"
         android:layout_height="25dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="360dp"
+        android:layout_marginTop="368dp"
         android:text="Email ID"
         android:textColor="#070707"
         android:textStyle="bold"
@@ -223,23 +199,23 @@
 
     <EditText
         android:id="@+id/user_email"
-        android:layout_width="179dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="360dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="175dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="368dp"
+        android:layout_marginEnd="20dp"
         android:ems="10"
+        android:focusable="false"
         android:inputType="textPersonName"
-        android:textSize="2sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="a@a.com" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView40"
         android:layout_width="125dp"
         android:layout_height="25dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="400dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="428dp"
         android:text=" Street Address"
         android:textColor="#070707"
         android:textStyle="bold"
@@ -248,23 +224,23 @@
 
     <EditText
         android:id="@+id/user_address"
-        android:layout_width="179dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="400dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="428dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
+        android:focusable="false"
         android:inputType="textPersonName"
-        android:textSize="2sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Main Street" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView41"
         android:layout_width="125dp"
         android:layout_height="25dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="436dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="480dp"
         android:text="City"
         android:textColor="#070707"
         android:textStyle="bold"
@@ -273,23 +249,23 @@
 
     <EditText
         android:id="@+id/user_city"
-        android:layout_width="179dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="173dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="20dp"
         android:ems="10"
+        android:focusable="false"
         android:inputType="textPersonName"
-        android:textSize="2sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_address"
-        tools:text="Fort Wayne" />
+        app:layout_constraintTop_toBottomOf="@+id/user_address" />
 
     <TextView
         android:id="@+id/textView42"
         android:layout_width="125dp"
         android:layout_height="25dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="472dp"
+        android:layout_marginTop="576dp"
         android:text="State"
         android:textColor="#070707"
         android:textStyle="bold"
@@ -301,103 +277,63 @@
         android:layout_width="125dp"
         android:layout_height="25dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="508dp"
+        android:layout_marginTop="624dp"
         android:text="Zipcode"
         android:textColor="#070707"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView44"
-        android:layout_width="124dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="548dp"
-        android:text="Auto Arlington Member"
-        android:textColor="#070707"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView45"
-        android:layout_width="125dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="588dp"
-        android:text="User Status"
-        android:textColor="#070707"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/user_role_spinner"
-        android:layout_width="179dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="244dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/user_state"
-        android:layout_width="179dp"
-        android:layout_height="25dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="196dp"
+        android:layout_width="159dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="59dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="8dp"
         android:ems="10"
+        android:focusable="false"
         android:inputType="textPersonName"
-        android:text="IN"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/user_zipcode"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="IN" />
-
-    <TextView
-        android:id="@+id/user_status"
-        android:layout_width="179dp"
-        android:layout_height="25dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="80dp"
-        android:text="1"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="1" />
-
-    <Spinner
-        android:id="@+id/user_aaa_status"
-        android:layout_width="179dp"
-        android:layout_height="25dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="120dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView42" />
 
     <Button
-        android:id="@+id/updateprofile"
-        android:layout_width="119dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginBottom="28dp"
-        android:onClick="btnUpdateUserProfileOnClickHandler"
-        android:text="Update Profile"
-        android:textSize="10sp"
+        android:id="@+id/button5"
+        android:layout_width="103dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="4dp"
+        android:onClick="adminHome"
+        android:text="Home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/revokeuser"
-        android:layout_width="89dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="28dp"
-        android:onClick="btnRevokeUser"
-        android:text="Revoke User"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/updateprofile" />
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="85dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="16dp"
+        android:text="Role"
+        android:textColor="#070707"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView42"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/user_role"
+        android:layout_width="151dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginBottom="4dp"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/user_state"
+        app:layout_constraintStart_toEndOf="@+id/textView26" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

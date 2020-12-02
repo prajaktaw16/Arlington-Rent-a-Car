@@ -34,7 +34,7 @@ public class AdminHomeScreen extends AppCompatActivity {
         startActivity(intent);
     }
     public void viewProfile(View view) {
-        Intent intent = new Intent(this, ViewProfile.class);
+        Intent intent = new Intent(this, UserProfile.class);
         startActivity(intent);
     }
 }
