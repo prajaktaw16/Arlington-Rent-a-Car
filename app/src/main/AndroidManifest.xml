@@ -20,10 +20,8 @@
             android:parentActivityName=".ManagerSearchCarScreen"/>
         <activity
             android:name=".ManagerSearchCarScreen"
-            android:label="@string/title_activity_manager_search_car_screen" />
             android:label="@string/title_activity_manager_search_car_screen"
-            android:parentActivityName=".ManagerHomeScreen"/>
-
+            android:parentActivityName=".ManagerSearchCarScreen"/>
 
         <activity
             android:name=".renter.RenterViewProfileActivity"

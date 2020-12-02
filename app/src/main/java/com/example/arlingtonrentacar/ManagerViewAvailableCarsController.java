@@ -51,6 +51,7 @@ public class ManagerViewAvailableCarsController {
             if(cursor.moveToFirst()){
                 Log.d("ManagerViewAvailableCarsController", "carCursor.getCount():"+cursor.getCount());
                 do{
+                    Log.d("ManagerViewAvailableCarsController", "cursor.position:"+cursor.getPosition());
                     carDetailsObj = new SearchCarSummaryItem();
                     carDetailsObj.setCarName(cursor.getString(cursor.getColumnIndex("car_name")));
                     carDetailsObj.setCarCapacity(Integer.parseInt(cursor.getString(cursor.getColumnIndex("capacity"))));
@@ -61,7 +62,10 @@ public class ManagerViewAvailableCarsController {
                     carDetailsObj.setRateGPS(Double.parseDouble(cursor.getString(cursor.getColumnIndex("gps_rate_perday"))));
                     carDetailsObj.setRateXM(Double.parseDouble(cursor.getString(cursor.getColumnIndex("siriusxm_rate_perday"))));
                     carDetailsObj.setRateOnStar(Double.parseDouble(cursor.getString(cursor.getColumnIndex("onstar_rate_perday"))));
-                    //carDetailsObj.setCarNumber(1212);
+                    String totalPrice = cursor.getString(cursor.getColumnIndex("weekly_rate"))+cursor.getString(cursor.getColumnIndex("gps_rate_perday"))+cursor.getString(cursor.getColumnIndex("siriusxm_rate_perday"))+ cursor.getString(cursor.getColumnIndex("onstar_rate_perday")) ;
+                    Double costPerDay = Double.parseDouble(totalPrice);
+                    carDetailsObj.setTotalPrice(costPerDay);
+                    carDetailsObj.setCarNumber(cursor.getPosition()+1);
                     carDetails.add(carDetailsObj);
                 }while(cursor.moveToNext());
                 Log.d("ManagerViewAvailableCarsController", "carDetails:"+carDetails);

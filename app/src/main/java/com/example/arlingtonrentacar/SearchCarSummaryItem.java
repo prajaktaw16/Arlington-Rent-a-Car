@@ -6,7 +6,7 @@ import android.os.Parcelable;
 public class SearchCarSummaryItem implements Parcelable {
 
     private String carName;
-    //private int carNumber;
+    private int carNumber;
     private int carCapacity;
     private String carStatus;
     private double totalPrice;
@@ -21,7 +21,7 @@ public class SearchCarSummaryItem implements Parcelable {
     }
     protected SearchCarSummaryItem(Parcel in) {
         carName = in.readString();
-        //carNumber = in.readInt();
+        carNumber = in.readInt();
         carCapacity = in.readInt();
         carStatus = in.readString();
         totalPrice = in.readDouble();
@@ -44,6 +44,8 @@ public class SearchCarSummaryItem implements Parcelable {
             return new SearchCarSummaryItem[size];
         }
     };
+
+
 
     public String getCarName() {
         return carName;
@@ -124,10 +126,17 @@ public class SearchCarSummaryItem implements Parcelable {
     public void setRateOnStar(double rateOnStar) {
         this.rateOnStar = rateOnStar;
     }
+    public int getCarNumber() {
+        return carNumber;
+    }
 
-    public SearchCarSummaryItem(String carName, int carCapacity, String carStatus, double totalPrice, double rateWeekDay, double rateWeekEnd, double rateWeek, double rateGPS, double rateXM, double rateOnStar) {
+    public void setCarNumber(int carNumber) {
+        this.carNumber = carNumber;
+    }
+
+    public SearchCarSummaryItem(String carName, int carNumber,int carCapacity, String carStatus, double totalPrice, double rateWeekDay, double rateWeekEnd, double rateWeek, double rateGPS, double rateXM, double rateOnStar) {
         this.carName = carName;
-        //this.carNumber = carNumber;
+        this.carNumber = carNumber;
         this.carCapacity = carCapacity;
         this.carStatus = carStatus;
         this.totalPrice = totalPrice;
@@ -154,7 +163,7 @@ public class SearchCarSummaryItem implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.carName);
-        //dest.writeInt(carNumber);
+        dest.writeInt(carNumber);
         dest.writeInt(this.carCapacity);
         dest.writeString(this.carStatus);
         dest.writeDouble(this.totalPrice);
