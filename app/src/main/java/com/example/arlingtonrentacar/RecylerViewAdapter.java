@@ -45,7 +45,7 @@ public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.carName_textView.setText(mSearchCarSummaryList.get(position).getCarName());
-        //holder.carnumber_textView.setText( Integer.toString(mSearchCarSummaryList.get(position).getCarNumber()));
+        holder.carnumber_textView.setText( Integer.toString(mSearchCarSummaryList.get(position).getCarNumber()));
         holder.carStatus_textView.setText(mSearchCarSummaryList.get(position).getCarStatus());
         holder.carCapacity_textView.setText(Integer.toString(mSearchCarSummaryList.get(position).getCarCapacity()));
         holder.totalPrice_textView.setText( Double.toString(mSearchCarSummaryList.get(position).getTotalPrice()));
@@ -59,7 +59,7 @@ public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener {
         public TextView carName_textView;
-       // public TextView carnumber_textView;
+        public TextView carnumber_textView;
         public TextView carCapacity_textView;
         public TextView carStatus_textView;
         public TextView totalPrice_textView;
@@ -68,7 +68,7 @@ public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.
 
             super(itemView);
             carName_textView = itemView.findViewById(R.id.car_name);
-           // carnumber_textView = itemView.findViewById(R.id.car_number);
+            carnumber_textView = itemView.findViewById(R.id.car_number);
             carStatus_textView = itemView.findViewById(R.id.car_status);
             carCapacity_textView = itemView.findViewById(R.id.car_capacity);
             totalPrice_textView = itemView.findViewById(R.id.cost_per_day);

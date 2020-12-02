@@ -58,7 +58,7 @@ public class ManagerSearchCarsController {
                 carDetailsObj.setRateOnStar(car.getRateOnStar());
                 Double totalPrice = car.getRateWeekDay()+car.getRateWeekEnd()+car.getRateWeek()+ car.getRateGPS()+ car.getRateXM()+ car.getRateOnStar();
                 carDetailsObj.setTotalPrice(totalPrice);
-                //carDetailsObj.setCarNumber(1212);
+                carDetailsObj.setCarNumber(cursor.getPosition()+2);
                 carDetails.add(carDetailsObj);
                 Intent intent = new Intent(mContext, ManagerSearchCarSummaryScreen.class);
                 intent.putExtra("carDetails", carDetails);
