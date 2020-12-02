@@ -47,6 +47,16 @@ public class ReservationsDAO {
         Cursor cursor =  databaseHandle.rawQuery(reservations_query,null);
         return cursor;
     }
+    public Cursor viewReservationsForCar(String carName,String start_dateTime){
+        final String METHOD_NAME = "viewReservationsForCar()";
+        Log.d(LOG_TAG, "car name:"+ carName);
+        Log.d(LOG_TAG, "start_dateTime"+ start_dateTime);
+        SQLiteDatabase databaseHandle = dbHelper.getReadableDatabase();
+        String reservations_query =  "select * from reservations where start_date_time=\""+start_dateTime+"\" and car_name =\""+carName+"\"  order by start_date_time desc, car_name asc;";
+        Log.d(LOG_TAG, "reservations_query"+ reservations_query);
+        Cursor cursor =  databaseHandle.rawQuery(reservations_query,null);
+        return cursor;
+    }
 
     public boolean deleteReservation(String reservationID){
         SQLiteDatabase databaseHandle = dbHelper.getWritableDatabase();
