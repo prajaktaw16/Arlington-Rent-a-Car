@@ -11,7 +11,7 @@ import com.example.arlingtonrentacar.users.SystemUser;
 
 public class Admin_UpdateSelectedUserController {
 
-    private Context adminGUIContext;
+    //private Context adminGUIContext;
     private static final String LOG_TAG = Admin_UpdateSelectedUserController.class.getSimpleName();
     private Context mContext;
     public Admin_UpdateSelectedUserController(Context context){

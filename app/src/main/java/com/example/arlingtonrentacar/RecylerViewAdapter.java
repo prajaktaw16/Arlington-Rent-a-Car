@@ -15,19 +15,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.arlingtonrentacar.database.CarDetails;
 import com.example.arlingtonrentacar.database.Reservations;
 import com.example.arlingtonrentacar.manager.ViewReservationCalendar_list_Adapter;
+import com.example.arlingtonrentacar.renter.ReservationSummaryItem;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.ViewHolder> {
-    private final SearchCarListListener mListListener;
-    private ArrayList<CarDetails> carDetails;
-    private Context mcontext;
+    private SearchCarListListener mListListener;
+    private ArrayList<SearchCarSummaryItem> mSearchCarSummaryList;
+    //private ArrayList<CarDetails> carDetails;
 
 
-    public RecylerViewAdapter(ArrayList<CarDetails> carDetails, SearchCarListListener mListListener) {
-        this.carDetails = carDetails;
-        this.mListListener = mListListener;
-        this.mcontext = mcontext;
+    public RecylerViewAdapter( ArrayList<SearchCarSummaryItem> carDetails, SearchCarListListener searchCarListListener) {
+        this.mSearchCarSummaryList = carDetails;
+        this.mListListener = searchCarListListener;
     }
     public interface SearchCarListListener {
         void onSearchCarListClick(int position);
@@ -43,43 +44,35 @@ public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.textview1.setText(carDetails.get(position).getCarName());
-        holder.textview2.setText(carDetails.get(position).getCarNumber());
-        holder.textview1.setText(carDetails.get(position).getCarCapacity());
-        holder.textview1.setText(carDetails.get(position).getCarCostPerDay());
-        holder.textview1.setText(carDetails.get(position).getCarStatus());
-
-        holder.textview1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mcontext.startActivity(new Intent(mcontext, ManagerViewCarDetailScreen.class));
-            }
-        });
-
+        holder.carName_textView.setText(mSearchCarSummaryList.get(position).getCarName());
+        //holder.carnumber_textView.setText( Integer.toString(mSearchCarSummaryList.get(position).getCarNumber()));
+        holder.carStatus_textView.setText(mSearchCarSummaryList.get(position).getCarStatus());
+        holder.carCapacity_textView.setText(Integer.toString(mSearchCarSummaryList.get(position).getCarCapacity()));
+        holder.totalPrice_textView.setText( Double.toString(mSearchCarSummaryList.get(position).getTotalPrice()));
     }
 
     @Override
     public int getItemCount() {
 
-        return carDetails.size();
+        return mSearchCarSummaryList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener {
-        TextView textview1;
-        TextView textview2;
-        TextView textview3;
-        TextView textview4;
-        TextView textview5;
-        SearchCarListListener rearchCarListListener;
+        public TextView carName_textView;
+       // public TextView carnumber_textView;
+        public TextView carCapacity_textView;
+        public TextView carStatus_textView;
+        public TextView totalPrice_textView;
+        SearchCarListListener searchCarListListener;
         public ViewHolder(@NonNull View itemView, SearchCarListListener mSearchCarListListener) {
 
             super(itemView);
-            textview1 = itemView.findViewById(R.id.car_name);
-            textview2 = itemView.findViewById(R.id.car_number);
-            textview3 = itemView.findViewById(R.id.car_status);
-            textview4 = itemView.findViewById(R.id.car_capacity);
-            textview5 = itemView.findViewById(R.id.cost_per_day);
-            this.rearchCarListListener=mListListener;
+            carName_textView = itemView.findViewById(R.id.car_name);
+           // carnumber_textView = itemView.findViewById(R.id.car_number);
+            carStatus_textView = itemView.findViewById(R.id.car_status);
+            carCapacity_textView = itemView.findViewById(R.id.car_capacity);
+            totalPrice_textView = itemView.findViewById(R.id.cost_per_day);
+            this.searchCarListListener = mListListener;
             itemView.setOnClickListener((View.OnClickListener) this);
 
         }

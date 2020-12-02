@@ -12,7 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.arlingtonrentacar.database.SystemUserDAO;
 import com.example.arlingtonrentacar.manager.View_Reservation_Calendar;
 
 
@@ -29,6 +32,7 @@ public class ManagerHomeScreen extends AppCompatActivity {
         sessionPrefs = getSharedPreferences(getString(R.string.sessions_preference_file_key), Context.MODE_PRIVATE);
         this.username = sessionPrefs.getString(getString(R.string.session_loggedin_username), "");
         Log.d(LOG_TAG, "Username passed from login screen: " + username);
+        initGreetingForManager(username);
 
     }
     public void logout(View view) {
@@ -65,5 +69,15 @@ public class ManagerHomeScreen extends AppCompatActivity {
     public void view_manager_view_available_car(View view){
         Intent intent = new Intent(this, ManagerViewAvailableCarsScreen.class);
         startActivity(intent);
+    }
+    private void initGreetingForManager(String username){
+        SystemUserDAO systemUserDAO = SystemUserDAO.getInstance(this);
+        String fullName = systemUserDAO.getFullNameByUsername(username);
+        TextView userGreeting = findViewById(R.id.welcomeText);
+
+        String greeting = AAUtil.getGreetingByHour();
+        greeting += ", " + fullName;
+
+        userGreeting.setText(greeting);
     }
 }

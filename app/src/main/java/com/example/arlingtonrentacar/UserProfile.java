@@ -3,12 +3,15 @@ package com.example.arlingtonrentacar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -16,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.arlingtonrentacar.database.DatabaseHelper;
 import com.example.arlingtonrentacar.renter.ControllerRenterViewProfile;
 import com.example.arlingtonrentacar.renter.RenterViewProfileActivity;
 import com.example.arlingtonrentacar.systemControllers.Admin_UpdateSelectedUserController;
@@ -25,6 +29,7 @@ public class UserProfile extends AppCompatActivity {
     private final String LOG_TAG = UserProfile.class.getSimpleName();
     private SharedPreferences sessionPrefs;
     private SystemUser mUser;
+    private DatabaseHelper dbHelper;
     private Admin_UpdateSelectedUserController mAdmin_UpdateSelectedUserController;
     private Context mContext;
     private String mUsername;
@@ -44,15 +49,15 @@ public class UserProfile extends AppCompatActivity {
         mAdmin_UpdateSelectedUserController = new Admin_UpdateSelectedUserController(this);
         sessionPrefs = AAUtil.getLogInSession(this);
         mUsername = sessionPrefs.getString(getString(R.string.session_loggedin_username), "");
+        Log.d(LOG_TAG, METHOD_NAME + ": usermame: " + mUsername);//prints current logged in user
 
-        Log.d(LOG_TAG, METHOD_NAME + ": usermame: " + mUsername);
-        mUser = mAdmin_UpdateSelectedUserController.getSystemUserByUsername(mUsername);
-
-
-        Log.d(LOG_TAG, METHOD_NAME + ": " + mUser.toString());
+       mUser = mAdmin_UpdateSelectedUserController.getSystemUserByUsername(mUsername);
+         Log.d(LOG_TAG, METHOD_NAME + ": " + mUser.toString());
         initGUIViews();
         //call user status only
         setNewRole_GUI();
+        setNewUserStatus_GUI();
+        setGUIValues();
 
     }
 
@@ -82,7 +87,8 @@ public class UserProfile extends AppCompatActivity {
 
     public void setGUIValues()
     {
-        // mTVUsername.setText(mUser.getUsername());
+        mUsername = mTVUsername.getText().toString().trim();
+        mUser = mAdmin_UpdateSelectedUserController.getSystemUserByUsername(mUsername);
         mETPassword.setText(mUser.getPassword());
         mETFristName.setText(mUser.getFirstName());
         mETLastName.setText(mUser.getLastName());
@@ -95,8 +101,17 @@ public class UserProfile extends AppCompatActivity {
         mETState.setText(mUser.getState());
         mETZip.setText(mUser.getZip());
     }
+    public void setNewUserStatus_GUI()
+    {
+        mUsername = mTVUsername.getText().toString().trim();
+        mUser = mAdmin_UpdateSelectedUserController.getSystemUserByUsername(mUsername);
+        String user_status_changed = Integer.toString(mUser.getUserStatus());
+        mTVUserStatus.setText(user_status_changed);
+    }
     public void setNewRole_GUI()
     {
+        mUsername = mTVUsername.getText().toString().trim();
+        mUser = mAdmin_UpdateSelectedUserController.getSystemUserByUsername(mUsername);
         String role = mUser.getRole().trim();
         mRoleSpinner.setSelection(getIndex(mRoleSpinner, role));
     }
@@ -111,7 +126,8 @@ public class UserProfile extends AppCompatActivity {
     }
     public void updateUserProfile()
     {
-        mUser.setUsername(mTVUsername.getText().toString().trim());
+
+        //mUser.setUsername(mTVUsername.getText().toString().trim());
         mUser.setPassword(mETPassword.getText().toString().trim());
         mUser.setLastName(mETLastName.getText().toString().trim());
         mUser.setFirstName(mETFristName.getText().toString().trim());
@@ -122,6 +138,7 @@ public class UserProfile extends AppCompatActivity {
         mUser.setCity(mETCity.getText().toString().trim());
         mUser.setState(mETState.getText().toString().trim());
         mUser.setZip(mETZip.getText().toString().trim());
+       // mUser.setRole(mRoleSpinner.getSelectedItem().toString().trim());
         mUser.setAaaMemberStatus(AAUtil.aaaMemberStatusEnumToInt(AAUtil.aaaMemberStatusStrToEnum(mAAAmemberStatSpinner.getSelectedItem().toString().trim())));
         String msg;
         if(!mUser.validateData()){
@@ -183,14 +200,15 @@ public class UserProfile extends AppCompatActivity {
     //revoke user
     public void revokeUser()
     {
-        mUser.setUsername(mTVUsername.getText().toString().trim());
+        mUsername = mTVUsername.getText().toString().trim();
+        mUser = mAdmin_UpdateSelectedUserController.getSystemUserByUsername(mUsername);
         Log.d(LOG_TAG, "revokeUser" + ": " + mUser.toString());
         int revoke = 0;
         int user_status = mUser.getUserStatus();
         if (user_status == 1)
         {
             mUser.setUserStatus(revoke);
-            mTVUserStatus.setText(mUser.getUserStatus());
+            mTVUserStatus.setText(Integer.toString(mUser.getUserStatus()));
         }
         String msg;
         if(!mUser.validateData()){
@@ -219,5 +237,9 @@ public class UserProfile extends AppCompatActivity {
                 }).setNegativeButton("No", null).show();
     }
 
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_renter_view_profile, menu);
+        return true;
+    }
 }

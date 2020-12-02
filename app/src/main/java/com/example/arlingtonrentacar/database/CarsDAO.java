@@ -13,6 +13,7 @@ import com.example.arlingtonrentacar.AAUtil;
 import com.example.arlingtonrentacar.CarModel;
 import com.example.arlingtonrentacar.CarName;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class CarsDAO {
@@ -72,9 +73,11 @@ public class CarsDAO {
     }
 
     public CarModel getCarByCarName(CarName carName){
+        final String METHOD_NAME = "getCarByCarName()";
         CarModel carModel;
         SQLiteDatabase dbHandle = this.dbHelper.getReadableDatabase();
         String sql = "SELECT * FROM " + TABLE_CARS + " WHERE " + COLUMN_CAR_NAME + "= ?;";
+        Log.d(LOG_TAG, METHOD_NAME + ": SQL = " + sql);
         String[] selectionArgs = {AAUtil.carNameEnumToStr(carName)};
         Cursor cursor = dbHandle.rawQuery(sql, selectionArgs);
         cursor.moveToFirst();
@@ -89,6 +92,28 @@ public class CarsDAO {
                 Double.parseDouble(cursor.getString(cursor.getColumnIndex(COLUMN_XM_RATE_PER_DAY)).trim()),
                 Double.parseDouble(cursor.getString(cursor.getColumnIndex(COLUMN_ONSTAR_RATE_PER_DAY)).trim())
         );
+        Log.d(LOG_TAG, METHOD_NAME + ": carModel = " + carModel);
         return carModel;
+
+    }
+    public Cursor searchAvailableCars(String carNames){
+        final String METHOD_NAME = "searchAvailableCars()";
+        //Log.d(LOG_TAG, "car name:"+ carName);
+        Log.d(LOG_TAG, "carNames"+ carNames);
+        SQLiteDatabase databaseHandle = dbHelper.getReadableDatabase();
+        String reservations_query =  "select * from cars where car_name !=\""+carNames+"\"  order by car_name asc;";
+        Log.d(LOG_TAG, "reservations_query"+ reservations_query);
+        Cursor cursor =  databaseHandle.rawQuery(reservations_query,null);
+        return cursor;
+    }
+    public Cursor searchAllCars(){
+        final String METHOD_NAME = "searchAvailableCars()";
+        //Log.d(LOG_TAG, "car name:"+ carName);
+        //Log.d(LOG_TAG, "carNames"+ carNames);
+        SQLiteDatabase databaseHandle = dbHelper.getReadableDatabase();
+        String reservations_query =  "select * from cars order by car_name asc;";
+        Log.d(LOG_TAG, "reservations_query"+ reservations_query);
+        Cursor cursor =  databaseHandle.rawQuery(reservations_query,null);
+        return cursor;
     }
 }
