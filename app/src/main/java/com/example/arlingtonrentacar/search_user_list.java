@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -96,8 +99,19 @@ public class search_user_list extends AppCompatActivity implements search_user_l
         intent.putExtra("city", usersDataList.get(position).getCity());
         intent.putExtra("state", usersDataList.get(position).getState());
         intent.putExtra("zip", usersDataList.get(position).getZip());
-        intent.putExtra("role", usersDataList.get(position).getRole());
-
         startActivity(intent);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.vrc_menu_logout){
+            AAUtil.logout(this);
+        }
+        return(super.onOptionsItemSelected(item));
     }
 }

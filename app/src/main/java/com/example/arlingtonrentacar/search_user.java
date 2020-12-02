@@ -2,9 +2,12 @@ package com.example.arlingtonrentacar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,5 +29,18 @@ public class search_user extends AppCompatActivity {
         Intent intent = new Intent(this, search_user_list.class);
         intent.putExtra("lastname", last_name);
         startActivity(intent);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.vrc_menu_logout){
+            AAUtil.logout(this);
+        }
+        return(super.onOptionsItemSelected(item));
     }
 }

@@ -25,7 +25,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String CARS_TABLE = "cars";
     public static final String AA_STORE_HRS_TABLE = "aa_store_hrs";
     public static final String ARLINGTON_AUTO_DB = "ArlingtonAuto.db";
-    private static final int DB_VERSION  = 12;
+    private static final int DB_VERSION  = 25;
     private static final int DEV_MODE = 1;
 
     private static DatabaseHelper instance;
@@ -154,7 +154,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "aaa_member_status, user_status)" +
                 "VALUES" +
                 "(\"johndoe\", \"asdf\", \"Doe\", \"John\", \"renter\", 1001880001, \"1234567890\", " +
-                "\"a@a.com\", \"Main Street\", \"Fort Wayne\", \"IN\", \"12345\", 1, 1)," +
+                "\"a@a.com\", \"Main Street\", \"Chicago\", \"IL\", \"12345\", 1, 1)," +
+                "(\"tonystark\", \"asdf\", \"Doe\", \"kim\", \"renter\", 1001880005, \"9234567890\", " +
+                "\"kim@a.com\", \"Square st\", \"Chicago\", \"IL\", \"12345\", 1, 1)," +
+                "(\"jin\", \"asdf\", \"Doe\", \"linda\", \"renter\", 1001880006, \"9234567890\", " +
+                "\"linda@a.com\", \"Square st\", \"Chicago\", \"IL\", \"12345\", 1, 1)," +
                 "(\"marryjane\", \"asdf\", \"Jane\", \"Marry\", \"manager\", 1001880002, \"1234567891\", " +
                 "\"b@b.com\", \"Wall Street\", \"New York\", \"NY\", \"54321\", 0, 0)," +
                 "(\"brucewayne\", \"asdf\", \"Wayne\", \"Bruce\", \"admin\", 1001880003, \"1234567892\", " +
