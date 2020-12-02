@@ -45,8 +45,8 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="19dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="20dp"
         android:text="Email"
         app:layout_constraintStart_toEndOf="@+id/editText_phone3"
         app:layout_constraintTop_toBottomOf="@+id/editText_firstName3" />
@@ -198,8 +198,8 @@
 
     <EditText
         android:id="@+id/editText_phone3"
-        android:layout_width="96dp"
-        android:layout_height="45dp"
+        android:layout_width="139dp"
+        android:layout_height="46dp"
         android:layout_marginStart="13dp"
         android:layout_marginTop="8dp"
         android:ems="3"
@@ -209,9 +209,9 @@
 
     <EditText
         android:id="@+id/editText_email3"
-        android:layout_width="119dp"
+        android:layout_width="115dp"
         android:layout_height="43dp"
-        android:layout_marginStart="27dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="5"
         android:textSize="14sp"
@@ -232,7 +232,7 @@
     <EditText
         android:id="@+id/editText_city3"
         android:layout_width="75dp"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:ems="3"
@@ -253,8 +253,8 @@
 
     <EditText
         android:id="@+id/editText_zipCode3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="71dp"
+        android:layout_height="38dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
         android:ems="3"
