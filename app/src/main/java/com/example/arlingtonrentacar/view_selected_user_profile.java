@@ -96,6 +96,7 @@ public class view_selected_user_profile extends AppCompatActivity {
         zip_textview.setText(zip);
         //role_textview.setText(role);
         userStatus_TV.setText(String.valueOf(userStatus));
+        //userStatus_TV.setText("Inactive");
     }
 
     public void getGUI() {
@@ -195,6 +196,7 @@ public class view_selected_user_profile extends AppCompatActivity {
         if (user_status == 1) {
             mUser.setUserStatus(revoke);
             userStatus_TV.setText(Integer.toString(mUser.getUserStatus()));
+           // userStatus_TV.setText("Inactive");
         }
         String msg;
         if (!mUser.validateData()) {
@@ -231,7 +233,7 @@ public class view_selected_user_profile extends AppCompatActivity {
         mUser.setPassword(password_textview.getText().toString().trim());
         mUser.setLastName(lastname_textview.getText().toString().trim());
         mUser.setFirstName(firstname_textview.getText().toString().trim());
-        mUser.setUtaID(Integer.parseInt(utaid_textview.getText().toString().trim()));
+         mUser.setUtaID(Integer.parseInt(utaid_textview.getText().toString().trim()));
         mUser.setPhone(phone_textview.getText().toString());
         mUser.setEmail(email_textview.getText().toString());
         mUser.setStreetAddress(streetaddress_textview.getText().toString());
